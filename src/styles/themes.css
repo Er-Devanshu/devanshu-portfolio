@@ -1,0 +1,31 @@
+
+:root,
+:root[data-theme="light"] {
+  color-scheme: light;
+
+  --color-canvas: var(--light-canvas);
+  --color-surface: var(--light-surface);
+  --color-surface-raised: var(--light-surface-raised);
+  --color-ink: var(--light-ink);
+  --color-muted: var(--light-muted);
+  --color-subtle: var(--light-subtle);
+  --color-border: var(--light-border);
+  --color-accent: var(--light-accent);
+  --color-accent-hover: var(--light-accent-hover);
+  --color-sage: var(--light-sage);
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+
+  --color-canvas: var(--dark-canvas);
+  --color-surface: var(--dark-surface);
+  --color-surface-raised: var(--dark-surface-raised);
+  --color-ink: var(--dark-ink);
+  --color-muted: var(--dark-muted);
+  --color-subtle: var(--dark-subtle);
+  --color-border: var(--dark-border);
+  --color-accent: var(--dark-accent);
+  --color-accent-hover: var(--dark-accent-hover);
+  --color-sage: var(--dark-sage);
+}

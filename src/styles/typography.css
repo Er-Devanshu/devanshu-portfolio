@@ -1,0 +1,60 @@
+
+body {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.7;
+  font-weight: 400;
+  color: var(--color-ink);
+}
+
+h1,
+h2,
+h3,
+h4,
+.display-text {
+  font-family: var(--font-display);
+  font-weight: 400;
+  line-height: 1.04;
+  letter-spacing: -0.025em;
+}
+
+h1 {
+  font-size: clamp(3.2rem, 8vw, 7rem);
+}
+
+h2 {
+  font-size: clamp(2.5rem, 5vw, 4.25rem);
+}
+
+h3 {
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+}
+
+h4 {
+  font-size: 1.5rem;
+}
+
+p {
+  margin: 0;
+}
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  line-height: 1.5;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-sage);
+}
+
+.mono {
+  font-family: var(--font-mono);
+}
+
+.text-muted {
+  color: var(--color-muted);
+}
+
+.text-accent {
+  color: var(--color-accent);
+}

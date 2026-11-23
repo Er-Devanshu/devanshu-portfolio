@@ -1,0 +1,65 @@
+
+:root {
+  /* Light palette */
+  --light-canvas: #f3f0e8;
+  --light-surface: #e8e4d9;
+  --light-surface-raised: #faf8f3;
+  --light-ink: #191b19;
+  --light-muted: #686b63;
+  --light-subtle: #96988e;
+  --light-border: #d9d3c6;
+  --light-accent: #b85c38;
+  --light-accent-hover: #98472c;
+  --light-sage: #657765;
+
+  /* Dark palette */
+  --dark-canvas: #171917;
+  --dark-surface: #222621;
+  --dark-surface-raised: #292e28;
+  --dark-ink: #f1eee6;
+  --dark-muted: #b5b8ae;
+  --dark-subtle: #888d82;
+  --dark-border: #393e37;
+  --dark-accent: #d17b56;
+  --dark-accent-hover: #e08d68;
+  --dark-sage: #91a18f;
+
+  /* Typography */
+  --font-display: "Instrument Serif", Georgia, serif;
+  --font-body: "Inter", Arial, sans-serif;
+  --font-mono: "IBM Plex Mono", monospace;
+
+  /* Layout */
+  --container-width: 1280px;
+  --page-gutter: clamp(20px, 5vw, 80px);
+  --header-height: 84px;
+
+  /* Spacing */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --space-9: 96px;
+  --space-10: 128px;
+
+  /* Shape */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 16px;
+  --radius-pill: 999px;
+
+  /* Motion */
+  --ease-standard: cubic-bezier(0.2, 0.65, 0.3, 1);
+  --transition-fast: 180ms var(--ease-standard);
+  --transition-normal: 280ms var(--ease-standard);
+  --transition-slow: 500ms var(--ease-standard);
+
+  /* Layers */
+  --z-base: 1;
+  --z-header: 100;
+  --z-overlay: 200;
+}
