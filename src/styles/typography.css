@@ -40,16 +40,6 @@ p {
   margin: 0;
 }
 
-.eyebrow {
-  display: inline-block;
-  font-family: var(--font-mono);
-  font-size: 0.68rem;
-  font-weight: 500;
-  letter-spacing: 0.18em;
-  line-height: 1.5;
-  text-transform: uppercase;
-  color: var(--accent-color);
-}
 
 .mono {
   font-family: var(--font-mono);

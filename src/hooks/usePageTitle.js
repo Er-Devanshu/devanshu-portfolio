@@ -27,6 +27,7 @@ export default function usePageTitle(title, { noindex = false } = {}) {
     setMeta('meta[property="og:url"]', "content", url);
     setMeta('meta[property="og:title"]', "content", full);
     setMeta('meta[name="twitter:title"]', "content", full);
+    setMeta('meta[name="description"]', "content", site.seo.description);
     setMeta('meta[name="robots"]', "content", noindex ? "noindex" : "index, follow");
   }, [title, pathname, noindex]);
 }

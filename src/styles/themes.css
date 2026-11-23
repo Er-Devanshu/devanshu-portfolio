@@ -57,9 +57,6 @@
   color: var(--ivory-muted);
 }
 
-.surface-ivory .eyebrow {
-  color: var(--accent-dark);
-}
 
 .surface-ivory .divider {
   background: var(--ivory-border);

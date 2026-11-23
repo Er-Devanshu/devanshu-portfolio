@@ -196,8 +196,6 @@ body { font-size: 16px; }
 }
 .skip-link:focus { top: 12px; }
 
-.eyebrow { display: inline-flex; align-items: flex-end; gap: 6px; margin: 0 0 14px; }
-.eyebrow-mark { color: var(--accent-color); transform: translateY(-8px); }
 
 /* Buttons — 48px tall, pill */
 .btn {
@@ -222,7 +220,7 @@ body { font-size: 16px; }
 .surface-ivory .text-link { color: var(--accent-dark); }
 .text-link:hover { text-decoration-thickness: 2px; }
 
-/* Standard inner-page header: eyebrow + serif title + intro */
+/* Standard inner-page header: serif title + intro */
 .page-hero { padding-block: clamp(56px, 9vw, 112px) clamp(32px, 5vw, 56px); }
 .page-hero h1 { font-size: clamp(2.6rem, 5.5vw, 4.4rem); margin: 0 0 16px; }
 .page-hero p.lead { max-width: 560px; color: var(--text-secondary); font-size: 1.05rem; }

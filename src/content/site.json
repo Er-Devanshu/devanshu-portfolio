@@ -2,9 +2,7 @@
   "name": "Devanshu Tayal",
   "firstName": "Devanshu",
   "lastName": "Tayal",
-  "initials": "DT",
   "role": "Data Scientist",
-  "availability": "Available for opportunities",
   "tagline": "I build analytics, ML and AI systems that run in production and make sense to the people who use them.",
   "photo": "/images/portrait-home.webp",
   "photoAlt": "Devanshu Tayal smiling, arms crossed",
@@ -57,7 +55,6 @@
     }
   ],
   "contact": {
-    "eyebrow": "Contact",
     "title": "Let's Connect",
     "text": "Got a project, a role, or a data question? Send me a note.",
     "topicsTitle": "What's it about?",

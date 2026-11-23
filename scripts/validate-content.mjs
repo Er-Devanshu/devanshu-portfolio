@@ -36,7 +36,7 @@ const url = (file, value, where) => {
 
 const site = load("site.json");
 if (site) {
-  ["name", "firstName", "lastName", "initials", "role", "tagline", "email", "careerStart", "quote"].forEach((k) => str("site.json", site, k));
+  ["name", "firstName", "lastName", "role", "tagline", "email", "careerStart", "quote"].forEach((k) => str("site.json", site, k));
   if (site.careerStart && Number.isNaN(Date.parse(site.careerStart))) errors.push(`site.json: "careerStart" must be a date like 2018-02-09`);
   arr("site.json", site, "stats").forEach((s, i) => { str("site.json", s, "value", ` stats[${i}]`); str("site.json", s, "label", ` stats[${i}]`); if (s.url) url("site.json", s.url, ` stats[${i}]`); });
   arr("site.json", site, "socials").forEach((s, i) => { str("site.json", s, "label", ` socials[${i}]`); url("site.json", s.url, ` socials[${i}]`); });
