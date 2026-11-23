@@ -1,0 +1,68 @@
+{
+  "title": "Work Experience",
+  "intro": "Eight years, three companies. Here's what I worked on and what changed because of it.",
+  "roles": [
+    {
+      "role": "Sr. BI Solution Analyst / Data Scientist",
+      "company": "Analytix Business Solutions Pvt. Ltd",
+      "period": "Jan 2022 – Jan 2026",
+      "highlights": [
+        "Owned data science projects from the first model to production deployment.",
+        "Built deep learning models for workforce analytics that lifted employee retention by 20%.",
+        "Designed real-time pipelines on Microsoft Fabric that process millions of records a day.",
+        "Built the Power BI and Tableau dashboards stakeholders used for their decisions.",
+        "Mentored junior analysts and brought MLOps practices into the team."
+      ],
+      "impact": [
+        {
+          "value": "20%",
+          "direction": "up",
+          "label": "Employee retention",
+          "note": "from deep learning models for workforce analytics"
+        }
+      ]
+    },
+    {
+      "role": "Fraud Analyst",
+      "company": "AIS Business Solutions Pvt. Ltd",
+      "period": "Apr 2021 – Jan 2022",
+      "highlights": [
+        "Built fraud detection models in Python and Spark that cut the fraud rate by 23%.",
+        "Led cloud database migrations with zero data loss and tighter security compliance.",
+        "Automated forecasting pipelines, improving planning accuracy and cutting manual work by 40%."
+      ],
+      "impact": [
+        {
+          "value": "23%",
+          "direction": "down",
+          "label": "Fraud rate",
+          "note": "after new detection models in Python and Spark"
+        },
+        {
+          "value": "40%",
+          "direction": "down",
+          "label": "Manual forecasting work",
+          "note": "once forecasting pipelines were automated"
+        }
+      ]
+    },
+    {
+      "role": "Fraud Analyst",
+      "company": "TTEC",
+      "period": "Feb 2018 – Mar 2021",
+      "highlights": [
+        "Built machine learning models for fraud detection that reduced financial risk by 30%.",
+        "Set up anomaly detection to catch internal security threats.",
+        "Plugged predictive models into real-time transaction monitoring."
+      ],
+      "impact": [
+        {
+          "value": "30%",
+          "direction": "down",
+          "label": "Financial risk from fraud",
+          "note": "with ML fraud detection models"
+        }
+      ]
+    }
+  ]
+}

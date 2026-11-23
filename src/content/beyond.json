@@ -1,0 +1,69 @@
+{
+  "title": "Beyond Code",
+  "intro": "The communities I lead and the recognition that came with the work.",
+  "testimonials": [
+    {
+      "name": "Tarek Atwan",
+      "role": "Instructor, AI & Data Science",
+      "quote": "Devanshu is a hardworking and dedicated individual who consistently delivers high-quality results. His expertise in building forecasting models is impressive and his ability to communicate effectively makes him a valuable asset to any team.",
+      "highlight": "His expertise in building forecasting models is impressive",
+      "source": "LinkedIn recommendation"
+    },
+    {
+      "name": "Priyanshi Tiwari",
+      "role": "Senior Project Executive",
+      "quote": "Devanshu's energy and passion for his work are truly contagious, and I was impressed by how he uses real-world examples to clarify ideas, making them easy to grasp.",
+      "highlight": "uses real-world examples to clarify ideas",
+      "source": "LinkedIn recommendation"
+    },
+    {
+      "name": "Priyanka Khatri",
+      "role": "US Tax Preparer & Reviewer",
+      "quote": "I found him to be hard-working, bright, and a skilled communicator. What makes him stand out is his willingness to help others.",
+      "highlight": "his willingness to help others",
+      "source": "LinkedIn recommendation"
+    }
+  ],
+  "achievements": [
+    {
+      "title": "Tableau Ambassador",
+      "issuer": "Tableau",
+      "period": "2025",
+      "logo": "",
+      "text": "Selected as a Tableau Ambassador to support the global Tableau community and data literacy."
+    },
+    {
+      "title": "Guest Faculty",
+      "issuer": "BITS Pilani",
+      "period": "2026 – Present",
+      "logo": "",
+      "text": "I give lectures and run workshops that tie academic theory to how the work is done in industry."
+    }
+  ],
+  "communities": [
+    {
+      "name": "Gujarat Tableau User Group",
+      "role": "Group Leader",
+      "period": "Oct 2024 – Present",
+      "logo": "",
+      "url": "",
+      "text": "I run workshops on data storytelling and visualisation."
+    },
+    {
+      "name": "Databricks Gujarat User Group",
+      "role": "Group Leader",
+      "period": "2025 – Present",
+      "logo": "",
+      "url": "",
+      "text": "I run community meetups and technical sessions on Spark and big data."
+    },
+    {
+      "name": "India AI + Tableau User Group",
+      "role": "Speaker & Contributor",
+      "period": "2025 – Present",
+      "logo": "",
+      "url": "",
+      "text": "I give talks on where AI and data visualisation meet."
+    }
+  ]
+}

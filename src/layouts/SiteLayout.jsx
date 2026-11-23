@@ -1,17 +1,12 @@
-
 import Header from "../components/navigation/Header";
 import Footer from "../components/layout/Footer";
-import { useTheme } from "../hooks/useTheme";
 
 export default function SiteLayout({ children }) {
-  const { theme, toggleTheme } = useTheme();
-
   return (
-    <div className="app-shell">
-      <Header theme={theme} toggleTheme={toggleTheme} />
-
-      <main id="main-content">{children}</main>
-
+    <div className="app-shell" id="top">
+      <a href="#main-content" className="skip-link">Skip to content</a>
+      <Header />
+      <main id="main-content" tabIndex={-1}>{children}</main>
       <Footer />
     </div>
   );

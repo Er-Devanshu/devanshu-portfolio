@@ -1,0 +1,185 @@
+{
+  "title": "More About Me",
+  "intro": "Data scientist, teacher and community organiser. I turn messy data into decisions people trust, and I share what I learn.",
+  "bio": [
+    "I'm a data scientist. For eight years I've worked on data problems in travel, banking, finance, e-commerce and technology: fraud detection, forecasting, workforce analytics, and the pipelines and dashboards that sit around them.",
+    "Most of my work runs end to end. I get the data into shape, build the model, put it into production and then explain the result to the people who have to act on it. Depending on the problem, that means machine learning, deep learning, NLP or generative AI.",
+    "I hold an M.Tech in Data Science & Engineering from BITS Pilani and I'm certified in Microsoft Fabric (DP-600, DP-700) and Salesforce Agentforce.",
+    "Away from client work I teach at BITS Pilani as Guest Faculty, and I lead the Tableau and Databricks user groups in Gujarat as a Tableau Ambassador.",
+    "When I'm not working I'm usually over coffee arguing about an idea, or travelling somewhere I haven't been."
+  ],
+  "journey": [
+    {
+      "period": "2022 – 2026",
+      "title": "Sr. BI Solution Analyst / Data Scientist",
+      "org": "Analytix Business Solutions"
+    },
+    {
+      "period": "2021 – 2022",
+      "title": "Fraud Analyst",
+      "org": "AIS Business Solutions"
+    },
+    {
+      "period": "2018 – 2021",
+      "title": "Fraud Analyst",
+      "org": "TTEC"
+    }
+  ],
+  "pullQuote": "I get the data into shape, build the model, put it into production and then explain the result to the people who have to act on it.",
+  "skills": {
+    "groups": [
+      {
+        "group": "Programming",
+        "descriptor": "The languages I write models, queries and pipelines in.",
+        "items": [
+          {
+            "name": "Python",
+            "use": "The main language for analysis, modelling and automation."
+          },
+          {
+            "name": "SQL",
+            "use": "Querying and shaping data in relational databases and warehouses."
+          },
+          {
+            "name": "KQL",
+            "use": "Querying logs and real-time data in Microsoft Fabric and Azure."
+          },
+          {
+            "name": "Julia",
+            "use": "Fast numerical computing for heavy maths and simulation."
+          }
+        ]
+      },
+      {
+        "group": "Machine learning",
+        "descriptor": "Classical models for tabular data, where most business problems live.",
+        "items": [
+          {
+            "name": "Scikit-learn",
+            "use": "The standard Python toolkit for classical machine learning."
+          },
+          {
+            "name": "XGBoost",
+            "use": "Gradient-boosted trees, strong on tabular prediction problems."
+          },
+          {
+            "name": "LightGBM",
+            "use": "Fast gradient boosting built for large tabular datasets."
+          },
+          {
+            "name": "Feature engineering",
+            "use": "Turning raw data into signals a model can learn from."
+          },
+          {
+            "name": "AutoML",
+            "use": "Automatically searching models and settings to find a strong baseline."
+          },
+          {
+            "name": "Time-series forecasting",
+            "use": "Predicting future values from data ordered in time."
+          }
+        ]
+      },
+      {
+        "group": "Deep learning",
+        "descriptor": "Neural networks for images, audio and behaviour.",
+        "items": [
+          {
+            "name": "PyTorch",
+            "use": "A deep learning framework for building and training neural networks."
+          },
+          {
+            "name": "TensorFlow / Keras",
+            "use": "Building and deploying neural networks at scale."
+          },
+          {
+            "name": "Computer vision",
+            "use": "Teaching models to understand images and video."
+          },
+          {
+            "name": "Speech recognition",
+            "use": "Converting spoken audio into text."
+          }
+        ]
+      },
+      {
+        "group": "NLP & GenAI",
+        "descriptor": "Working with text, from classifiers to language models.",
+        "items": [
+          {
+            "name": "Transformers / BERT",
+            "use": "Language models that understand text in context."
+          },
+          {
+            "name": "Hugging Face",
+            "use": "A hub of pre-trained models and tools for NLP and GenAI."
+          },
+          {
+            "name": "LLMs",
+            "use": "Large language models for generating and reasoning over text."
+          },
+          {
+            "name": "LangChain & RAG",
+            "use": "Connecting LLMs to your own data so answers stay grounded."
+          },
+          {
+            "name": "Prompt engineering",
+            "use": "Designing instructions that get reliable output from LLMs."
+          }
+        ]
+      },
+      {
+        "group": "Data engineering & cloud",
+        "descriptor": "Getting data and models into production and keeping them there.",
+        "items": [
+          {
+            "name": "Microsoft Fabric",
+            "use": "An all-in-one Microsoft platform for data engineering, analytics and BI."
+          },
+          {
+            "name": "Databricks",
+            "use": "A cloud platform for big data processing and machine learning on Spark."
+          },
+          {
+            "name": "Apache Spark",
+            "use": "Distributed processing for data too big for one machine."
+          },
+          {
+            "name": "Delta Lake",
+            "use": "Reliable, versioned storage for data lakes."
+          },
+          {
+            "name": "Azure ML",
+            "use": "Training, deploying and managing models on Microsoft Azure."
+          },
+          {
+            "name": "MLOps",
+            "use": "Practices that keep models tested, deployed and monitored in production."
+          }
+        ]
+      },
+      {
+        "group": "Analytics & visualisation",
+        "descriptor": "Dashboards and charts people actually use to decide.",
+        "items": [
+          {
+            "name": "Tableau",
+            "use": "Interactive dashboards and visual analytics."
+          },
+          {
+            "name": "Power BI",
+            "use": "Microsoft's business intelligence tool for reports and dashboards."
+          },
+          {
+            "name": "Plotly",
+            "use": "Interactive charts built in Python."
+          },
+          {
+            "name": "Data storytelling",
+            "use": "Explaining what the data means so people can act on it."
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,31 +1,72 @@
 
-:root,
-:root[data-theme="light"] {
-  color-scheme: light;
-
-  --color-canvas: var(--light-canvas);
-  --color-surface: var(--light-surface);
-  --color-surface-raised: var(--light-surface-raised);
-  --color-ink: var(--light-ink);
-  --color-muted: var(--light-muted);
-  --color-subtle: var(--light-subtle);
-  --color-border: var(--light-border);
-  --color-accent: var(--light-accent);
-  --color-accent-hover: var(--light-accent-hover);
-  --color-sage: var(--light-sage);
-}
-
-:root[data-theme="dark"] {
+:root {
   color-scheme: dark;
 
-  --color-canvas: var(--dark-canvas);
-  --color-surface: var(--dark-surface);
-  --color-surface-raised: var(--dark-surface-raised);
-  --color-ink: var(--dark-ink);
-  --color-muted: var(--dark-muted);
-  --color-subtle: var(--dark-subtle);
-  --color-border: var(--dark-border);
-  --color-accent: var(--dark-accent);
-  --color-accent-hover: var(--dark-accent-hover);
-  --color-sage: var(--dark-sage);
+  /* Main backgrounds */
+  --page-background: #101415;
+  --surface-primary: #171d1e;
+  --surface-secondary: #202728;
+
+  /* Typography */
+  --text-primary: #f4f0e9;
+  --text-secondary: #c5c1b9;
+  --text-muted: #a09f98;
+
+  /* Brand */
+  --accent-color: #ef9148;
+  --accent-hover: #f6a35f;
+  --accent-dark: #a4501a; /* orange that passes 4.5:1 on ivory */
+
+  /* Borders */
+  --border-color: #303738;
+
+  /* Navigation */
+  --header-background: rgba(16, 20, 21, 0.97);
+
+  /* Dark editorial surfaces */
+  --dark-background: #101415;
+  --dark-text: #f4f0e9;
+
+  /* Ivory editorial surfaces */
+  --ivory-background: #f1ebe2;
+  --ivory-surface: #faf7f1;
+  --ivory-text: #20211e;
+  --ivory-muted: #5f5d57;
+  --ivory-border: #d8d0c4;
+}
+
+/* Dark editorial sections */
+
+.surface-dark {
+  background: var(--dark-background);
+  color: var(--dark-text);
+}
+
+.surface-dark .text-muted {
+  color: var(--text-muted);
+}
+
+/* Warm ivory editorial sections */
+
+.surface-ivory {
+  background: var(--ivory-background);
+  color: var(--ivory-text);
+}
+
+.surface-ivory .text-muted {
+  color: var(--ivory-muted);
+}
+
+.surface-ivory .eyebrow {
+  color: var(--accent-dark);
+}
+
+.surface-ivory .divider {
+  background: var(--ivory-border);
+}
+
+/* Accent */
+
+.text-accent {
+  color: var(--accent-color);
 }

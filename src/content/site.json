@@ -1,0 +1,112 @@
+{
+  "name": "Devanshu Tayal",
+  "firstName": "Devanshu",
+  "lastName": "Tayal",
+  "initials": "DT",
+  "role": "Data Scientist",
+  "availability": "Available for opportunities",
+  "tagline": "I build analytics, ML and AI systems that run in production and make sense to the people who use them.",
+  "photo": "/images/portrait-home.webp",
+  "photoAlt": "Devanshu Tayal smiling, arms crossed",
+  "careerStart": "2018-02-09",
+  "location": "India",
+  "email": "Tayaldevanshu0502@gmail.com",
+  "seo": {
+    "title": "Devanshu Tayal — Data Scientist",
+    "description": "Data scientist working across machine learning, generative AI, data engineering and visualisation. Guest Faculty at BITS Pilani and Tableau Ambassador."
+  },
+  "socials": [
+    {
+      "label": "LinkedIn",
+      "icon": "linkedin",
+      "url": "https://linkedin.com/in/er-devanshut"
+    },
+    {
+      "label": "GitHub",
+      "icon": "github",
+      "url": "https://github.com/Er-Devanshu"
+    },
+    {
+      "label": "Medium",
+      "icon": "pen",
+      "url": "https://medium.com/@Er.Devanshu"
+    },
+    {
+      "label": "Tableau Public",
+      "icon": "chart",
+      "url": "https://public.tableau.com/app/profile/devanshu.tayal/vizzes"
+    }
+  ],
+  "quote": "I approach hard problems with clear thinking, curiosity and what my past mistakes taught me.",
+  "highlights": [
+    {
+      "icon": "dot",
+      "label": "Currently",
+      "text": "Guest Faculty at BITS Pilani",
+      "url": "/beyond"
+    },
+    {
+      "icon": "pin",
+      "label": "Based in",
+      "text": "India"
+    },
+    {
+      "icon": "send",
+      "label": "Open to",
+      "text": "Data science roles, speaking & community collaborations"
+    }
+  ],
+  "contact": {
+    "eyebrow": "Contact",
+    "title": "Let's Connect",
+    "text": "Got a project, a role, or a data question? Send me a note.",
+    "topicsTitle": "What's it about?",
+    "topics": [
+      {
+        "label": "A data science role",
+        "subject": "Data science role",
+        "hint": "Full-time or contract work in ML, analytics or GenAI."
+      },
+      {
+        "label": "A project or consulting",
+        "subject": "Project enquiry",
+        "hint": "A model, pipeline or dashboard you want built."
+      },
+      {
+        "label": "A talk or workshop",
+        "subject": "Speaking / workshop invite",
+        "hint": "Meetups, guest lectures, conference sessions."
+      },
+      {
+        "label": "Community or mentoring",
+        "subject": "Community / mentoring",
+        "hint": "User groups, collaborations, career advice."
+      }
+    ]
+  },
+  "aboutPhoto": "/images/portrait-about.webp",
+  "aboutPhotoAlt": "Devanshu Tayal speaking into a microphone at a community event",
+  "logo": "/images/logo-dt.png",
+  "stats": [
+    {
+      "value": "auto:years",
+      "label": "Years of experience",
+      "url": "/experience"
+    },
+    {
+      "value": "80+",
+      "label": "GitHub repositories",
+      "url": "https://github.com/Er-Devanshu"
+    },
+    {
+      "value": "50+",
+      "label": "Tableau vizzes",
+      "url": "https://public.tableau.com/app/profile/devanshu.tayal/vizzes"
+    },
+    {
+      "value": "auto:certifications",
+      "label": "Certifications",
+      "url": "/credentials"
+    }
+  ]
+}

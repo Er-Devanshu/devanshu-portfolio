@@ -1,0 +1,95 @@
+/* ---------- Hero: noise settling into signal ---------- */
+.home-hero {
+  position: relative; overflow: hidden; isolation: isolate;
+  background:
+    radial-gradient(ellipse 55% 75% at 80% 45%, rgba(239,145,72,.13), transparent 65%),
+    linear-gradient(180deg, #121718 0%, #0d1011 100%);
+  min-height: min(88svh, 860px);
+  display: flex; align-items: center;
+}
+.home-hero .signal-field { z-index: 0; opacity: .9; }
+.home-hero-grid { position: relative; z-index: 1; width: 100%; display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr); align-items: end; min-height: inherit; }
+.home-hero-copy { padding-block: clamp(56px, 9vw, 120px); }
+.home-name { font-family: var(--font-display); font-weight: 400; font-size: clamp(3.2rem, 8.4vw, 6rem); line-height: .92; letter-spacing: -.02em; margin: 0 0 22px; text-wrap: balance; }
+.home-first { color: var(--color-ivory); display: block; }
+.home-last { color: var(--color-orange); font-style: italic; display: block; }
+.home-role { font-size: clamp(1.05rem, 1.5vw, 1.25rem); color: var(--color-ivory); margin: 0 0 14px; font-weight: 500; }
+.home-tagline { max-width: 36ch; font-size: clamp(1rem, 1.35vw, 1.15rem); line-height: 1.6; color: #cfc9bf; margin: 0 0 34px; text-wrap: pretty; }
+.home-hero-media { align-self: end; justify-self: end; position: relative; width: min(100%, 520px); margin-bottom: -2px; }
+
+
+/* ---------- Proof sentence ---------- */
+
+/* ---------- Featured work (ivory) ---------- */
+.home-featured { padding-block: clamp(64px, 9vw, 120px); }
+.home-featured-head { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(20px, 4vw, 64px); align-items: end; margin-bottom: clamp(36px, 5vw, 64px); }
+.home-featured-head h2 { font-family: var(--font-display); font-weight: 400; font-size: clamp(2.4rem, 5vw, 4.2rem); line-height: 1; margin: 0; letter-spacing: -.015em; }
+.home-featured-head p { margin: 0; max-width: 44ch; line-height: 1.6; }
+.home-work { list-style: none; margin: 0 0 32px; padding: 0; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: clamp(16px, 2vw, 28px); }
+.home-work-item:nth-child(1) { grid-column: 1 / span 7; grid-row: span 2; }
+.home-work-item:nth-child(2) { grid-column: 8 / span 5; }
+.home-work-item:nth-child(3) { grid-column: 8 / span 5; }
+.home-work-link {
+  position: relative; display: flex; flex-direction: column; justify-content: flex-end; gap: 12px; height: 100%;
+  padding: clamp(22px, 3vw, 40px); padding-right: clamp(64px, 6vw, 88px);
+  color: var(--ivory-text); text-decoration: none; border-radius: var(--radius-lg);
+  background: var(--color-paper); box-shadow: 0 1px 0 rgba(32,33,30,.06), 0 14px 30px -18px rgba(32,33,30,.35);
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+}
+.home-work-item:nth-child(1) .home-work-link { min-height: clamp(300px, 34vw, 460px); background: var(--color-ink); color: var(--color-ivory); }
+.home-work-link h3 { font-family: var(--font-display); font-weight: 400; font-size: clamp(1.6rem, 2.4vw, 2.1rem); line-height: 1.05; margin: 0; }
+.home-work-item:nth-child(1) h3 { font-size: clamp(2.2rem, 4vw, 3.4rem); }
+.home-work-link p { margin: 0; line-height: 1.55; max-width: 46ch; }
+.home-work-tags { font-size: .88rem; color: #6a5f52; }
+.home-work-item:nth-child(1) .home-work-tags { color: #b9b1a5; }
+.home-work-arrow { position: absolute; top: clamp(20px, 2.5vw, 32px); right: clamp(20px, 2.5vw, 32px); display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; border: 1px solid currentColor; transform: rotate(-45deg); transition: transform var(--transition-normal), background var(--transition-normal); }
+.home-work-link:hover { transform: translateY(-3px); box-shadow: 0 1px 0 rgba(32,33,30,.06), 0 22px 40px -18px rgba(32,33,30,.45); }
+.home-work-link:hover .home-work-arrow { transform: rotate(0); background: var(--color-orange); border-color: var(--color-orange); color: var(--color-ink); }
+.home-all-link { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; }
+
+/* ---------- Testimonials ---------- */
+
+/* ---------- Closing ---------- */
+.home-closing { background: #0d1011; padding-block: clamp(64px, 8vw, 104px); }
+.home-closing-grid { display: grid; grid-template-columns: 1.3fr 1fr; gap: clamp(32px, 6vw, 96px); align-items: center; }
+.home-quote { margin: 0; }
+.home-quote blockquote { margin: 0; }
+.home-quote p { font-family: var(--font-display); font-style: italic; font-size: clamp(1.5rem, 2.6vw, 2.2rem); line-height: 1.28; color: #efe9df; margin: 0; border-left: 2px solid var(--color-orange); padding-left: clamp(18px, 2.5vw, 32px); }
+.home-highlights { margin: 0; }
+.home-highlights > div { display: grid; grid-template-columns: 7.5rem 1fr; gap: 16px; padding-block: 14px; border-top: 1px solid rgba(255,255,255,.1); align-items: baseline; }
+.home-highlights > div:last-child { border-bottom: 1px solid rgba(255,255,255,.1); }
+.home-highlights dt { color: var(--color-orange); font-size: .92rem; }
+.home-highlights dd { margin: 0; color: #efe9df; }
+.home-hl-link { display: inline-flex; align-items: center; gap: 6px; min-height: 44px; color: inherit; text-underline-offset: 4px; }
+.home-hl-link:hover { color: var(--color-orange-light); }
+
+
+@media (max-width: 960px) {
+  .home-work-item:nth-child(n) { grid-column: 1 / -1; grid-row: auto; }
+}
+@media (max-width: 760px) {
+  .home-hero { min-height: 0; }
+  .home-hero-grid { grid-template-columns: 1fr; }
+  .home-hero-media { order: -1; justify-self: center; width: min(78%, 340px); margin-top: 24px; }
+  .home-hero-copy { padding-block: 8px 56px; }
+  .home-highlights > div { grid-template-columns: 1fr; gap: 2px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .home-work-link, .home-work-arrow { transition: none; }
+}
+
+/* The hero portrait stands on the proof rail: square base, rounded top. */
+
+
+@media (max-width: 760px) {
+  .home-featured-head { display: block; }
+  .home-featured-head p { margin-top: 16px; max-width: 40ch; }
+}
+@media (max-width: 899px) {
+}
+
+/* Keep the whole figure (including hair) inside the hero on desktop. */
+@media (min-width: 900px) {
+  .home-hero { padding-top: 24px; }
+  .home-hero-media { width: min(100%, 560px, calc((88svh - 40px) * 0.91)); margin-bottom: 0; }
+}

@@ -1,83 +1,94 @@
-
-import { useState } from "react";
-import { Link, NavLink } from "react-router-dom";
-import { Menu, Moon, Sun, X } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import { Link, NavLink, useLocation } from "react-router-dom";
+import { ChevronDown, Menu, X, ArrowUpRight } from "lucide-react";
+import { navigation, site } from "../../lib/content";
 import "./Header.css";
 
-const navigation = [
-  { label: "About", path: "/about" },
-  { label: "Experience", path: "/experience" },
-  { label: "Expertise", path: "/expertise" },
-  { label: "Projects", path: "/projects" },
-  { label: "Community", path: "/community" },
-  { label: "Speaking", path: "/speaking" },
-];
+export default function Header() {
+  // Menus remember the route they were opened on, so they close automatically on navigation.
+  const [mobileAt, setMobileAt] = useState(null);
+  const [moreAt, setMoreAt] = useState(null);
+  const [scrolled, setScrolled] = useState(false);
+  const moreRef = useRef(null);
+  const { pathname } = useLocation();
+  const mobileOpen = mobileAt === pathname;
+  const moreOpen = moreAt === pathname;
+  const setMobileOpen = (fn) => setMobileAt((cur) => ((typeof fn === "function" ? fn(cur === pathname) : fn) ? pathname : null));
+  const setMoreOpen = (fn) => setMoreAt((cur) => ((typeof fn === "function" ? fn(cur === pathname) : fn) ? pathname : null));
+  const isMoreActive = navigation.more.some((i) => i.path === pathname);
 
-export default function Header({ theme, toggleTheme }) {
-  const [menuOpen, setMenuOpen] = useState(false);
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 8);
+    const onDown = (e) => { if (moreRef.current && !moreRef.current.contains(e.target)) setMoreAt(null); };
+    const onKey = (e) => { if (e.key === "Escape") { setMoreAt(null); setMobileAt(null); } };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    document.addEventListener("pointerdown", onDown);
+    document.addEventListener("keydown", onKey);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      document.removeEventListener("pointerdown", onDown);
+      document.removeEventListener("keydown", onKey);
+    };
+  }, []);
 
-  const closeMenu = () => setMenuOpen(false);
+  useEffect(() => {
+    document.body.style.overflow = mobileOpen ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
+  }, [mobileOpen]);
+
+  const linkClass = ({ isActive }) => `nav-link${isActive ? " active" : ""}`;
 
   return (
-    <header className="site-header">
+    <header className={`site-header${scrolled ? " is-scrolled" : ""}${mobileOpen ? " menu-open" : ""}`}>
       <div className="header-inner container">
-        <Link
-          to="/"
-          className="brand"
-          aria-label="Devanshu Tayal home"
-          onClick={closeMenu}
-        >
-          DT<span>.</span>
+        <Link to="/" className="brand" aria-label={`${site.name} — home`}>
+          <img src={site.logo} alt="" width="51" height="26" />
         </Link>
 
-        <nav className={`desktop-nav ${menuOpen ? "is-open" : ""}`}>
-          {navigation.map((item) => (
-            <NavLink
-              key={item.path}
-              to={item.path}
-              onClick={closeMenu}
-              className={({ isActive }) =>
-                `nav-link ${isActive ? "active" : ""}`
-              }
-            >
-              {item.label}
-            </NavLink>
-          ))}
-
-          <NavLink
-            to="/contact"
-            onClick={closeMenu}
-            className={({ isActive }) =>
-              `nav-contact ${isActive ? "active" : ""}`
-            }
-          >
-            Let's talk <span aria-hidden="true">↗</span>
+        <nav className="main-nav" id="main-nav" aria-label="Main">
+          <ul className="nav-list">
+            {navigation.primary.map((item) => (
+              <li key={item.path}>
+                <NavLink to={item.path} end={item.path === "/"} className={linkClass}>{item.label}</NavLink>
+              </li>
+            ))}
+            {navigation.more.length > 0 && (
+<li className="more-menu" ref={moreRef}>
+              <button
+                type="button"
+                className={`nav-link more-trigger${isMoreActive ? " active" : ""}`}
+                aria-expanded={moreOpen}
+                aria-controls="more-menu-list"
+                onClick={() => setMoreOpen((o) => !o)}
+              >
+                More <ChevronDown size={15} aria-hidden="true" className={moreOpen ? "chevron-open" : ""} />
+              </button>
+              <ul id="more-menu-list" className={`more-dropdown${moreOpen ? " is-open" : ""}`}>
+                {navigation.more.map((item) => (
+                  <li key={item.path}>
+                    <NavLink to={item.path} className={({ isActive }) => `dropdown-link${isActive ? " active" : ""}`}>{item.label}</NavLink>
+                  </li>
+                ))}
+              </ul>
+            </li>
+            )}
+          </ul>
+          <NavLink to={navigation.cta.path} className="nav-contact">
+            {navigation.cta.label} <ArrowUpRight size={15} aria-hidden="true" />
           </NavLink>
         </nav>
 
-        <div className="header-actions">
-          <button
-            className="theme-toggle"
-            onClick={toggleTheme}
-            aria-label={`Switch to ${theme === "light" ? "dark" : "light"} theme`}
-            title={`Switch to ${theme === "light" ? "dark" : "light"} theme`}
-          >
-            {theme === "light" ? (
-              <Moon size={18} strokeWidth={1.7} />
-            ) : (
-              <Sun size={18} strokeWidth={1.7} />
-            )}
-          </button>
-
-          <button
-            className="mobile-menu-toggle"
-            onClick={() => setMenuOpen((open) => !open)}
-            aria-label={menuOpen ? "Close navigation" : "Open navigation"}
-            aria-expanded={menuOpen}
-          >
-            {menuOpen ? <X size={22} /> : <Menu size={22} />}
-          </button>
-        </div>
+        <button
+          type="button"
+          className="mobile-toggle"
+          aria-label={mobileOpen ? "Close menu" : "Open menu"}
+          aria-expanded={mobileOpen}
+          aria-controls="main-nav"
+          onClick={() => setMobileOpen((o) => !o)}
+        >
+          {mobileOpen ? <X size={24} aria-hidden="true" /> : <Menu size={24} aria-hidden="true" />}
+        </button>
       </div>
     </header>
   );

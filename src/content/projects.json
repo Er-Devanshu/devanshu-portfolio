@@ -1,0 +1,159 @@
+{
+  "title": "All Projects",
+  "intro": "Machine learning, AI and analytics work, from production-style builds to competition notebooks and public dashboards.",
+  "featuredTitle": "Selected Projects",
+  "featuredIntro": "A few things I've built for real problems, with honest evaluation and results people can use.",
+  "categories": [
+    "AI & LLMs",
+    "Machine Learning",
+    "Deep Learning",
+    "NLP",
+    "Forecasting",
+    "Dashboards"
+  ],
+  "items": [
+    {
+      "title": "DataPilot AI Analyst",
+      "summary": "An AI analyst for exploring datasets and asking questions about them in plain language.",
+      "category": "AI & LLMs",
+      "tags": [
+        "Python",
+        "LLMs"
+      ],
+      "url": "https://github.com/Er-Devanshu/datapilot-ai-analyst",
+      "image": "",
+      "cover": "datapilot",
+      "featured": true
+    },
+    {
+      "title": "Alzheimer's Detection (OASIS)",
+      "summary": "Deep learning on the OASIS brain MRI dataset to detect Alzheimer's disease.",
+      "category": "Deep Learning",
+      "tags": [
+        "CNN",
+        "Medical Imaging"
+      ],
+      "url": "https://github.com/Er-Devanshu/OASIS-Alzheimer-s-Detection",
+      "image": "",
+      "cover": "alzheimers",
+      "featured": true
+    },
+    {
+      "title": "Chatbot Arena Preference Prediction",
+      "summary": "Predicting which chatbot response people prefer, built for the LMSYS Chatbot Arena challenge.",
+      "category": "AI & LLMs",
+      "tags": [
+        "LLMs",
+        "Transformers"
+      ],
+      "url": "https://github.com/Er-Devanshu/LMSYS---Chatbot-Arena-Human-Preference-Predictions",
+      "image": "",
+      "cover": "chatbot-arena"
+    },
+    {
+      "title": "Jane Street Forecasting",
+      "summary": "Time-series forecasting on Jane Street market data with machine learning and statistics.",
+      "category": "Forecasting",
+      "tags": [
+        "Time Series",
+        "Finance"
+      ],
+      "url": "https://github.com/Er-Devanshu/Jane-Street-Forecasting",
+      "image": "",
+      "cover": "jane-street"
+    },
+    {
+      "title": "Support Ticket Classification",
+      "summary": "Classifying customer support tickets automatically so they reach the right team faster.",
+      "category": "NLP",
+      "tags": [
+        "Text Classification"
+      ],
+      "url": "https://github.com/Er-Devanshu/Customer-Support-Ticket-Classification",
+      "image": "",
+      "cover": "tickets"
+    },
+    {
+      "title": "Bengali Speech Recognition",
+      "summary": "Speech-to-text model for Bengali audio.",
+      "category": "Deep Learning",
+      "tags": [
+        "Speech",
+        "Audio"
+      ],
+      "url": "https://github.com/Er-Devanshu/Bengali_Speech_Recognition",
+      "image": "",
+      "cover": "bengali-speech"
+    },
+    {
+      "title": "TripAdvisor Hotel Reviews",
+      "summary": "Deep learning model that reads hotel reviews and predicts guest ratings.",
+      "category": "NLP",
+      "tags": [
+        "Sentiment",
+        "Deep Learning"
+      ],
+      "url": "https://github.com/Er-Devanshu/TripAdvisor-Hotel-Reviews",
+      "image": "",
+      "cover": "tripadvisor"
+    },
+    {
+      "title": "Credit Card Fraud Detection",
+      "summary": "Detecting fraudulent transactions in a heavily imbalanced dataset.",
+      "category": "Machine Learning",
+      "tags": [
+        "Classification",
+        "Imbalanced Data"
+      ],
+      "url": "https://github.com/Er-Devanshu/Credit-Card-Fraud-Detection",
+      "image": "",
+      "cover": "fraud"
+    },
+    {
+      "title": "Bank Churn Prediction",
+      "summary": "Predicting which bank customers are likely to leave, so retention efforts can be targeted.",
+      "category": "Machine Learning",
+      "tags": [
+        "Classification",
+        "Banking"
+      ],
+      "url": "https://github.com/Er-Devanshu/Bank-Churn-prediction",
+      "image": "",
+      "cover": "churn"
+    },
+    {
+      "title": "Greykite Forecasting",
+      "summary": "Exploring LinkedIn's Greykite library for interpretable time-series forecasting.",
+      "category": "Forecasting",
+      "tags": [
+        "Time Series",
+        "Greykite"
+      ],
+      "url": "https://github.com/Er-Devanshu/Greykite_Forecasting",
+      "image": "",
+      "cover": "greykite"
+    },
+    {
+      "title": "Online Store Sales Dashboard 2024",
+      "summary": "Tableau dashboard for online store sales in 2024.",
+      "category": "Dashboards",
+      "tags": [
+        "Tableau"
+      ],
+      "url": "https://public.tableau.com/app/profile/devanshu.tayal/viz/OnlineStoreSalesDashboard2024_17306420123880/Summary",
+      "image": "",
+      "cover": "online-store"
+    },
+    {
+      "title": "Radial Chart Dashboard",
+      "summary": "A radial bar chart in Tableau for comparing categories.",
+      "category": "Dashboards",
+      "tags": [
+        "Tableau"
+      ],
+      "url": "https://public.tableau.com/app/profile/devanshu.tayal/viz/Radialchart_16852676967940/Dashboard1",
+      "image": "",
+      "cover": "radial-chart"
+    }
+  ]
+}

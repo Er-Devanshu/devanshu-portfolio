@@ -1,10 +1,13 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import './index.css'
-import App from './App.jsx'
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App.jsx";
+import "./styles/global.css";
 
-createRoot(document.getElementById('root')).render(
-  <StrictMode>
+// Routes load lazily, so the browser must not restore an old scroll position on top of them.
+if ("scrollRestoration" in window.history) window.history.scrollRestoration = "manual";
+
+ReactDOM.createRoot(document.getElementById("root")).render(
+  <React.StrictMode>
     <App />
-  </StrictMode>,
-)
+  </React.StrictMode>
+);
