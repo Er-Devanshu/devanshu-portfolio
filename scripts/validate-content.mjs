@@ -59,7 +59,7 @@ const about = load("about.json");
 if (about) {
   str("about.json", about, "title");
   arr("about.json", about, "bio");
-  arr("about.json", about, "journey").forEach((j, i) => { str("about.json", j, "period", ` journey[${i}]`); str("about.json", j, "title", ` journey[${i}]`); });
+  if (about.journey !== undefined) arr("about.json", about, "journey").forEach((j, i) => { str("about.json", j, "period", ` journey[${i}]`); str("about.json", j, "title", ` journey[${i}]`); });
   const sk = about.skills;
   const skillItem = (it, w) => {
     if (!it || typeof it !== "object") { errors.push(`about.json${w}: must be an object like { "name": "Python" }`); return; }

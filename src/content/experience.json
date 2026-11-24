@@ -1,7 +1,18 @@
 {
   "title": "Work Experience",
-  "intro": "{years}+ years, three companies. Here's what I worked on and what changed because of it.",
+  "intro": "{years}+ years, {companies} companies. Here's what I worked on and what changed because of it.",
   "roles": [
+    {
+      "role": "Senior Tech Lead – Data & AI",
+      "company": "Aegis Soft Tech",
+      "period": "Feb 2026 – Present",
+      "summary": "Driving technology strategy, architecture and engineering across the Data and AI landscape.",
+      "highlights": [
+        "Set the technology strategy for data and AI work.",
+        "Own solution architecture, from problem definition to production.",
+        "Lead the engineering that turns that architecture into working systems."
+      ]
+    },
     {
       "role": "Sr. BI Solution Analyst / Data Scientist",
       "company": "Analytix Business Solutions Pvt. Ltd",

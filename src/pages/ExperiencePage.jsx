@@ -1,5 +1,5 @@
 import { ArrowDownRight, ArrowUpRight } from "lucide-react";
-import { experience, fillYears } from "../lib/content";
+import { experience, fill } from "../lib/content";
 import usePageTitle from "../hooks/usePageTitle";
 import "./ExperiencePage.css";
 
@@ -74,7 +74,7 @@ export default function ExperiencePage() {
     <>
       <header className="xp-hero container">
         <h1>{experience.title}</h1>
-        <p className="xp-intro">{fillYears(experience.intro)}</p>
+        <p className="xp-intro">{fill(experience.intro)}</p>
       </header>
 
       <ol className="xp-list container">

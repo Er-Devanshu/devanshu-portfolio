@@ -138,3 +138,27 @@ or, for a comma/quote typo:
 ```
 
 The message names the file and what to fix. Edit the file again and commit; it re-runs automatically.
+
+## Facts that update themselves
+
+Type each fact once and the whole site follows. Use these placeholders in any text
+(About bio, Experience intro, page titles and descriptions in `site.json`):
+
+| Placeholder | Becomes | Comes from |
+|---|---|---|
+| `{years}` | years of experience, e.g. 8 | `careerStart` in `site.json` |
+| `{role}` | your current job title | the role in `experience.json` that runs to "Present" (or ended last) |
+| `{company}` | your current company | same role |
+| `{companies}` | how many companies you've worked at | `experience.json` |
+| `{certifications}` | e.g. "Microsoft DP-600, DP-700 and AWS AI Practitioner" | certifications in `credentials.json` marked `"headline": true` (uses `"short"` if given) |
+| `{certCount}` | number of certifications | `credentials.json` |
+| `{communities}` | number of communities | `beyond.json` |
+
+`"role": "auto:role"` in `site.json` shows your current job title in the hero.
+The About page career list is built from `experience.json`.
+
+**New job:** add it at the top of `experience.json` with `"period": "Mon YYYY – Present"`,
+and change the old one's end date. The hero, About, Experience and page titles all update.
+
+**New certification:** add it to `credentials.json`. Add `"headline": true` and a `"short"`
+name if it should appear in the About bio.

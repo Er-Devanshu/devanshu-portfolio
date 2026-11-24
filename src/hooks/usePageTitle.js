@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import { site } from "../lib/content";
+import { fill, site } from "../lib/content";
 
 const ORIGIN = "https://www.devanshutayal.com";
 
@@ -24,8 +24,8 @@ export default function usePageTitle(title, { noindex = false } = {}) {
   useEffect(() => {
     const path = pathname === "/" ? "/" : pathname.replace(/\/$/, "");
     const page = site.seo.pages?.[path];
-    const full = page?.title || (title ? `${title} — ${site.name}` : site.seo.title);
-    const description = page?.description || site.seo.description;
+    const full = fill(page?.title || (title ? `${title} — ${site.name}` : site.seo.title));
+    const description = fill(page?.description || site.seo.description);
     const url = ORIGIN + path;
     document.title = full;
     setMeta('link[rel="canonical"]', "href", url);

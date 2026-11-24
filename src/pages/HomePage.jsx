@@ -1,6 +1,6 @@
 /* global __HAS_CV__ */
 import { Link } from "react-router-dom";
-import { site, projects, portraitSrcSet, PORTRAIT_SIZES } from "../lib/content";
+import { site, projects, portraitSrcSet, PORTRAIT_SIZES, siteRole } from "../lib/content";
 import CvButton from "../components/ui/CvButton";
 import ProofRail from "../components/ui/ProofRail";
 import Testimonials from "../components/ui/Testimonials";
@@ -29,7 +29,7 @@ export default function HomePage() {
               <span className="home-first">{site.firstName}</span>{" "}
               <span className="home-last">{site.lastName}</span>
             </h1>
-            <p className="home-role">{site.role}</p>
+            <p className="home-role">{siteRole}</p>
             <p className="home-tagline">{site.tagline}</p>
             <ul className="home-facts" aria-label="Quick facts">
               {site.highlights.map((h) => (

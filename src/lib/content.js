@@ -7,18 +7,17 @@ import beyond from "../content/beyond.json";
 import credentials from "../content/credentials.json";
 import navigation from "../content/navigation.json";
 
-// Whole years since a YYYY-MM-DD date, compared on the visitor's local calendar
-// (avoids the UTC off-by-one-day flip of new Date("YYYY-MM-DD")).
-function yearsSince(dateString) {
-  const [y, m, d] = dateString.split("-").map(Number);
-  const now = new Date();
-  let years = now.getFullYear() - y;
-  if (now.getMonth() + 1 < m || (now.getMonth() + 1 === m && now.getDate() < d)) years -= 1;
-  return years;
-}
+import { careerList, makeFill, resolveRole, yearsSince } from "./derive";
 
-// Replaces "{years}" in any content text with the live years of experience.
-export const fillYears = (text) => String(text).replaceAll("{years}", String(yearsSince(site.careerStart)));
+// Fills placeholders like {years}, {role}, {company}, {certifications} in content text.
+// The full list is at the top of src/lib/derive.js.
+export const fill = makeFill({ site, experience, credentials, beyond });
+
+// Job title shown in the hero: typed in site.json, or "auto:role" for the current job.
+export const siteRole = resolveRole(site, experience);
+
+// Career list on the About page, built from experience.json (newest first).
+export const career = careerList(experience);
 
 // Stats can be computed instead of typed:
 //   "auto:years"          -> full years since site.careerStart, e.g. "8+"

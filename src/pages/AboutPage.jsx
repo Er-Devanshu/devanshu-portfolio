@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import { about, site, fillYears, portraitSrcSet, PORTRAIT_SIZES } from "../lib/content";
+import { about, site, fill, career, portraitSrcSet, PORTRAIT_SIZES } from "../lib/content";
 import SkillsSunburst from "../components/ui/SkillsSunburst";
 import usePageTitle from "../hooks/usePageTitle";
 import "./AboutPage.css";
@@ -64,7 +64,7 @@ export default function AboutPage() {
           <h2 id="story-title" className="ab-side-title">Background</h2>
           <div className="ab-column">
             {about.bio.map((p, i) => (
-              <p key={i} className={i === 0 ? "ab-first" : undefined}>{fillYears(p)}</p>
+              <p key={i} className={i === 0 ? "ab-first" : undefined}>{fill(p)}</p>
             ))}
           </div>
         </section>
@@ -81,7 +81,7 @@ export default function AboutPage() {
         <div className="container ab-journey-inner">
           <h2 id="journey-title">Career</h2>
           <ol className="journey" ref={listRef}>
-            {about.journey.map((j) => (
+            {career.map((j) => (
               <li key={`${j.period}-${j.title}`} className="journey-item">
                 <span className="journey-period">{j.period}</span>
                 <span className="journey-title">{j.title}</span>

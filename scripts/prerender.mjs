@@ -6,6 +6,7 @@
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { makeFill, resolveRole } from "../src/lib/derive.js";
 
 const root = path.join(path.dirname(fileURLToPath(import.meta.url)), "..");
 const dist = path.join(root, "dist");
@@ -15,6 +16,8 @@ const about = read("about.json");
 const credentials = read("credentials.json");
 const beyond = read("beyond.json");
 const navigation = read("navigation.json");
+const experience = read("experience.json");
+const fill = makeFill({ site, experience, credentials, beyond });
 
 const ORIGIN = "https://www.devanshutayal.com";
 const template = readFileSync(path.join(dist, "index.html"), "utf8");
@@ -32,7 +35,7 @@ const person = {
   "@type": "Person",
   "@id": `${ORIGIN}/#person`,
   name: site.name,
-  jobTitle: site.role,
+  jobTitle: resolveRole(site, experience),
   url: `${ORIGIN}/`,
   image: `${ORIGIN}/og-image.jpg`,
   email: `mailto:${site.email}`,
@@ -96,7 +99,9 @@ function render(route, { title, description, robots = "index, follow" }) {
   return html;
 }
 
-const pages = site.seo.pages;
+const pages = Object.fromEntries(
+  Object.entries(site.seo.pages).map(([r, m]) => [r, { ...m, title: fill(m.title), description: fill(m.description) }])
+);
 for (const [route, meta] of Object.entries(pages)) {
   const file = route === "/" ? path.join(dist, "index.html") : path.join(dist, route.slice(1), "index.html");
   mkdirSync(path.dirname(file), { recursive: true });
@@ -106,7 +111,7 @@ for (const [route, meta] of Object.entries(pages)) {
 // Real 404 page (served by Apache with a 404 status; the React app renders "Page not found").
 writeFileSync(
   path.join(dist, "404.html"),
-  render("/404", { title: `Page not found — ${site.name}`, description: site.seo.description, robots: "noindex, follow" })
+  render("/404", { title: `Page not found — ${site.name}`, description: fill(site.seo.description), robots: "noindex, follow" })
 );
 
 // Sitemap with today's date as last modified.
@@ -122,7 +127,7 @@ writeFileSync(
 const llms = [
   `# ${site.name}`,
   "",
-  `> ${site.seo.description}`,
+  `> ${fill(site.seo.description)}`,
   "",
   "## Pages",
   ...Object.entries(pages).map(([r, m]) => `- [${m.title}](${ORIGIN}${r}): ${m.description}`),

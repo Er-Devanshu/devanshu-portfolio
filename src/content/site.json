@@ -2,7 +2,7 @@
   "name": "Devanshu Tayal",
   "firstName": "Devanshu",
   "lastName": "Tayal",
-  "role": "Senior Data Scientist",
+  "role": "auto:role",
   "tagline": "I build analytics, ML and AI systems that run in production and make sense to the people who use them.",
   "photo": "/images/portrait-home.webp",
   "photoAlt": "Devanshu Tayal smiling, arms crossed",
@@ -10,19 +10,19 @@
   "location": "India",
   "email": "tayaldevanshu0502@gmail.com",
   "seo": {
-    "title": "Devanshu Tayal — Senior Data Scientist",
-    "description": "Senior Data Scientist with machine learning, generative AI and Microsoft Fabric experience. Guest Faculty at BITS Pilani and 2× Tableau Ambassador.",
+    "title": "Devanshu Tayal — {role}",
+    "description": "{role} with machine learning, generative AI and Microsoft Fabric experience. Guest Faculty at BITS Pilani and 2× Tableau Ambassador.",
     "pages": {
       "/": {
-        "title": "Devanshu Tayal — Senior Data Scientist",
-        "description": "Senior Data Scientist with machine learning, generative AI and Microsoft Fabric experience. Guest Faculty at BITS Pilani and 2× Tableau Ambassador."
+        "title": "Devanshu Tayal — {role}",
+        "description": "{role} with machine learning, generative AI and Microsoft Fabric experience. Guest Faculty at BITS Pilani and 2× Tableau Ambassador."
       },
       "/about": {
-        "title": "About Devanshu Tayal — Senior Data Scientist",
+        "title": "About Devanshu Tayal — {role}",
         "description": "Background and skills of Devanshu Tayal: ML, deep learning, GenAI, Microsoft Fabric, Databricks, Tableau and Power BI, with an M.Tech from BITS Pilani."
       },
       "/experience": {
-        "title": "Experience — Devanshu Tayal, Senior Data Scientist",
+        "title": "Experience — Devanshu Tayal, {role}",
         "description": "Data science roles at Analytix, AIS and TTEC: workforce analytics, fraud detection and forecasting, with results like 23% lower fraud and 20% higher retention."
       },
       "/projects": {
