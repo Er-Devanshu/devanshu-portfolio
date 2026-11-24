@@ -22,3 +22,5 @@ dist-ssr
 *.sw?
 # Local tooling
 .claude/
+# Local agent skill installs
+skills-lock.json

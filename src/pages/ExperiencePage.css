@@ -1,74 +1,54 @@
-.xp-hero { padding-block: clamp(56px, 9vw, 112px) clamp(24px, 3vw, 36px); }
+.xp-hero { padding-block: clamp(56px, 9vw, 112px) clamp(40px, 6vw, 72px); }
 .xp-hero h1 { font-size: clamp(3rem, 9vw, 6rem); line-height: 0.95; letter-spacing: -0.02em; margin: 0 0 20px; text-wrap: balance; }
 .xp-intro { font-size: clamp(1.1rem, 1.6vw, 1.3rem); max-width: 46ch; margin: 0; color: var(--text-secondary); }
 
-/* Career path: one compact strip, oldest -> newest */
-.xp-path { padding-bottom: clamp(40px, 6vw, 72px); }
-.xp-path ol { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 6px 4px; }
-.xp-path li { display: flex; align-items: center; }
-.xp-step {
-  display: inline-flex; align-items: baseline; gap: 10px; min-height: 44px; padding: 8px 16px;
-  border-radius: 999px; border: 1px solid rgba(241, 235, 226, 0.12); background: none;
-  color: inherit; font: inherit; cursor: pointer;
-  transition: border-color 200ms var(--ease-standard), background-color 200ms var(--ease-standard);
+/* Roles: an editorial ledger. Big year span anchors each entry; story beside it. */
+.xp-list { list-style: none; margin-top: 0; margin-bottom: 0; padding-bottom: clamp(64px, 9vw, 120px); }
+.xp-entry {
+  display: grid; grid-template-columns: minmax(0, 1fr); gap: 10px;
+  padding-block: clamp(36px, 5vw, 64px);
+  border-top: 1px solid rgba(241, 235, 226, 0.1);
 }
-.xp-step:hover { border-color: rgba(239, 145, 72, 0.5); }
-.xp-step:focus-visible { outline: 2px solid var(--accent-color); outline-offset: 3px; }
-.xp-step-company { font-weight: 600; color: var(--text-primary); }
-.xp-step-years { font-size: 0.88rem; color: var(--text-muted); font-variant-numeric: tabular-nums; }
-.xp-path li.is-latest .xp-step { border-color: rgba(239, 145, 72, 0.55); background: rgba(239, 145, 72, 0.08); }
-.xp-path li.is-latest .xp-step-company { color: var(--accent-color); }
-.xp-step-arrow { width: 18px; height: 18px; margin-inline: 6px; color: var(--text-muted); flex: none; }
+.xp-entry:last-child { border-bottom: 1px solid rgba(241, 235, 226, 0.1); }
 
-/* Roles: identical layout for every role */
-.xp-list { list-style: none; margin-top: 0; margin-bottom: 0; padding-bottom: clamp(48px, 7vw, 88px); }
-.xp-role {
-  display: grid; grid-template-columns: minmax(0, 1fr); gap: 14px;
-  padding-block: clamp(36px, 5vw, 56px);
-  border-top: 1px solid rgba(241, 235, 226, 0.09);
+.xp-years {
+  margin: 0; font-family: var(--font-display); font-weight: 400; line-height: 0.9;
+  font-size: clamp(3rem, 7.5vw, 6rem); letter-spacing: -0.03em; white-space: nowrap;
+  color: rgba(241, 235, 226, 0.28); font-variant-numeric: lining-nums;
+  margin-bottom: 14px;
 }
-.xp-role:last-child { padding-bottom: 0; }
-
-.xp-side p { margin: 0; }
-.xp-company { font-weight: 600; color: var(--text-primary); line-height: 1.4; }
-.xp-period { margin-top: 4px !important; color: var(--text-secondary); font-size: 0.95rem; font-variant-numeric: tabular-nums; }
-.xp-duration { margin-top: 2px !important; color: var(--accent-color); font-size: 0.9rem; font-weight: 500; }
+.xp-years-dash { margin-inline: 0.06em; }
+.xp-entry.is-latest .xp-years { color: var(--accent-color); }
 
 .xp-title {
-  margin: 0 0 14px; font-family: var(--font-display); font-weight: 400;
-  font-size: clamp(1.9rem, 3.4vw, 2.7rem); line-height: 1.05; letter-spacing: -0.01em;
+  margin: 0; font-family: var(--font-display); font-weight: 400;
+  font-size: clamp(1.9rem, 3.4vw, 2.75rem); line-height: 1.05; letter-spacing: -0.01em;
   color: var(--text-primary); text-wrap: balance; scroll-margin-top: calc(var(--header-height) + 24px);
 }
 .xp-title:focus { outline: none; }
 .xp-title:focus-visible { outline: 2px solid var(--accent-color); outline-offset: 6px; }
-.xp-summary-line { margin: 0 0 24px; max-width: 60ch; font-size: clamp(1.08rem, 1.4vw, 1.22rem); line-height: 1.6; color: var(--text-primary); }
 
-.xp-results {
-  margin: 0 0 28px; display: grid; gap: 12px;
-  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); max-width: 640px;
-}
-.xp-result {
-  padding: 16px 18px 18px; border-radius: 14px;
-  background: rgba(239, 145, 72, 0.06); border: 1px solid rgba(239, 145, 72, 0.2);
-}
-.xp-result dd { margin: 0; }
-.xp-value {
-  display: inline-flex; align-items: center; gap: 0.15em;
-  font-family: var(--font-display); font-size: clamp(2.1rem, 3.2vw, 2.6rem); line-height: 1;
-  color: var(--accent-color); font-variant-numeric: lining-nums;
-}
-.xp-value svg { width: 0.5em; height: 0.5em; stroke-width: 2.2; flex: none; }
-.xp-result dt { margin-top: 6px; font-weight: 600; color: var(--text-primary); }
+.xp-meta { margin: 10px 0 0; display: flex; flex-wrap: wrap; gap: 4px 10px; color: var(--text-muted); font-size: 0.95rem; font-variant-numeric: tabular-nums; }
+.xp-company { color: var(--text-secondary); font-weight: 600; }
+.xp-sep { color: rgba(241, 235, 226, 0.25); }
 
-.xp-points-title {
-  margin: 0 0 10px; font-family: var(--font-body); font-size: 0.82rem; font-weight: 600;
-  letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-muted);
+.xp-lede { margin: 22px 0 0; max-width: 58ch; font-size: clamp(1.1rem, 1.5vw, 1.25rem); line-height: 1.55; color: var(--text-primary); text-wrap: pretty; }
+
+.xp-outcomes { margin: 22px 0 0; display: flex; flex-wrap: wrap; gap: 12px clamp(28px, 4vw, 48px); }
+.xp-outcome { display: flex; align-items: baseline; gap: 10px; }
+.xp-outcome dd { margin: 0; }
+.xp-outcome-value {
+  display: inline-flex; align-items: center; gap: 2px; font-weight: 600; font-size: 1.25rem;
+  color: var(--accent-color); font-variant-numeric: tabular-nums;
 }
-.xp-points { list-style: disc; margin: 0; padding-left: 1.15em; display: grid; gap: 10px; max-width: 66ch; color: var(--text-secondary); font-size: 1.02rem; line-height: 1.65; }
-.xp-points li::marker { color: var(--accent-color); }
+.xp-outcome-value svg { width: 18px; height: 18px; stroke-width: 2.2; flex: none; }
+.xp-outcome-label { color: var(--text-secondary); font-size: 0.98rem; }
+
+.xp-points { list-style: none; margin: 24px 0 0; padding: 0; display: grid; gap: 8px; max-width: 66ch; color: var(--text-secondary); font-size: 1rem; line-height: 1.65; }
+.xp-points li { position: relative; padding-left: 20px; }
+.xp-points li::before { content: ""; position: absolute; left: 0; top: 0.8em; width: 8px; height: 1px; background: rgba(241, 235, 226, 0.4); }
 
 @media (min-width: 900px) {
-  .xp-role { grid-template-columns: 220px minmax(0, 1fr); gap: clamp(32px, 5vw, 72px); }
-  .xp-side { position: sticky; top: calc(var(--header-height) + 28px); align-self: start; padding-top: 10px; }
+  .xp-entry { grid-template-columns: clamp(220px, 26vw, 340px) minmax(0, 1fr); gap: clamp(32px, 4vw, 64px); }
+  .xp-years { margin-bottom: 0; position: sticky; top: calc(var(--header-height) + 32px); align-self: start; }
 }
-@media (prefers-reduced-motion: reduce) { .xp-step { transition: none; } }

@@ -35,17 +35,6 @@
   --ivory-border: #d8d0c4;
 }
 
-/* Dark editorial sections */
-
-.surface-dark {
-  background: var(--dark-background);
-  color: var(--dark-text);
-}
-
-.surface-dark .text-muted {
-  color: var(--text-muted);
-}
-
 /* Warm ivory editorial sections */
 
 .surface-ivory {
@@ -53,17 +42,3 @@
   color: var(--ivory-text);
 }
 
-.surface-ivory .text-muted {
-  color: var(--ivory-muted);
-}
-
-
-.surface-ivory .divider {
-  background: var(--ivory-border);
-}
-
-/* Accent */
-
-.text-accent {
-  color: var(--accent-color);
-}

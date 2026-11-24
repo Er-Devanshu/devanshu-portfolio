@@ -1,4 +1,4 @@
-import { ArrowDownRight, ArrowRight, ArrowUpRight } from "lucide-react";
+import { ArrowDownRight, ArrowUpRight } from "lucide-react";
 import { experience, fillYears } from "../lib/content";
 import usePageTitle from "../hooks/usePageTitle";
 import "./ExperiencePage.css";
@@ -30,18 +30,13 @@ function duration(months) {
   return parts.join(" ") || "1 mo";
 }
 
-// Short company name for the career path: drop legal suffixes and "Business Solutions".
-const shortName = (company) =>
-  company.replace(/\s+(Pvt\.?\s*Ltd\.?|Private Limited|Ltd\.?|Inc\.?|LLC)$/i, "").replace(/\s+Business Solutions$/i, "");
-
 const slug = (s) => s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
 
 const roles = experience.roles.map((r, i) => {
   const p = parsePeriod(r.period);
   return { ...r, ...p, id: `role-${i}-${slug(r.company)}`, months: p.end - p.start };
 });
-const path = [...roles].sort((a, b) => a.start - b.start); // oldest -> newest
-const latest = path[path.length - 1];
+const latest = roles.reduce((a, b) => (b.start > a.start ? b : a));
 
 function Direction({ down }) {
   return (
@@ -52,29 +47,25 @@ function Direction({ down }) {
   );
 }
 
-// Headline results: always a row of equal tiles, whatever the count.
+// Outcomes: a quiet ledger line under the story, each number shown once.
 function Results({ items }) {
   return (
-    <dl className="xp-results" aria-label="Results">
+    <dl className="xp-outcomes" aria-label="Outcomes">
       {items.map((m) => (
-        <div key={m.value + m.label} className="xp-result">
-          <dd className="xp-value">
-            <Direction down={m.direction === "down"} />
-            {m.value}
-          </dd>
-          <dt>{m.label}</dt>
+        <div key={m.value + m.label} className="xp-outcome">
+          <dd className="xp-outcome-value"><Direction down={m.direction === "down"} />{m.value}</dd>
+          <dt className="xp-outcome-label">{m.label}</dt>
         </div>
       ))}
     </dl>
   );
 }
 
-function goTo(id) {
-  const el = document.getElementById(id);
-  if (!el) return;
-  const still = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  el.scrollIntoView({ behavior: still ? "auto" : "smooth", block: "start" });
-  el.focus({ preventScroll: true });
+// "Jan 2022 – Jan 2026" -> ["2022", "26"]; same year -> ["2021"]
+function yearSpan(r) {
+  const a = Math.floor(r.start / 12);
+  const b = Math.floor((r.end - 1) / 12);
+  return a === b ? [String(a)] : [String(a), String(b).slice(2)];
 }
 
 export default function ExperiencePage() {
@@ -85,118 +76,30 @@ export default function ExperiencePage() {
         <h1>{experience.title}</h1>
         <p className="xp-intro">{fillYears(experience.intro)}</p>
       </header>
-
-      <nav className="xp-path container" aria-label="Career path, oldest to newest">
-        <ol>
-          {path.map((r, i) => (
-            <li key={r.id} className={r === latest ? "is-latest" : undefined}>
-              <button type="button" className="xp-step" onClick={() => goTo(r.id)}>
-                <span className="xp-step-company">{shortName(r.company)}</span>
-                <span className="xp-step-years">{r.period.replace(/[A-Za-z]{3} /g, "")}</span>
-              </button>
-              {i < path.length - 1 && <ArrowRight className="xp-step-arrow" aria-hidden="true" />}
-            </li>
-          ))}
-        </ol>
-      </nav>
-
-      <ol className="xp-list container">
-        {roles.map((r) => (
-          <li key={r.id} className="xp-role">
-            <div className="xp-side">
-              <p className="xp-company">{r.company}</p>
-              <p className="xp-period">{r.period}</p>
-              <p className="xp-duration">{duration(r.months)}</p>
-            </div>
-            <div className="xp-main">
-              <h2 id={r.id} tabIndex={-1} className="xp-title">{r.role}</h2>
-              {r.summary && <p className="xp-summary-line">{r.summary}</p>}
-              {r.impact?.length > 0 && <Results items={r.impact} />}
-              <h3 className="xp-points-title">What I did</h3>
-              <ul className="xp-points">
-                {r.highlights.map((h, i) => <li key={i}>{h}</li>)}
-              </ul>
-            </div>
-          </li>
-        ))}
-      </ol>
-    </>
-  );
-}
-
-// Headline results: always a row of equal tiles, whatever the count.
-function Results({ items }) {
-  return (
-    <dl className="xp-results" aria-label="Results">
-      {items.map((m) => (
-        <div key={m.value + m.label} className="xp-result">
-          <dd className="xp-value">
-            <Direction down={m.direction === "down"} />
-            {m.value}
-          </dd>
-          <dt>{m.label}</dt>
-        </div>
-      ))}
-    </dl>
-  );
-}
-
-function goTo(id) {
-  const el = document.getElementById(id);
-  if (!el) return;
-  const still = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  el.scrollIntoView({ behavior: still ? "auto" : "smooth", block: "start" });
-  el.focus({ preventScroll: true });
-}
-
-export default function ExperiencePage() {
-  usePageTitle(experience.title);
-  return (
-    <>
-      <header className="xp-hero container">
-        <h1>{experience.title}</h1>
-        <p className="xp-intro">{fillYears(experience.intro)}</p>
-      </header>
-
-      <nav className="xp-path container" aria-label="Career path, oldest to newest">
-        <ol>
-          {path.map((r, i) => (
-            <li key={r.id} className={r === latest ? "is-latest" : undefined}>
-              <button type="button" className="xp-step" onClick={() => goTo(r.id)}>
-                <span className="xp-step-company">{shortName(r.company)}</span>
-                <span className="xp-step-role">{r.role}</span>
-                <span className="xp-step-when">
-                  {r.period} · {duration(r.months)}
-                </span>
-              </button>
-              {i < path.length - 1 && <ArrowRight className="xp-step-arrow" aria-hidden="true" />}
-            </li>
-          ))}
-        </ol>
-      </nav>
 
       <ol className="xp-list container">
         {roles.map((r) => {
-          const many = r.impact?.length > 1;
+          const [from, to] = yearSpan(r);
           return (
-            <li key={r.id} className={`xp-role${many ? " xp-role--multi" : ""}`}>
-              <span className="xp-dot" aria-hidden="true" />
-              <div className="xp-main">
+            <li key={r.id} className={`xp-entry${r === latest ? " is-latest" : ""}`}>
+              <p className="xp-years" aria-hidden="true">
+                {from}{to && <><span className="xp-years-dash">–</span>{to}</>}
+              </p>
+              <div className="xp-body">
                 <h2 id={r.id} tabIndex={-1} className="xp-title">{r.role}</h2>
                 <p className="xp-meta">
                   <span className="xp-company">{r.company}</span>
-                  <span className="xp-period">
-                    {r.period} · {duration(r.months)}
-                  </span>
+                  <span className="xp-sep" aria-hidden="true">/</span>
+                  <span>{r.period}</span>
+                  <span className="xp-sep" aria-hidden="true">/</span>
+                  <span>{duration(r.months)}</span>
                 </p>
-                {r.summary && <p className="xp-summary-line">{r.summary}</p>}
-                {many && <Results items={r.impact} compact />}
-                <h3 className="xp-points-title">What I did</h3>
+                {r.summary && <p className="xp-lede">{r.summary}</p>}
+                {r.impact?.length > 0 && <Results items={r.impact} />}
                 <ul className="xp-points">
                   {r.highlights.map((h, i) => <li key={i}>{h}</li>)}
                 </ul>
               </div>
-              {r.impact?.length === 1 && <Results items={r.impact} />}
             </li>
           );
         })}

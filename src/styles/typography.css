@@ -40,17 +40,8 @@ p {
   margin: 0;
 }
 
-
 .mono {
   font-family: var(--font-mono);
-}
-
-.text-muted {
-  color: var(--text-muted);
-}
-
-.text-accent {
-  color: var(--accent-color);
 }
 
 .serif {

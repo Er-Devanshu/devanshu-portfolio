@@ -9,7 +9,7 @@ import navigation from "../content/navigation.json";
 
 // Whole years since a YYYY-MM-DD date, compared on the visitor's local calendar
 // (avoids the UTC off-by-one-day flip of new Date("YYYY-MM-DD")).
-export function yearsSince(dateString) {
+function yearsSince(dateString) {
   const [y, m, d] = dateString.split("-").map(Number);
   const now = new Date();
   let years = now.getFullYear() - y;

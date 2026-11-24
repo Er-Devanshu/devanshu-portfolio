@@ -45,6 +45,14 @@
 .voices-person[aria-selected="true"] { opacity: 1; background: rgba(241, 235, 226, 0.05); border-color: rgba(241, 235, 226, 0.12); }
 .voices-ivory .voices-person[aria-selected="true"] { background: #faf7f1; border-color: var(--ivory-border); }
 .voices-person:focus-visible { outline: 2px solid var(--accent-color); outline-offset: 2px; }
+.voices-person { position: relative; overflow: hidden; }
+.voices-progress {
+  position: absolute; left: 14px; right: 14px; bottom: 6px; height: 2px; border-radius: 2px;
+  background: var(--accent-color); transform-origin: left center; transform: scaleX(0);
+  animation-name: voices-progress; animation-timing-function: linear; animation-fill-mode: forwards;
+}
+@keyframes voices-progress { to { transform: scaleX(1); } }
+
 .voices-avatar {
   flex: none; display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%;
   font-family: var(--font-display); font-size: 1.15rem; color: #1a1208; background: var(--accent-color);
