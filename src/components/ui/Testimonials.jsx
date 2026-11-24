@@ -63,6 +63,7 @@ export default function Testimonials({ title = "What people say", tone = "dark" 
               role="tab"
               aria-selected={i === active}
               aria-controls={`${id}-panel`}
+              aria-label={`${p.name}, ${p.role}`}
               tabIndex={i === active ? 0 : -1}
               className="voices-person"
               onClick={() => setActive(i)}

@@ -250,3 +250,6 @@ html { accent-color: var(--accent-color); caret-color: var(--accent-color); }
     linear-gradient(180deg, transparent 0, #000 9%);
   mask-composite: intersect;
 }
+
+/* Headings receive focus after page navigation (for screen readers); no visual ring needed. */
+h1[tabindex="-1"]:focus { outline: none; }

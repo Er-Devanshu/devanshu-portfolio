@@ -1,5 +1,7 @@
+/* global __HAS_CV__ */
 import { Link } from "react-router-dom";
-import { site, projects } from "../lib/content";
+import { site, projects, portraitSrcSet, PORTRAIT_SIZES } from "../lib/content";
+import CvButton from "../components/ui/CvButton";
 import ProofRail from "../components/ui/ProofRail";
 import Testimonials from "../components/ui/Testimonials";
 import Button from "../components/ui/Button";
@@ -29,13 +31,21 @@ export default function HomePage() {
             </h1>
             <p className="home-role">{site.role}</p>
             <p className="home-tagline">{site.tagline}</p>
+            <ul className="home-facts" aria-label="Quick facts">
+              {site.highlights.map((h) => (
+                <li key={h.label}>
+                  <Icon name={h.icon} size={15} />
+                  {h.text}
+                </li>
+              ))}
+            </ul>
             <div className="btn-row">
               <Button to="/projects" icon="arrow">View Projects</Button>
-              <Button to="/contact" variant="secondary" icon={null}>Get in Touch</Button>
+              {site.cv && __HAS_CV__ ? <CvButton /> : <Button to="/contact" variant="secondary" icon={null}>Get in Touch</Button>}
             </div>
           </div>
           <div className="home-hero-media portrait-card">
-            <img src={site.photo} alt={site.photoAlt || site.name} width="720" height="900" fetchpriority="high" />
+            <img src={site.photo} srcSet={portraitSrcSet(site.photo, site.photoSmall)} sizes={PORTRAIT_SIZES} alt={site.photoAlt || site.name} width="1199" height="1312" fetchPriority="high" />
           </div>
         </div>
       </section>
@@ -49,7 +59,7 @@ export default function HomePage() {
           </div>
           <ol className="home-work">
             {featured.map((p) => (
-              <li key={p.title} className="home-work-item reveal">
+              <li key={`${p.title}-${p.url}`} className="home-work-item reveal">
                 <SmartLink to={p.url} className="home-work-link">
                   <h3>{p.title}</h3>
                   <p>{p.summary}</p>
@@ -64,26 +74,6 @@ export default function HomePage() {
       </section>
 
       <Testimonials title="What people say about working with me" />
-
-      <section className="home-closing" aria-label="Approach and current focus">
-        <div className="container home-closing-grid">
-          <figure className="home-quote reveal">
-            <blockquote><p>{site.quote}</p></blockquote>
-          </figure>
-          <dl className="home-highlights reveal">
-            {site.highlights.map((h) => (
-              <div key={h.label}>
-                <dt>{h.label}</dt>
-                <dd>
-                  {h.url ? (
-                    <SmartLink to={h.url} className="home-hl-link">{h.text} <Icon name="arrow" size={15} /></SmartLink>
-                  ) : h.text}
-                </dd>
-              </div>
-            ))}
-          </dl>
-        </div>
-      </section>
     </>
   );
 }

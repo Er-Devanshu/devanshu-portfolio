@@ -1,19 +1,16 @@
-import { site } from "../lib/content";
+import { site, portraitSrcSet, PORTRAIT_SIZES } from "../lib/content";
 import Button from "../components/ui/Button";
 import Icon from "../components/ui/Icon";
 import SmartLink from "../components/ui/SmartLink";
+import CvButton from "../components/ui/CvButton";
 import SignalField from "../components/ui/SignalField";
 import usePageTitle from "../hooks/usePageTitle";
 import "./ContactPage.css";
-
-// Opens the visitor's email app with the subject already filled in.
-const mailto = (subject) => `mailto:${site.email}?subject=${encodeURIComponent(subject)}`;
 
 export default function ContactPage() {
   usePageTitle(site.contact.title);
   const linkedin = site.socials.find((s) => s.icon === "linkedin");
   const others = site.socials.filter((s) => s !== linkedin);
-  const topics = site.contact.topics || [];
 
   return (
     <section className="contact-page" aria-labelledby="contact-title">
@@ -25,6 +22,7 @@ export default function ContactPage() {
           <div className="btn-row">
             {linkedin && <Button to={linkedin.url} iconLeft="linkedin">Message on {linkedin.label}</Button>}
             <Button to={`mailto:${site.email}`} variant="secondary" iconLeft="mail" icon={null}>Email me</Button>
+            <CvButton />
           </div>
           {others.length > 0 && (
             <ul className="contact-socials" aria-label="Other profiles">
@@ -39,25 +37,10 @@ export default function ContactPage() {
             </ul>
           )}
         </div>
-
-        {topics.length > 0 && (
-          <aside className="contact-topics" aria-labelledby="topics-title">
-            <h2 id="topics-title">{site.contact.topicsTitle}</h2>
-            <ul>
-              {topics.map((t) => (
-                <li key={t.label}>
-                  <a href={mailto(t.subject)} className="contact-topic">
-                    <span className="contact-topic-text">
-                      <strong>{t.label}</strong>
-                      {t.hint && <span>{t.hint}</span>}
-                    </span>
-                    <Icon name="arrow" size={20} className="contact-topic-arrow" />
-                  </a>
-                </li>
-              ))}
-            </ul>
-            <p className="contact-topics-note">Each option opens your email app with the subject filled in.</p>
-          </aside>
+        {site.contactPhoto && (
+          <figure className="contact-media portrait-card">
+            <img src={site.contactPhoto} srcSet={portraitSrcSet(site.contactPhoto, site.contactPhotoSmall)} sizes={PORTRAIT_SIZES} alt={site.contactPhotoAlt || site.name} width="1199" height="1312" fetchPriority="high" />
+          </figure>
         )}
       </div>
     </section>

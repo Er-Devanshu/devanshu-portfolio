@@ -76,7 +76,7 @@ export default function ProjectsPage() {
             {rest.length > 0 && (
               <ol className="project-index" start={2}>
                 {rest.map((p, i) => (
-                  <li key={p.title} className="project-row">
+                  <li key={`${p.title}-${p.url}`} className="project-row">
                     <span className="project-row-num" aria-hidden="true">{String(i + 2).padStart(2, "0")}</span>
                     <div className="project-row-thumb" aria-hidden="true"><Cover project={p} /></div>
                     <div className="project-row-main">

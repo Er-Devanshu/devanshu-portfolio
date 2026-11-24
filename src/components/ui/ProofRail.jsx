@@ -35,6 +35,7 @@ function Stat({ stat, start }) {
 
   const body = (
     <>
+      {stat.icon && <span className="proof-icon"><Icon name={stat.icon} size={18} /></span>}
       <span className="proof-value" aria-hidden="true">
         {n == null ? final : shown}
         {n != null && suffix && <span className="proof-suffix">{suffix}</span>}

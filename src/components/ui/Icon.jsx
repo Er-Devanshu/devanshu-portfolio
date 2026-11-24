@@ -1,6 +1,6 @@
 import {
   ArrowRight, ArrowUpRight, Award, Brain, Briefcase, ChartColumn, ChartLine, Code,
-  Cpu, GraduationCap, LayoutDashboard, Mail, MapPin, MessageSquareText, Mic, PenLine,
+  Cpu, Download, GraduationCap, LayoutDashboard, Mail, MapPin, MessageSquareText, Mic, PenLine,
   Send, Sparkles, Users,
 } from "lucide-react";
 
@@ -23,7 +23,7 @@ function GitHub({ size = 20, ...rest }) {
 const map = {
   linkedin: LinkedIn, github: GitHub, pen: PenLine, chart: ChartColumn, briefcase: Briefcase,
   code: Code, award: Award, pin: MapPin, send: Send, users: Users, mic: Mic,
-  graduation: GraduationCap, mail: Mail, arrow: ArrowRight, external: ArrowUpRight,
+  graduation: GraduationCap, download: Download, mail: Mail, arrow: ArrowRight, external: ArrowUpRight,
   "AI & LLMs": Sparkles, "Machine Learning": Cpu, "Deep Learning": Brain,
   NLP: MessageSquareText, Forecasting: ChartLine, Dashboards: LayoutDashboard,
 };

@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import { about, site } from "../lib/content";
+import { about, site, fillYears, portraitSrcSet, PORTRAIT_SIZES } from "../lib/content";
 import SkillsSunburst from "../components/ui/SkillsSunburst";
 import usePageTitle from "../hooks/usePageTitle";
 import "./AboutPage.css";
@@ -54,26 +54,28 @@ export default function AboutPage() {
         </div>
         {site.aboutPhoto && (
           <figure className="ab-figure portrait-card">
-            <img src={site.aboutPhoto} alt={site.aboutPhotoAlt || site.name} width="800" height="1000" fetchpriority="high" />
+            <img src={site.aboutPhoto} srcSet={portraitSrcSet(site.aboutPhoto, site.aboutPhotoSmall)} sizes={PORTRAIT_SIZES} alt={site.aboutPhotoAlt || site.name} width="1199" height="1312" fetchPriority="high" />
           </figure>
         )}
       </section>
 
-      <section className="ab-story container" aria-labelledby="story-title">
-        <h2 id="story-title" className="ab-side-title">Background</h2>
-        <div className="ab-column">
-          {about.bio.map((p, i) => (
-            <p key={p.slice(0, 24)} className={i === 0 ? "ab-first" : undefined}>{p}</p>
-          ))}
-        </div>
-      </section>
-
-      {about.skills?.groups?.length > 0 && (
-        <section className="ab-skills container" aria-labelledby="skills-title">
-          <h2 id="skills-title" className="ab-side-title">Skills</h2>
-          <SkillsSunburst skills={about.skills} />
+      <div className="ab-duo container">
+        <section className="ab-story" aria-labelledby="story-title">
+          <h2 id="story-title" className="ab-side-title">Background</h2>
+          <div className="ab-column">
+            {about.bio.map((p, i) => (
+              <p key={i} className={i === 0 ? "ab-first" : undefined}>{fillYears(p)}</p>
+            ))}
+          </div>
         </section>
-      )}
+
+        {about.skills?.groups?.length > 0 && (
+          <section className="ab-skills" aria-labelledby="skills-title">
+            <h2 id="skills-title" className="ab-side-title">Skills</h2>
+            <SkillsSunburst skills={about.skills} />
+          </section>
+        )}
+      </div>
 
       <section className="surface-ivory ab-journey" aria-labelledby="journey-title">
         <div className="container ab-journey-inner">

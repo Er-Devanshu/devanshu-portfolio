@@ -1,6 +1,6 @@
 # Devanshu Tayal — Portfolio
 
-A fast, static portfolio site built with React 19 and Vite. There is no database or CMS: all text lives in JSON files in `src/content/`. Edit a file, push to `main`, and GitHub Actions checks, builds and uploads the site to Hostinger automatically.
+A fast, static portfolio site built with React 19 and Vite. There is no database or CMS: all text lives in JSON files in `src/content/`. Edit a file, push to `main`, and the site updates on Hostinger automatically in about 2 minutes.
 
 **Editing content?** Read [CONTENT-GUIDE.md](CONTENT-GUIDE.md). It is written for non-developers.
 
@@ -13,24 +13,35 @@ npm install            # once
 npm run dev            # local dev server with hot reload
 npm run check:content  # validate the JSON content files
 npm run lint           # code style checks
-npm run build          # content check + production build into dist/
+npm run build          # content check + production build into dist/ + one HTML file per page (scripts/prerender.mjs)
 npm run preview        # serve the built dist/ locally
 ```
 
-## How deploys work
+## Publishing (automatic)
 
-`.github/workflows/deploy.yml` runs on every push to `main` (and on demand from the Actions tab):
-install, lint, content check, build, then FTPS upload of `dist/` to Hostinger. Pull requests run the same checks but never deploy.
+Push to `main` and the site updates itself in about 2 minutes:
 
-`public/.htaccess` (copied into the build) handles HTTPS redirects, page-refresh routing, caching, compression and security headers.
+1. GitHub Actions (`.github/workflows/build.yml`) checks the content, builds the site and saves the finished files to the `hostinger` branch. No passwords or secrets are involved.
+2. Hostinger's Git deployment pulls the `hostinger` branch into `public_html`.
 
-## One-time Hostinger setup
+If the content check fails, the build stops, the **Actions** tab shows a red X with the reason, and the live site keeps its previous version.
 
-1. In **hPanel → Files → FTP Accounts**, create an FTP account (or use the main one). Note the FTP host/IP, username and password.
-2. In GitHub, open the repo → **Settings → Secrets and variables → Actions → New repository secret** and add:
-   - `FTP_SERVER` — FTP host, e.g. `ftp.yourdomain.com` or the IP shown in hPanel
-   - `FTP_USERNAME` — the FTP username
-   - `FTP_PASSWORD` — the FTP password
-   - *(optional)* `FTP_SERVER_DIR` — upload folder, defaults to `./public_html/`. If your FTP account already opens inside `public_html`, set it to `./`.
-3. In hPanel, enable SSL for the domain (the site forces HTTPS).
-4. Push to `main` or run the workflow manually from the **Actions** tab.
+### One-time setup in Hostinger (about 5 minutes)
+
+Do this once, after the first push has created the `hostinger` branch (check the branch list on GitHub).
+
+1. In **hPanel → Files → File Manager**, back up and then empty `public_html`. Hostinger only deploys into an empty folder.
+2. In **hPanel → Websites → Manage → Advanced → GIT**, create a repository:
+   - **Repository:** `https://github.com/Er-Devanshu/devanshu-portfolio.git`
+   - **Branch:** `hostinger`
+   - **Directory:** leave empty (deploys straight into `public_html`)
+3. Click **Deploy** once to pull the current site.
+4. Turn on **Auto Deployment** and copy the **Webhook URL** it shows.
+5. In GitHub, open the repo → **Settings → Webhooks → Add webhook**: paste the URL as **Payload URL**, choose **Just the push event**, and save.
+6. In hPanel, make sure SSL is enabled for the domain (the site forces HTTPS).
+
+From then on, every push to `main` goes live on its own.
+
+### Manual fallback
+
+If you ever need to publish by hand: run `npm run build` and upload **everything inside `dist/`** (including the hidden `.htaccess`) into `public_html`.

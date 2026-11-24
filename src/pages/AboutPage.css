@@ -36,23 +36,23 @@
 .journey-org { display: block; color: var(--ivory-muted); font-size: 0.95rem; margin-top: 2px; }
 
 
-/* Background + Skills: heading on the left, content on the right */
-.ab-story, .ab-skills {
-  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2.4fr);
-  column-gap: clamp(32px, 6vw, 96px); row-gap: 24px;
-  padding-block: clamp(56px, 8vw, 104px);
-  border-top: 1px solid rgba(241, 235, 226, 0.08);
-}
-.ab-side-title { margin: 0; font-family: var(--font-display); font-weight: 400; font-size: clamp(2rem, 3.2vw, 2.8rem); line-height: 1; }
-@media (min-width: 900px) { .ab-side-title { position: sticky; top: calc(var(--header-height) + 32px); align-self: start; } }
-
 .ab-column { max-width: 64ch; }
 .ab-column p { margin: 0 0 1.2em; font-size: 1.05rem; line-height: 1.75; color: var(--text-secondary); }
 .ab-column p:last-child { margin-bottom: 0; }
 .ab-column p.ab-first { font-size: clamp(1.2rem, 1.7vw, 1.4rem); line-height: 1.6; color: var(--text-primary); }
 
-@media (max-width: 899px) { .ab-story, .ab-skills { grid-template-columns: 1fr; } }
 
 /* Skills: heading above, sunburst gets the full container width */
-.ab-skills { grid-template-columns: 1fr; }
-.ab-skills .ab-side-title { position: static; }
+
+/* Background and Skills side by side */
+.ab-duo {
+  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(32px, 5vw, 72px); align-items: start;
+  padding-block: clamp(56px, 8vw, 104px);
+  border-top: 1px solid rgba(241, 235, 226, 0.08);
+}
+.ab-side-title { margin: 0 0 24px; font-family: var(--font-display); font-weight: 400; font-size: clamp(2rem, 3.2vw, 2.6rem); line-height: 1; }
+.ab-duo .sk-stage { grid-template-columns: 1fr; }
+.ab-duo .sk-chart { max-width: 460px; margin-inline: auto; }
+.ab-duo .sk-panel { min-height: 0; }
+@media (max-width: 999px) { .ab-duo { grid-template-columns: 1fr; } }

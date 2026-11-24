@@ -1,6 +1,6 @@
 # Content Guide
 
-This guide is for updating the website's words, projects and photos. No coding needed. Everything lives in a few text files, and the site updates itself a couple of minutes after you save.
+This guide is for updating the website's words, projects and photos. No coding needed. Everything lives in a few text files, and the live site updates itself about 2 minutes after you save on GitHub.
 
 ## Where things live
 
@@ -49,11 +49,18 @@ Open `projects.json`, find `"items": [`, and copy an existing block from `{` to 
 
 ## Changing your photos
 
-Photos appear on Home (`photo`) and About (`aboutPhoto`). They are transparent cut-outs on a coloured panel, saved as **.webp** at about 1200 × 1312 px.
+Photos appear on Home (`photo`), About (`aboutPhoto`) and Contact (`contactPhoto`). They are saved as **.webp** at 1199 × 1312 px. Each also has a phone-size version about 640 px wide (`photoSmall`, `aboutPhotoSmall`, `contactPhotoSmall`), which loads on phones to save data. When you replace a photo, replace its small version too, or remove the `…Small` line and the full image is used everywhere.
 
 1. On github.com, open `public/images/` → **Add file → Upload files** → upload the new file (e.g. `portrait-home.webp`) → Commit. Using the same file name replaces the photo without touching `site.json`.
 2. With a new file name, set it in `site.json`, e.g. `"photo": "/images/my-photo.webp",`.
 3. Update `photoAlt` / `aboutPhotoAlt` (a short description for screen readers).
+
+## Adding your CV
+
+1. Save your CV as a PDF named exactly `Devanshu-Tayal-CV.pdf`.
+2. On github.com, open `public/` → **Add file → Upload files**, type `cv/` before the file name so it lands in `public/cv/`, and commit.
+
+That's it. `site.json` already points to `/cv/Devanshu-Tayal-CV.pdf`, and the **Download CV** button appears in the Home hero and on the Contact page about 2 minutes after you upload it. Until the file exists, the button stays hidden and the build just prints a reminder. To replace the CV later, upload a new file with the same name. Set `"cv": ""` in `site.json` to hide the button entirely.
 
 ## Skills (About page)
 
@@ -77,6 +84,28 @@ Same idea: upload to `public/images/` (for example `public/images/projects/datap
 
 In `site.json` → `stats`, the value `"auto:years"` is calculated automatically from `careerStart` (e.g. `"2018-02-09"`), so your years of experience stay up to date. Change `careerStart` if needed; leave `auto:years` as is. The value `"auto:certifications"` counts the certifications listed in `credentials.json`, so adding a certificate there updates the home page number too. Other stat values are plain text like `"80+"`.
 
+## Page titles and Google descriptions
+
+`site.json` → `seo.pages` holds each page's title and description, as shown in Google results and in LinkedIn/WhatsApp link previews:
+
+```json
+"/about": { "title": "About Devanshu Tayal — Senior Data Scientist", "description": "…" }
+```
+
+Keep descriptions under about 160 characters. The build turns these into a separate file for every page, so previews are right even for apps that don't run JavaScript.
+
+## Years of experience inside sentences
+
+Write `{years}` anywhere in `about.json` or `experience.json` and the site shows the live number of full years since `careerStart`, for example `"For {years}+ years I've worked on…"`.
+
+## Job dates (experience.json)
+
+Write periods exactly like `"Jan 2022 – Jan 2026"` or `"Jul 2026 – Present"` (three-letter month, year). The build stops with a clear message if the format is off, because the Experience timeline is drawn from these dates.
+
+## Links
+
+Every link must start with `https://`, `/` (a page on this site) or `mailto:`. Plain `http://` links are rejected.
+
 ## Common mistakes (JSON rules)
 
 - **Commas:** items in a list or block are separated by commas, but the **last** item has **no** comma before `]` or `}`.
@@ -87,15 +116,15 @@ In `site.json` → `stats`, the value `"auto:years"` is calculated automatically
 - To put a quote mark inside text, write `\"`.
 - Don't rename the keys on the left (like `"title"`) — only change the values.
 
-## Checking the deploy
+## Checking that it went live
 
 After you commit, open the **Actions** tab on github.com:
 
-- **Yellow dot** — building (1–3 minutes).
-- **Green check** — done, the site is live. Refresh your site to see it.
-- **Red X** — something failed, and **the live site was not changed** (it keeps the previous version).
+- **Yellow dot**: building (1–2 minutes).
+- **Green check**: built. The live site updates a few seconds later; hard-refresh it (Cmd+Shift+R).
+- **Red X**: something failed, and **the live site was not changed** (it keeps the previous version).
 
-To see why, click the failed run → the **build-deploy** job → expand **Check content and build**. A content problem looks like this:
+To see why, click the failed run → the **build** job → expand **Check content and build**. A content problem looks like this:
 
 ```
 ✖ Content check failed (1):
@@ -108,4 +137,4 @@ or, for a comma/quote typo:
   - projects.json: not valid JSON — Unexpected token } in JSON at position 1234
 ```
 
-The message names the file and what to fix. Edit the file again, commit, and it will re-run automatically.
+The message names the file and what to fix. Edit the file again and commit; it re-runs automatically.

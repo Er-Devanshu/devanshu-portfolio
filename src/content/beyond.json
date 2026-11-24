@@ -28,9 +28,13 @@
     {
       "title": "Tableau Ambassador",
       "issuer": "Tableau",
-      "period": "2025",
+      "period": "2025 & 2026",
       "logo": "",
-      "text": "Selected as a Tableau Ambassador to support the global Tableau community and data literacy."
+      "text": "Selected as a Tableau Ambassador two years running to support the global Tableau community and data literacy.",
+      "years": [
+        "2025",
+        "2026"
+      ]
     },
     {
       "title": "Guest Faculty",
@@ -43,27 +47,60 @@
   "communities": [
     {
       "name": "Gujarat Tableau User Group",
-      "role": "Group Leader",
-      "period": "Oct 2024 – Present",
-      "logo": "",
-      "url": "",
-      "text": "I run workshops on data storytelling and visualisation."
+      "role": "Leader & Organiser",
+      "logo": "/images/logos/gujarat-tableau-user-group.webp",
+      "url": "https://usergroups.tableau.com/gujarat-tableau-user-group/",
+      "text": "Turning data into stories, dashboards into decisions and insights into impact, through meetups and workshops across Gujarat.",
+      "scope": "Gujarat",
+      "logoBg": "#0f1e3d",
+      "cover": "/images/covers/gujarat-tableau-user-group.webp"
     },
     {
-      "name": "Databricks Gujarat User Group",
-      "role": "Group Leader",
-      "period": "2025 – Present",
+      "name": "Gujarat Databricks User Group",
+      "role": "Leader & Organiser",
       "logo": "",
-      "url": "",
-      "text": "I run community meetups and technical sessions on Spark and big data."
+      "url": "https://usergroups.databricks.com/gujarat-databricks-user-group/",
+      "text": "Meetups, hands-on sessions and live project showcases on Databricks, Lakehouse, Delta Lake and AI for data teams across Gujarat.",
+      "scope": "Gujarat",
+      "cover": "/images/covers/gujarat-databricks-user-group.webp"
     },
     {
       "name": "India AI + Tableau User Group",
-      "role": "Speaker & Contributor",
-      "period": "2025 – Present",
-      "logo": "",
-      "url": "",
-      "text": "I give talks on where AI and data visualisation meet."
+      "role": "Leader & Organiser",
+      "logo": "/images/logos/india-ai-tableau-user-group.webp",
+      "url": "https://usergroups.tableau.com/india-ai-tableau-user-group/",
+      "text": "Where AI meets Tableau: virtual and regional meetups with hands-on workshops for analysts at every level, across India.",
+      "scope": "India",
+      "logoBg": "#fefefe",
+      "cover": "/images/covers/india-ai-tableau-user-group.webp"
+    },
+    {
+      "name": "AWS User Group India AI/ML",
+      "role": "Leader & Organiser",
+      "logo": "/images/logos/aws-user-group-india-aiml.webp",
+      "url": "https://www.meetup.com/awsaimlindia/",
+      "text": "I organise talks, deep dives and hands-on workshops on AI, ML, GenAI and MLOps on AWS for builders across India.",
+      "scope": "India",
+      "logoBg": "#0f1d36",
+      "cover": "/images/covers/aws-user-group-india-aiml.webp",
+      "coverPosition": "center top"
+    },
+    {
+      "name": "IBM AI & Data Community India",
+      "role": "Leader & Organiser",
+      "scope": "India",
+      "url": "https://www.linkedin.com/company/ibm-ai-data-community-india/",
+      "cover": "/images/covers/ibm-ai-data-community-india.webp",
+      "text": "Expert sessions, workshops, hackathons and meetups on AI, agentic AI, data engineering and IBM watsonx for builders across India."
+    },
+    {
+      "name": "India Modern Data & AI Community",
+      "role": "Leader & Organiser",
+      "scope": "India",
+      "url": "https://community.fabric.microsoft.com/group/IndiaMicrosftFabricUserGroup",
+      "cover": "/images/covers/india-modern-data-ai-community.webp",
+      "coverPosition": "center 18%",
+      "text": "India's national Microsoft Fabric user group: live demos and practical sessions on Fabric, Power BI, Lakehouse and data engineering."
     }
   ]
 }

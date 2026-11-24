@@ -35,3 +35,5 @@ a.proof-cell:hover .proof-label { color: var(--text-primary); }
 @media (prefers-reduced-motion: reduce) {
   .proof-cell, .proof-arrow { transition: none; }
 }
+
+.proof-icon { display: grid; place-items: center; width: 34px; height: 34px; margin-bottom: 4px; border-radius: 10px; background: rgba(239, 145, 72, 0.12); color: var(--accent-color); }

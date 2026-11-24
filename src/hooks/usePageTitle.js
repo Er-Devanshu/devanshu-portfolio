@@ -15,19 +15,26 @@ function setMeta(selector, attr, value) {
   el.setAttribute(attr, value);
 }
 
-// Sets the tab title plus per-page canonical URL and share tags.
+// Sets the tab title, description, canonical URL and share tags for the current page.
+// Titles/descriptions come from site.seo.pages (the same data the build uses to write
+// a static HTML file per page, so crawlers that don't run JavaScript see them too).
 // Pass { noindex: true } for pages search engines should skip (the 404 page).
 export default function usePageTitle(title, { noindex = false } = {}) {
   const { pathname } = useLocation();
   useEffect(() => {
-    const full = title ? `${title} — ${site.name}` : site.seo.title;
-    const url = ORIGIN + (pathname === "/" ? "/" : pathname.replace(/\/$/, ""));
+    const path = pathname === "/" ? "/" : pathname.replace(/\/$/, "");
+    const page = site.seo.pages?.[path];
+    const full = page?.title || (title ? `${title} — ${site.name}` : site.seo.title);
+    const description = page?.description || site.seo.description;
+    const url = ORIGIN + path;
     document.title = full;
     setMeta('link[rel="canonical"]', "href", url);
+    setMeta('meta[name="description"]', "content", description);
     setMeta('meta[property="og:url"]', "content", url);
     setMeta('meta[property="og:title"]', "content", full);
+    setMeta('meta[property="og:description"]', "content", description);
     setMeta('meta[name="twitter:title"]', "content", full);
-    setMeta('meta[name="description"]', "content", site.seo.description);
+    setMeta('meta[name="twitter:description"]', "content", description);
     setMeta('meta[name="robots"]', "content", noindex ? "noindex" : "index, follow");
   }, [title, pathname, noindex]);
 }

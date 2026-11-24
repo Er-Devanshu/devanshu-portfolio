@@ -1,6 +1,6 @@
 // Checks every JSON content file before a build, so a typo never ships.
 // Run: npm run check:content (also runs automatically before `npm run build`).
-import { readFileSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import path from "node:path";
 
@@ -28,17 +28,30 @@ const arr = (file, obj, key, where = "") => {
   }
   return obj[key];
 };
+// Only https://, site paths (/...) and mailto: are allowed, so a typo like
+// "javascript:..." or an insecure "http://" link can never reach the page.
 const url = (file, value, where) => {
-  if (typeof value !== "string" || !/^(https?:\/\/|\/|mailto:)/.test(value)) {
+  if (typeof value !== "string" || !/^(https:\/\/|\/(?!\/)|mailto:)/.test(value)) {
     errors.push(`${file}${where}: link "${value}" must start with https://, / or mailto:`);
   }
 };
+const optUrl = (file, value, where) => { if (value) url(file, value, where); };
+// "Jan 2022 – Jan 2026", "Jul 2026 – Present" or a single "Jan 2022"
+const MON = "(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)";
+const PERIOD = new RegExp(`^${MON} \\d{4}( [–-] (${MON} \\d{4}|Present))?$`);
 
 const site = load("site.json");
 if (site) {
-  ["name", "firstName", "lastName", "role", "tagline", "email", "careerStart", "quote"].forEach((k) => str("site.json", site, k));
+  ["name", "firstName", "lastName", "role", "tagline", "email", "careerStart"].forEach((k) => str("site.json", site, k));
   if (site.careerStart && Number.isNaN(Date.parse(site.careerStart))) errors.push(`site.json: "careerStart" must be a date like 2018-02-09`);
   arr("site.json", site, "stats").forEach((s, i) => { str("site.json", s, "value", ` stats[${i}]`); str("site.json", s, "label", ` stats[${i}]`); if (s.url) url("site.json", s.url, ` stats[${i}]`); });
+  if (site.cv) {
+    if (!/^\/.+\.pdf$/i.test(site.cv)) errors.push(`site.json: "cv" must be a PDF path like "/cv/Devanshu-Tayal-CV.pdf" (or "" to hide the button)`);
+    else if (!existsSync(path.join(dir, "../../public", site.cv))) console.warn(`! CV not uploaded yet (public${site.cv}). The Download CV button stays hidden until it is.`);
+  }
+  ["photo", "aboutPhoto", "contactPhoto", "photoSmall", "aboutPhotoSmall", "contactPhotoSmall"].forEach((k) => {
+    if (site[k] && !existsSync(path.join(dir, "../../public", site[k]))) errors.push(`site.json: "${k}" points to ${site[k]} but that file is not in public${site[k]}`);
+  });
   arr("site.json", site, "socials").forEach((s, i) => { str("site.json", s, "label", ` socials[${i}]`); url("site.json", s.url, ` socials[${i}]`); });
 }
 
@@ -67,7 +80,9 @@ const exp = load("experience.json");
 if (exp) {
   arr("experience.json", exp, "roles").forEach((r, i) => {
     ["role", "company", "period"].forEach((k) => str("experience.json", r, k, ` roles[${i}]`));
+    if (r.period && !PERIOD.test(r.period)) errors.push(`experience.json roles[${i}]: period "${r.period}" must look like "Jan 2022 – Jan 2026" or "Jul 2026 – Present"`);
     arr("experience.json", r, "highlights", ` roles[${i}]`);
+    if (r.summary !== undefined) str("experience.json", r, "summary", ` roles[${i}]`);
   });
 }
 
@@ -85,7 +100,10 @@ if (projects) {
 
 const beyond = load("beyond.json");
 if (beyond) {
-  arr("beyond.json", beyond, "communities").forEach((c, i) => ["name", "role", "period", "text"].forEach((k) => str("beyond.json", c, k, ` communities[${i}]`)));
+  arr("beyond.json", beyond, "communities").forEach((c, i) => {
+    ["name", "role", "text"].forEach((k) => str("beyond.json", c, k, ` communities[${i}]`));
+    ["url", "logo", "cover"].forEach((k) => optUrl("beyond.json", c[k], ` communities[${i}].${k}`));
+  });
   arr("beyond.json", beyond, "achievements").forEach((a, i) => ["title", "issuer", "period", "text"].forEach((k) => str("beyond.json", a, k, ` achievements[${i}]`)));
   (beyond.testimonials || []).forEach((t, i) => ["name", "role", "quote"].forEach((k) => str("beyond.json", t, k, ` testimonials[${i}]`)));
 }
@@ -95,7 +113,8 @@ if (cred) {
   arr("credentials.json", cred, "education");
   arr("credentials.json", cred, "certifications").forEach((c, i) => {
     ["name", "issuer"].forEach((k) => str("credentials.json", c, k, ` certifications[${i}]`));
-    if (c.logo) url("credentials.json", c.logo, ` certifications[${i}].logo`);
+    optUrl("credentials.json", c.logo, ` certifications[${i}].logo`);
+    optUrl("credentials.json", c.url, ` certifications[${i}].url`);
   });
 }
 

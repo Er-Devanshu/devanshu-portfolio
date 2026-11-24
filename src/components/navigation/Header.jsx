@@ -34,7 +34,14 @@ export default function Header() {
 
   useEffect(() => {
     document.body.style.overflow = mobileOpen ? "hidden" : "";
-    return () => { document.body.style.overflow = ""; };
+    // While the full-screen menu is open, make the page behind it unreachable,
+    // so keyboard and screen-reader focus stays inside the menu.
+    const behind = [document.getElementById("main-content"), document.querySelector(".site-footer")];
+    behind.forEach((el) => { if (el) el.inert = mobileOpen; });
+    return () => {
+      document.body.style.overflow = "";
+      behind.forEach((el) => { if (el) el.inert = false; });
+    };
   }, [mobileOpen]);
 
   const linkClass = ({ isActive }) => `nav-link${isActive ? " active" : ""}`;

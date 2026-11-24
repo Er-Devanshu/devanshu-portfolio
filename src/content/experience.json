@@ -1,6 +1,6 @@
 {
   "title": "Work Experience",
-  "intro": "Eight years, three companies. Here's what I worked on and what changed because of it.",
+  "intro": "{years}+ years, three companies. Here's what I worked on and what changed because of it.",
   "roles": [
     {
       "role": "Sr. BI Solution Analyst / Data Scientist",
@@ -8,7 +8,7 @@
       "period": "Jan 2022 – Jan 2026",
       "highlights": [
         "Owned data science projects from the first model to production deployment.",
-        "Built deep learning models for workforce analytics that lifted employee retention by 20%.",
+        "Built deep learning models for workforce analytics that lifted employee retention.",
         "Designed real-time pipelines on Microsoft Fabric that process millions of records a day.",
         "Built the Power BI and Tableau dashboards stakeholders used for their decisions.",
         "Mentored junior analysts and brought MLOps practices into the team."
@@ -20,16 +20,17 @@
           "label": "Employee retention",
           "note": "from deep learning models for workforce analytics"
         }
-      ]
+      ],
+      "summary": "Led data science end to end: workforce analytics models, real-time pipelines on Microsoft Fabric and the dashboards stakeholders used to decide."
     },
     {
       "role": "Fraud Analyst",
       "company": "AIS Business Solutions Pvt. Ltd",
       "period": "Apr 2021 – Jan 2022",
       "highlights": [
-        "Built fraud detection models in Python and Spark that cut the fraud rate by 23%.",
+        "Built fraud detection models in Python and Spark that cut the fraud rate.",
         "Led cloud database migrations with zero data loss and tighter security compliance.",
-        "Automated forecasting pipelines, improving planning accuracy and cutting manual work by 40%."
+        "Automated forecasting pipelines, improving planning accuracy and cutting manual work."
       ],
       "impact": [
         {
@@ -44,14 +45,15 @@
           "label": "Manual forecasting work",
           "note": "once forecasting pipelines were automated"
         }
-      ]
+      ],
+      "summary": "Built fraud detection and forecasting models, and moved databases to the cloud without losing data."
     },
     {
       "role": "Fraud Analyst",
       "company": "TTEC",
       "period": "Feb 2018 – Mar 2021",
       "highlights": [
-        "Built machine learning models for fraud detection that reduced financial risk by 30%.",
+        "Built machine learning models for fraud detection that reduced financial risk.",
         "Set up anomaly detection to catch internal security threats.",
         "Plugged predictive models into real-time transaction monitoring."
       ],
@@ -62,7 +64,8 @@
           "label": "Financial risk from fraud",
           "note": "with ML fraud detection models"
         }
-      ]
+      ],
+      "summary": "Built machine learning and anomaly detection models that flagged fraud in real-time transaction monitoring."
     }
   ]
 }

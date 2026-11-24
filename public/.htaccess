@@ -1,40 +1,59 @@
-# Apache config for the static React site (Hostinger)
+# Apache config for the static portfolio (Hostinger)
+
+Options -Indexes
+DirectoryIndex index.html
+# Serve /about from about/index.html without redirecting to /about/ (keeps URLs matching the canonical)
+DirectorySlash Off
+ErrorDocument 404 /404.html
 
 <IfModule mod_rewrite.c>
   RewriteEngine On
+  RewriteBase /
 
-  # Force HTTPS (www is left as-is)
+  # 1. One canonical address: https://www.devanshutayal.com
+  RewriteCond %{HTTP_HOST} ^devanshutayal\.com$ [NC]
+  RewriteRule ^ https://www.devanshutayal.com%{REQUEST_URI} [L,R=301]
   RewriteCond %{HTTPS} off
   RewriteCond %{HTTP:X-Forwarded-Proto} !https
   RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
-  # SPA fallback: serve real files/folders, everything else -> index.html
-  RewriteBase /
-  RewriteRule ^index\.html$ - [L]
-  RewriteCond %{REQUEST_FILENAME} !-f
-  RewriteCond %{REQUEST_FILENAME} !-d
-  RewriteRule . /index.html [L]
+  # 2. Drop trailing slashes (/about/ -> /about), except the home page
+  RewriteCond %{REQUEST_URI} !^/$
+  RewriteRule ^(.+)/$ https://%{HTTP_HOST}/$1 [L,R=301]
+
+  # 3. Pages are prebuilt folders: /about -> /about/index.html
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteCond %{REQUEST_FILENAME}/index.html -f
+  RewriteRule ^(.+)$ /$1/index.html [L]
+
+  # Anything else that isn't a real file falls through to ErrorDocument 404 (a real 404 status).
 </IfModule>
 
 # Compression
 <IfModule mod_deflate.c>
-  AddOutputFilterByType DEFLATE text/html text/plain text/css text/javascript application/javascript application/json image/svg+xml application/xml
+  AddOutputFilterByType DEFLATE text/html text/plain text/css text/javascript application/javascript application/json application/manifest+json image/svg+xml application/xml text/xml
 </IfModule>
 
-# Caching
+<IfModule mod_mime.c>
+  AddType application/manifest+json .webmanifest
+  AddType font/woff2 .woff2
+</IfModule>
+
 <IfModule mod_headers.c>
-  # Hashed build files never change
+  # Caching: hashed build files never change; HTML (every page) is always re-checked so new deploys show at once
   <If "%{REQUEST_URI} =~ m#^/assets/#">
     Header set Cache-Control "public, max-age=31536000, immutable"
   </If>
-  # Always re-check the HTML so new deploys show immediately
-  <FilesMatch "\.html$">
-    Header set Cache-Control "no-cache"
-  </FilesMatch>
+  <ElseIf "%{REQUEST_URI} =~ m#^/images/#">
+    Header set Cache-Control "public, max-age=604800"
+  </ElseIf>
+  Header set Cache-Control "no-cache" "expr=%{CONTENT_TYPE} =~ m#text/html#"
 
   # Security headers
+  Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
   Header always set X-Content-Type-Options "nosniff"
   Header always set Referrer-Policy "strict-origin-when-cross-origin"
   Header always set X-Frame-Options "SAMEORIGIN"
-  Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(), interest-cohort=()"
+  Header always set Permissions-Policy "camera=(), microphone=(), geolocation=()"
+  Header always set Content-Security-Policy "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self' mailto:; frame-ancestors 'self'; upgrade-insecure-requests"
 </IfModule>

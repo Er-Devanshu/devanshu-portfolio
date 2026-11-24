@@ -2,10 +2,10 @@
   "title": "More About Me",
   "intro": "Data scientist, teacher and community organiser. I turn messy data into decisions people trust, and I share what I learn.",
   "bio": [
-    "I'm a data scientist. For eight years I've worked on data problems in travel, banking, finance, e-commerce and technology: fraud detection, forecasting, workforce analytics, and the pipelines and dashboards that sit around them.",
+    "I'm a data scientist. For {years}+ years I've worked on data problems in travel, banking, finance, e-commerce and technology: fraud detection, forecasting, workforce analytics, and the pipelines and dashboards that sit around them.",
     "Most of my work runs end to end. I get the data into shape, build the model, put it into production and then explain the result to the people who have to act on it. Depending on the problem, that means machine learning, deep learning, NLP or generative AI.",
     "I hold an M.Tech in Data Science & Engineering from BITS Pilani and I'm certified in Microsoft Fabric (DP-600, DP-700) and Salesforce Agentforce.",
-    "Away from client work I teach at BITS Pilani as Guest Faculty, and I lead the Tableau and Databricks user groups in Gujarat as a Tableau Ambassador.",
+    "Away from client work I teach at BITS Pilani as Guest Faculty, and I lead data and AI communities across Gujarat and India. I've been selected as a Tableau Ambassador twice, in 2025 and 2026.",
     "When I'm not working I'm usually over coffee arguing about an idea, or travelling somewhere I haven't been."
   ],
   "journey": [

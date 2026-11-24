@@ -8,6 +8,7 @@ export default function SiteLayout({ children }) {
       <Header />
       <main id="main-content" tabIndex={-1}>{children}</main>
       <Footer />
+      <p id="route-announcer" className="visually-hidden" aria-live="polite" aria-atomic="true" />
     </div>
   );
 }
