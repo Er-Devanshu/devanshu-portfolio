@@ -1,0 +1,27 @@
+# Er. Devanshu Tayal
+
+> Senior Tech Lead – Data & AI at Aegis Soft Tech, Ahmedabad. Microsoft Fabric, Power BI and GenAI, open to full-time, freelance and consulting work.
+
+## Facts
+- Current role: Senior Tech Lead – Data & AI at Aegis Soft Tech
+- Location: Ahmedabad, India (IST); remote, hybrid or on-site; open to relocation
+- Open to: full-time, part-time, freelance and consulting work
+- Experience: 8+ years in data, BI, machine learning and generative AI
+- Certifications: Microsoft Certified: Fabric Analytics Engineer Associate (DP-600); Microsoft Certified: Fabric Data Engineer Associate (DP-700); Microsoft Certified: SQL AI Developer Associate (DP-800); Salesforce Certified Agentforce Specialist; AWS Certified AI Practitioner
+- CV: https://www.devanshutayal.com/cv/Devanshu-Tayal-CV.pdf
+- Contact: https://www.devanshutayal.com/contact (LinkedIn or email)
+
+## Pages
+- [Er. Devanshu Tayal — Senior Tech Lead, Data & AI](https://www.devanshutayal.com/): Senior Tech Lead – Data & AI at Aegis Soft Tech, Ahmedabad. Microsoft Fabric, Power BI, GenAI and LLM apps. Open to full-time, freelance and consulting work.
+- [About Er. Devanshu Tayal, Senior Tech Lead – Data & AI](https://www.devanshutayal.com/about): Data scientist and AI lead Er. Devanshu Tayal: LLMs, RAG, machine learning, Microsoft Fabric, Databricks, Power BI and Tableau. M.Tech, BITS Pilani.
+- [Experience — Er. Devanshu Tayal, Senior Tech Lead](https://www.devanshutayal.com/experience): Data and AI roles at Aegis Soft Tech, Analytix, AIS and TTEC in Ahmedabad: Fabric platforms, GenAI, forecasting and fraud detection, 600+ hours saved a month.
+- [Data Science & AI Projects — Er. Devanshu Tayal](https://www.devanshutayal.com/projects): AI tools, machine learning, NLP, forecasting and Tableau projects by Er. Devanshu Tayal, each linking to the code or the live work.
+- [Tableau Ambassador & Community Leader — Er. Devanshu Tayal](https://www.devanshutayal.com/beyond): 2× Tableau Ambassador, Guest Faculty at BITS Pilani and leader of 6 data and AI communities across India, including AWS, IBM and Microsoft Fabric groups.
+- [Certified in Fabric, AWS & Salesforce — Er. Devanshu Tayal](https://www.devanshutayal.com/credentials): M.Tech from BITS Pilani, plus Microsoft DP-600, DP-700 and DP-800, Salesforce Agentforce and AWS AI Practitioner certifications.
+- [Hire a Data & AI Consultant — Er. Devanshu Tayal, Ahmedabad](https://www.devanshutayal.com/contact): Hire Er. Devanshu Tayal for full-time, part-time, freelance or consulting work in data, Power BI, Microsoft Fabric and GenAI. Based in Ahmedabad (IST).
+
+## Profiles
+- [LinkedIn](https://linkedin.com/in/er-devanshut)
+- [GitHub](https://github.com/Er-Devanshu)
+- [Medium](https://medium.com/@Er.Devanshu)
+- [Tableau Public](https://public.tableau.com/app/profile/devanshu.tayal/vizzes)
