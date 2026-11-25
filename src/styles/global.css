@@ -241,3 +241,6 @@ h1[tabindex="-1"]:focus { outline: none; }
 .count-up.is-counting::after { content: attr(data-shown) attr(data-suffix); position: absolute; left: 0; top: 0; white-space: nowrap; }
 .count-up-suffix { color: var(--accent-color); }
 
+
+/* The orange ring is too light on ivory; use the darker orange there. */
+.surface-ivory :focus-visible { outline-color: var(--accent-dark); }

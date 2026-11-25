@@ -15,15 +15,15 @@
     "pages": {
       "/": {
         "title": "Er. Devanshu Tayal — Senior Tech Lead, Data & AI",
-        "description": "Senior Tech Lead – Data & AI at Aegis Soft Tech, Ahmedabad. Microsoft Fabric, Power BI and GenAI, open to full-time, freelance and consulting work."
+        "description": "Senior Tech Lead – Data & AI at Aegis Soft Tech, Ahmedabad. Microsoft Fabric, Power BI, GenAI and LLM apps. Open to full-time, freelance and consulting work."
       },
       "/about": {
-        "title": "About Er. Devanshu Tayal, Data Scientist & AI Lead",
+        "title": "About Er. Devanshu Tayal, Senior Tech Lead – Data & AI",
         "description": "Data scientist and AI lead Er. Devanshu Tayal: LLMs, RAG, machine learning, Microsoft Fabric, Databricks, Power BI and Tableau. M.Tech, BITS Pilani."
       },
       "/experience": {
         "title": "Experience — Er. Devanshu Tayal, Senior Tech Lead",
-        "description": "Data and AI roles at Aegis Soft Tech, Analytix, AIS and TTEC: Fabric platforms, forecasting and fraud detection, with results like 600+ hours saved a month."
+        "description": "Data and AI roles at Aegis Soft Tech, Analytix, AIS and TTEC in Ahmedabad: Fabric platforms, GenAI, forecasting and fraud detection, 600+ hours saved a month."
       },
       "/projects": {
         "title": "Data Science & AI Projects — Er. Devanshu Tayal",
@@ -90,7 +90,7 @@
     },
     {
       "value": "35",
-      "label": "Processes improved as team lead",
+      "label": "Processes improved at TTEC",
       "url": "/experience",
       "icon": "workflow"
     },

@@ -8,7 +8,7 @@
       "period": "Feb 2026 – Present",
       "summary": "I lead a team of 10+ across data engineering, BI, machine learning and generative AI, and own architecture and delivery for our clients.",
       "highlights": [
-        "Lead a cross-functional team of 10+ and own client engagements, architecture and delivery.",
+        "Own client engagements end to end, from scoping and architecture to delivery.",
         "Architected a Microsoft Fabric platform that brings two client environments together, with self-recovering pipelines and a Fabric Data Agent for plain-language questions.",
         "Built Power BI and Tableau finance dashboards (EBITDA, AR ageing, business performance) and automated the reporting behind them. The work fed initiatives tied to 20% revenue growth last quarter.",
         "Added row-, column- and object-level security (RLS, CLS, OLS) to those dashboards and tuned them to load faster.",
@@ -28,19 +28,18 @@
           "direction": "down",
           "label": "Manual reporting effort",
           "note": "from automated reporting workflows",
-          "cv": "Cut manual reporting effort by 50% by automating the reporting."
+          "cv": "Cut manual reporting effort by 50%."
         }
       ]
     },
     {
       "role": "Sr. BI Solution Analyst / AI Engineer",
-      "company": "Analytix Business Solutions Pvt. Ltd",
+      "company": "Analytix Business Solutions Pvt. Ltd.",
       "period": "Jan 2022 – Jan 2026",
       "highlights": [
         "Architected AI analytics platforms on Microsoft Fabric, with near real-time pipelines and alerting over structured and semi-structured data.",
         "Built workforce forecasting models with PyTorch, TensorFlow and Greykite and plugged them into automated decision-support pipelines.",
         "Built a real-time Microsoft Fabric monitoring and alerting platform for mission-critical apps, saving $200K a year and cutting issue resolution time by 80%.",
-        "Automated manual workflows with AI and Copilot.",
         "Mentored junior engineers."
       ],
       "impact": [
@@ -70,7 +69,7 @@
     },
     {
       "role": "Fraud Analyst",
-      "company": "AIS Business Solutions Pvt. Ltd",
+      "company": "AIS Business Solutions Pvt. Ltd.",
       "period": "Apr 2021 – Jan 2022",
       "highlights": [
         "Built fraud detection models in Python and Spark, working with the client-side team.",

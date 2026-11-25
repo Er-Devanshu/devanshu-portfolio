@@ -43,8 +43,18 @@ export default function Testimonials({ title = "What people say", tone = "dark" 
     return () => io.disconnect();
   }, []);
 
+  // Also stop if reduced motion is switched on after the page loads (the timer is a CSS animation).
+  const [still, setStill] = useState(prefersStill);
+  useEffect(() => {
+    const m = window.matchMedia?.("(prefers-reduced-motion: reduce)");
+    if (!m) return;
+    const on = () => setStill(m.matches);
+    m.addEventListener("change", on);
+    return () => m.removeEventListener("change", on);
+  }, []);
+
   if (!list.length) return null;
-  const rotating = !stopped && list.length > 1;
+  const rotating = !stopped && !still && list.length > 1;
   const held = focused || !visible;
 
   // Keep the active name in view on phones (horizontal list) without scrolling the page.

@@ -1,5 +1,5 @@
+import { getEmail } from "../../lib/email";
 import { useState } from "react";
-import { site } from "../../lib/content";
 import Icon from "./Icon";
 
 // Copies the address to the clipboard for people without a mail app. The address itself is never shown.
@@ -7,7 +7,7 @@ export default function CopyEmail({ className = "" }) {
   const [state, setState] = useState("idle");
   const copy = async () => {
     try {
-      await navigator.clipboard.writeText(site.email);
+      await navigator.clipboard.writeText(getEmail());
       setState("done");
     } catch {
       setState("fail");

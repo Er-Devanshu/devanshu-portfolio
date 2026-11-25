@@ -32,3 +32,7 @@
 
 **The list of placeholders is written at the top of `derive.js`.** The content validator reads that list, so adding a
 new placeholder means adding it there and to `makeFill`'s `values` object.
+
+## `email.js`
+
+`getEmail()` returns the email address only when someone clicks **Email me** or **Copy email**. The build (`vite.config.js`) removes `email` from the bundled `site.json` and passes it in reversed and base64-encoded, so the address is not in the page or in the JavaScript as plain text. The CV still prints it.

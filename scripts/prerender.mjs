@@ -8,6 +8,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { makeFill, officialCertName, resolveRole } from "../src/lib/derive.js";
 
+const TODAY = new Date().toISOString().slice(0, 10);
 const root = path.join(path.dirname(fileURLToPath(import.meta.url)), "..");
 const dist = path.join(root, "dist");
 const read = (f) => JSON.parse(readFileSync(path.join(root, "src/content", f), "utf8"));
@@ -132,8 +133,8 @@ writeFileSync(
 writeFileSync(
   path.join(dist, "sitemap.xml"),
   `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${Object.keys(pages)
-    .map((r) => `  <url><loc>${ORIGIN}${r}</loc></url>`)
-    .join("\n")}${site.cv && existsSync(path.join(dist, site.cv)) ? `\n  <url><loc>${ORIGIN}${site.cv}</loc></url>` : ""}\n</urlset>\n`
+    .map((r) => `  <url><loc>${ORIGIN}${r}</loc><lastmod>${TODAY}</lastmod></url>`)
+    .join("\n")}${site.cv && existsSync(path.join(dist, site.cv)) ? `\n  <url><loc>${ORIGIN}${site.cv}</loc><lastmod>${TODAY}</lastmod></url>` : ""}\n</urlset>\n`
 );
 
 // llms.txt: a short, plain summary for AI assistants and search tools.

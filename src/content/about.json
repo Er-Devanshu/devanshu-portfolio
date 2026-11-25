@@ -193,7 +193,7 @@
       {
         "name": "Data strategy and solution architecture",
         "icon": "compass",
-        "use": "I design data and AI platforms around the business problem, not the tool.",
+        "use": "I design data and AI platforms around the business problem.",
         "proof": "Microsoft Fabric platform design"
       },
       {

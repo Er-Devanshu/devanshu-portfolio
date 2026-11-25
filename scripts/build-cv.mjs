@@ -158,7 +158,7 @@ const html = `<!doctype html>
   <h1>${esc(site.name)}</h1>
   <p class="contact">${contact}</p>
   <p class="summary"><b>Summary</b><span class="dash">—</span> ${t(cv.summary)}</p>
-  <h2>Core Technical Expertise</h2>
+  <h2>Technical Skills</h2>
   <ul class="indent">${skills}</ul>
   ${soft ? `<h2>Professional Skills</h2><ul class="indent">${soft}</ul>` : ""}
   <h2>Experience</h2>${roles}
