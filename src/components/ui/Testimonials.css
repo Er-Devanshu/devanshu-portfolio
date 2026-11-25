@@ -16,21 +16,27 @@
   font-size: clamp(2rem, 3.4vw, 3rem); line-height: 1.02;
 }
 
-.voices-quote { grid-area: quote; position: relative; min-height: 22rem; }
+.voices-quote { grid-area: quote; position: relative; }
 .voices-mark { width: 56px; height: auto; color: var(--accent-color); margin-bottom: 24px; }
-.voices-quote blockquote { margin: 0; animation: voices-in 700ms cubic-bezier(0.16, 1, 0.3, 1); }
+.voices-stack { display: grid; }
+.voices-slide { grid-area: 1 / 1; visibility: hidden; }
+.voices-slide.is-active { visibility: visible; animation: voices-in 700ms cubic-bezier(0.16, 1, 0.3, 1); }
+.voices-quote blockquote { margin: 0; }
 .voices-quote blockquote p {
   margin: 0; max-width: 30ch;
   font-family: var(--font-display); font-size: clamp(1.55rem, 2.7vw, 2.4rem); line-height: 1.24;
-  color: color-mix(in srgb, currentColor 62%, transparent); text-wrap: pretty;
+  color: color-mix(in srgb, currentColor 80%, transparent); text-wrap: pretty;
 }
+/* Full recommendations vary a lot in length; longer ones get a smaller, wider measure. */
+.voices-quote blockquote.is-medium p { font-size: clamp(1.3rem, 2vw, 1.8rem); max-width: 38ch; }
+.voices-quote blockquote.is-long p { font-size: clamp(1.12rem, 1.5vw, 1.4rem); line-height: 1.45; max-width: 52ch; }
+/* The key line: full-strength text with an orange underline that never covers the letters. */
 .voices-quote mark {
-  background: none; color: inherit;
-  color: var(--text-primary);
-  background-image: linear-gradient(transparent 62%, rgba(239, 145, 72, 0.38) 62%);
-  -webkit-box-decoration-break: clone; box-decoration-break: clone;
+  background: none; color: var(--text-primary);
+  text-decoration: underline; text-decoration-color: var(--accent-color);
+  text-decoration-thickness: 0.07em; text-underline-offset: 0.2em; text-decoration-skip-ink: auto;
 }
-.voices-ivory .voices-quote mark { color: var(--ivory-text); background-image: linear-gradient(transparent 62%, rgba(239, 145, 72, 0.45) 62%); }
+.voices-ivory .voices-quote mark { color: var(--ivory-text); }
 .voices-source { margin: 28px 0 0; font-size: 0.9rem; color: var(--text-muted); }
 .voices-ivory .voices-source { color: var(--ivory-muted); }
 
@@ -67,11 +73,10 @@
 
 @media (max-width: 860px) {
   .voices-inner { grid-template-columns: 1fr; grid-template-areas: "title" "quote" "people"; row-gap: 28px; }
-  .voices-quote { min-height: 0; }
   .voices-people { flex-direction: row; overflow-x: auto; scroll-snap-type: x mandatory; gap: 8px; padding-bottom: 4px; }
   .voices-person { flex: none; width: auto; scroll-snap-align: start; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .voices-quote blockquote { animation: none; }
+  .voices-slide.is-active { animation: none; }
   .voices-person { transition: none; }
 }

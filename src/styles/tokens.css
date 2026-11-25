@@ -1,5 +1,6 @@
 
 :root {
+  --section-title: clamp(2rem, 3.6vw, 2.8rem); /* every h2 section heading */
   /* Brand palette */
   --color-ink: #101415;
   --color-ink-soft: #171d1e;

@@ -33,9 +33,22 @@ function LecternMark() {
   );
 }
 
+function BookMark() {
+  return (
+    <svg {...svgProps}>
+      <path d="M32 18c-6-4-14-5-22-4v34c8-1 16 0 22 4 6-4 14-5 22-4V14c-8-1-16 0-22 4z" />
+      <path d="M32 18v34" />
+      <path d="M16 23c4-.4 8 .2 11 1.6M16 30c4-.4 8 .2 11 1.6M37 24.6c3-1.4 7-2 11-1.6M37 31.6c3-1.4 7-2 11-1.6" />
+      <path d="M40 38.5l3 3 6-6.5" />
+    </svg>
+  );
+}
+
 function emblemFor(a) {
   const t = `${a.title} ${a.issuer}`.toLowerCase();
-  return /faculty|lectur|teach|professor|universit|bits/.test(t) ? <LecternMark /> : <LaurelMark />;
+  if (/faculty|lectur|teach|professor|universit|bits/.test(t)) return <LecternMark />;
+  if (/review|book|publish|author|editor/.test(t)) return <BookMark />;
+  return <LaurelMark />;
 }
 
 function ctaFor(url) {
@@ -60,16 +73,6 @@ export default function BeyondPage() {
   useReveal();
   const achievements = beyond.achievements ?? [];
   const communities = beyond.communities ?? [];
-  // Rows of three when the count divides by three (3, 6, 9); otherwise two larger cards lead (4 -> 2+2, 5 -> 2+3).
-  const leadCount = communities.length % 3 === 0 ? 0 : 2;
-  const leftover = (communities.length - leadCount) % 3; // tiles alone in the last row of threes
-  const spanFor = (i) => {
-    if (i < leadCount || !leftover) return "";
-    const fromEnd = communities.length - i;
-    if (leftover === 1 && fromEnd === 1) return " span-full";
-    if (leftover === 2 && fromEnd <= 2) return " span-half";
-    return "";
-  };
   return (
     <div className="container beyond-page">
       <header className="page-hero beyond-hero">
@@ -79,7 +82,7 @@ export default function BeyondPage() {
 
       {achievements.length > 0 && (
         <section aria-labelledby="honours-heading" className="beyond-section">
-          <h2 id="honours-heading" className="beyond-heading">Recognition</h2>
+          <h2 id="honours-heading" className="beyond-heading">Roles &amp; recognition</h2>
           <ul className="honours">
             {achievements.map((a) => {
               const repeat = a.times > 1;
@@ -117,39 +120,32 @@ export default function BeyondPage() {
           <h2 id="community-heading" className="beyond-heading">Communities</h2>
           <ul className="community-grid">
             {communities.map((c, i) => {
-              const icon = /speak|talk|contributor/i.test(c.role) ? "mic" : "users";
               const scope = scopeLabel(c.scope);
               const inner = (
                 <>
-                  <div
-                    className={`community-band${c.cover ? " has-cover" : c.logo ? " has-logo" : ""}`}
-                    style={c.logoBg && !c.cover ? { "--logo-bg": c.logoBg } : undefined}
-                  >
-                    {c.cover ? (
-                      <img className="community-cover" src={c.cover} alt="" loading="lazy" decoding="async" width="1200" height="500" style={c.coverPosition ? { objectPosition: c.coverPosition } : undefined} />
-                    ) : (
-                      <span className="community-mark" aria-hidden="true">
-                        {c.logo ? <img src={c.logo} alt="" loading="lazy" /> : <Icon name={icon} size={30} />}
+                  <span className="community-cover-wrap" aria-hidden="true">
+                    {c.cover
+                      ? <img className="community-cover" src={c.cover} alt="" loading="lazy" decoding="async" width="800" height="450" style={c.coverPosition ? { objectPosition: c.coverPosition } : undefined} />
+                      : <span className="community-cover-fallback"><Icon name={/speak|talk|contributor/i.test(c.role) ? "mic" : "users"} size={32} /></span>}
+                    {scope && <span className="community-scope">{scope}</span>}
+                  </span>
+                  <span className="community-body">
+                    <span className="community-name">{c.name}</span>
+                    {c.role && <span className="community-role">{c.role}</span>}
+                    {c.text && <span className="community-text">{c.text}</span>}
+                    {c.url && (
+                      <span className="community-cta" aria-hidden="true">
+                        {ctaFor(c.url)} <Icon name="arrow" size={16} />
                       </span>
                     )}
-                    {scope && <span className="community-scope">{scope}</span>}
-                  </div>
-                  <h3 className="community-name">{c.name}</h3>
-                  {c.role && <p className="community-role">{c.role}</p>}
-                  {c.text && <p className="community-text">{c.text}</p>}
-                  {c.url && (
-                    <span className="community-cta" aria-hidden="true">
-                      {ctaFor(c.url)} <Icon name="arrow" size={16} />
-                    </span>
-                  )}
+                  </span>
                 </>
               );
               return (
-                <li key={c.name} className={`community-item reveal${i < leadCount ? " is-lead" : ""}${spanFor(i)}`}
-                  style={{ "--stagger": `${Math.min(i, 7) * 70}ms` }}>
+                <li key={c.name} className="community-card reveal" style={{ "--stagger": `${Math.min(i, 7) * 70}ms` }}>
                   {c.url ? (
                     <a className="community-tile" href={c.url} target="_blank" rel="noopener noreferrer"
-                      aria-label={`Visit ${c.name} (opens in a new tab)`}>
+                      aria-label={`${c.name}: ${ctaFor(c.url)} (opens in a new tab)`}>
                       {inner}
                     </a>
                   ) : (

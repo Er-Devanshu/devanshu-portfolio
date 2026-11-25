@@ -44,7 +44,6 @@ export default function Testimonials({ title = "What people say", tone = "dark" 
   }, []);
 
   if (!list.length) return null;
-  const t = list[active];
   const rotating = !stopped && list.length > 1;
   const held = focused || !visible;
 
@@ -94,13 +93,24 @@ export default function Testimonials({ title = "What people say", tone = "dark" 
           <svg className="voices-mark" viewBox="0 0 64 48" aria-hidden="true">
             <path d="M0 48V28C0 12 8 2 26 0v9c-9 2-13 8-13 17h13v22H0Zm38 0V28C38 12 46 2 64 0v9c-9 2-13 8-13 17h13v22H38Z" fill="currentColor" />
           </svg>
-          <blockquote key={active}>
-            <p><Quote text={t.quote} highlight={t.highlight} /></p>
-          </blockquote>
-          {t.source && <p className="voices-source">{t.source}</p>}
+          {/* Every quote sits in the same cell so the section keeps the height of the longest one
+              and the page never jumps as quotes change. Only the active one is visible. */}
+          <div className="voices-stack">
+            {list.map((q, i) => (
+              <div key={q.name} className={`voices-slide${i === active ? " is-active" : ""}`} aria-hidden={i !== active}>
+                <blockquote className={q.quote.length > 450 ? "is-long" : q.quote.length > 300 ? "is-medium" : undefined}>
+                  <p><Quote text={q.quote} highlight={q.highlight} /></p>
+                </blockquote>
+                {q.source && <p className="voices-source">{q.source}</p>}
+              </div>
+            ))}
+          </div>
         </div>
 
-        <div className="voices-people" ref={tabsRef} role="tablist" aria-label="Choose a testimonial" onKeyDown={onKey}>
+        <p id={`${id}-hint`} className="visually-hidden">
+          {rotating ? "Quotes change every 15 seconds. Choosing a person stops this." : "Choose a person to read their quote."}
+        </p>
+        <div className="voices-people" ref={tabsRef} role="tablist" aria-label="Choose a testimonial" aria-describedby={`${id}-hint`} onKeyDown={onKey}>
           {list.map((p, i) => (
             <button
               key={p.name}

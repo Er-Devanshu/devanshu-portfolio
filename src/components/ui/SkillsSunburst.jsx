@@ -11,7 +11,7 @@ const SHORT = {
   "Data engineering & cloud": "Data & cloud",
   "Analytics & visualisation": "Analytics",
 };
-const shortName = (g) => SHORT[g] || g;
+const shortName = (g) => g.short || SHORT[g.group] || g.group;
 
 const polar = (r, a) => [C + r * Math.sin(a), C - r * Math.cos(a)];
 function arcPath(r0, r1, a0, a1) {
@@ -54,7 +54,7 @@ function PhoneList({ groups }) {
               const isOpen = open === it.key;
               return (
                 <li key={it.key} data-open={isOpen || undefined}>
-                  <button type="button" aria-expanded={isOpen} aria-controls={`${uid}-${it.idx}`}
+                  <button type="button" aria-expanded={isOpen} aria-controls={isOpen ? `${uid}-${it.idx}` : undefined}
                     onClick={() => setOpen(isOpen ? null : it.key)}>
                     {it.s.name}
                   </button>
@@ -148,7 +148,7 @@ export default function SkillsSunburst({ skills }) {
                 onPointerEnter={() => setHover({ kind: "group", i: g.gi })}>
                 <path d={arcPath(R.g0, R.g1, g.a0, g.a1)} fill={g.tone} />
                 <text className="sk-glabel" dy="0.35em">
-                  <textPath href={`#${panelId}-g${g.gi}`} startOffset="50%" textAnchor="middle">{shortName(g.group)}</textPath>
+                  <textPath href={`#${panelId}-g${g.gi}`} startOffset="50%" textAnchor="middle">{shortName(g)}</textPath>
                 </text>
               </g>
             );

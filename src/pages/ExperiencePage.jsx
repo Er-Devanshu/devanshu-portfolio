@@ -1,5 +1,6 @@
 import { ArrowDownRight, ArrowUpRight } from "lucide-react";
 import { experience, fill } from "../lib/content";
+import CountUp from "../components/ui/CountUp";
 import usePageTitle from "../hooks/usePageTitle";
 import "./ExperiencePage.css";
 
@@ -53,8 +54,8 @@ function Results({ items }) {
     <dl className="xp-outcomes" aria-label="Outcomes">
       {items.map((m) => (
         <div key={m.value + m.label} className="xp-outcome">
-          <dd className="xp-outcome-value"><Direction down={m.direction === "down"} />{m.value}</dd>
           <dt className="xp-outcome-label">{m.label}</dt>
+          <dd className="xp-outcome-value"><Direction down={m.direction === "down"} /><CountUp value={m.value} /></dd>
         </div>
       ))}
     </dl>
@@ -89,7 +90,7 @@ export default function ExperiencePage() {
                 <h2 id={r.id} tabIndex={-1} className="xp-title">{r.role}</h2>
                 <p className="xp-meta">
                   <span className="xp-company">{r.company}</span>
-                  <span className="xp-sep" aria-hidden="true">/</span>
+                  <span className="xp-sep xp-sep-first" aria-hidden="true">/</span>
                   <span>{r.period}</span>
                   <span className="xp-sep" aria-hidden="true">/</span>
                   <span>{duration(r.months)}</span>

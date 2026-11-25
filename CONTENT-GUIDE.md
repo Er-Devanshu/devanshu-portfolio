@@ -13,7 +13,7 @@ All content is in the `src/content/` folder. Each file controls one part of the 
 | `experience.json` | The Experience page: `title`, `intro`, and `roles` — each role has `role`, `company`, `period`, a `highlights` list of bullet points and an optional `impact` list (`value` like `"20%"`, `direction` `"up"` or `"down"`, `label`, `note`). |
 | `projects.json` | The Projects page: `title`, `intro`, the featured section (`featuredTitle`, `featuredIntro`), the filter `categories`, and the `items` (your projects, each with a `cover` illustration key). |
 | `beyond.json` | The Beyond Code page: `achievements` (`title`, `issuer`, `period`, `logo`, `text`), `communities` (`name`, `role`, `period`, `logo`, `url`, `text`), plus `testimonials` (`name`, `role`, `quote`, `highlight`, `source`), which appear on the Home page. |
-| `credentials.json` | Education & Certifications: `education` (`period`, `institution`, `degree`, `logo`) and `certifications` (`name`, `issuer`, `logo`, `year`, `url`). |
+| `credentials.json` | Education & Certifications: `education` (`period`, `institution`, `degree`) and `certifications` (`name`, `issuer`, `logo`, `covers`, `year`, `url`, plus optional `short` and `headline` for the About bio). Certifications are grouped by issuer automatically. |
 | `navigation.json` | The menu: `primary` links and the `cta` (Contact) button. Each link has a `label` and a `path`. (`more` is an optional dropdown; leave it as `[]` to hide it.) |
 
 ## Editing in your browser (github.com)
@@ -74,7 +74,7 @@ The build stops with a clear message if an item is missing its `use`.
 
 ## Logos (certifications and communities)
 
-Upload logo files (PNG or SVG) to `public/images/logos/`, then set `"logo": "/images/logos/tableau.png"` on that certification in `credentials.json`, or on that achievement or community in `beyond.json`. Without a logo, the tile shows initials.
+Put certification badges in `public/images/badges/` and set `"logo": "/images/badges/name.png"` on that certification in `credentials.json`. Achievement and community logos go in `public/images/logos/`. Without a badge or logo, initials are shown.
 
 ## Project images
 

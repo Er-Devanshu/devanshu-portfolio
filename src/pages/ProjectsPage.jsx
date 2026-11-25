@@ -9,6 +9,18 @@ import "./ProjectsPage.css";
 const linkProps = (url) => (/^https?:/.test(url) ? { target: "_blank", rel: "noopener noreferrer" } : {});
 const isExt = (url) => /^https?:/.test(url);
 
+// Each category gets its own warm accent, so the grid reads as varied but stays on brand.
+const TINT = { "AI & LLMs": "#ef9148", "Machine Learning": "#e3b155", NLP: "#e07f5c", Forecasting: "#cfa772", Dashboards: "#f2c18d" };
+const tint = (cat) => TINT[cat] || "#ef9148";
+const ctaFor = (url) => (/public\.tableau\.com/.test(url) ? "View live dashboard" : /github\.com/.test(url) ? "View code" : "View project");
+
+// Soft light that follows the pointer across a card.
+const spotlight = (e) => {
+  const r = e.currentTarget.getBoundingClientRect();
+  e.currentTarget.style.setProperty("--mx", `${e.clientX - r.left}px`);
+  e.currentTarget.style.setProperty("--my", `${e.clientY - r.top}px`);
+};
+
 function Cover({ project }) {
   return project.image
     ? <img src={project.image} alt="" loading="lazy" width="640" height="360" />
@@ -19,12 +31,11 @@ export default function ProjectsPage() {
   usePageTitle(projects.title);
   const [params, setParams] = useSearchParams();
   const requested = params.get("category");
-  const active = projects.categories.includes(requested) ? requested : "All";
-  const filtered = active === "All" ? projects.items : projects.items.filter((p) => p.category === active);
-  // Lead with a featured project when the current filter has one.
-  const leadIndex = Math.max(0, filtered.findIndex((p) => p.featured));
-  const lead = filtered[leadIndex];
-  const rest = filtered.filter((_, i) => i !== leadIndex);
+  // "hidden": true keeps a project in the file but off the site; filters only show categories in use.
+  const visible = projects.items.filter((p) => !p.hidden);
+  const categories = projects.categories.filter((c) => visible.some((p) => p.category === c));
+  const active = categories.includes(requested) ? requested : "All";
+  const filtered = active === "All" ? visible : visible.filter((p) => p.category === active);
 
   const select = (cat) => {
     if (cat === active) return;
@@ -45,59 +56,52 @@ export default function ProjectsPage() {
         </header>
 
         <div className="filter-bar" role="group" aria-label="Filter projects by category">
-          {["All", ...projects.categories].map((cat) => (
-            <button key={cat} type="button" className="filter-pill" aria-pressed={active === cat} onClick={() => select(cat)}>
-              {cat}
-            </button>
-          ))}
+          {["All", ...categories].map((cat) => {
+            const count = cat === "All" ? visible.length : visible.filter((p) => p.category === cat).length;
+            return (
+              <button key={cat} type="button" className="filter-pill" aria-pressed={active === cat} onClick={() => select(cat)}>
+                {cat}<span className="filter-pill-count" aria-hidden="true">{count}</span>
+              </button>
+            );
+          })}
         </div>
-
-        <p className="filter-count" aria-live="polite">
+        <p className="visually-hidden" aria-live="polite">
           {filtered.length} {filtered.length === 1 ? "project" : "projects"}{active !== "All" ? ` in ${active}` : ""}
         </p>
 
-        {lead ? (
-          <div className="projects-stage">
-            <article className="project-lead">
-              <div className="project-lead-cover" aria-hidden="true"><Cover project={lead} /></div>
-              <div className="project-lead-body">
-                <h2>
-                  <a href={lead.url} className="project-lead-link" {...linkProps(lead.url)}>
-                    {lead.title}
-                    {isExt(lead.url) && <span className="visually-hidden"> (opens in a new tab)</span>}
-                  </a>
-                </h2>
-                <p className="project-lead-summary">{lead.summary}</p>
-                <p className="project-lead-tags"><span className="project-lead-cat">{lead.category}</span>{lead.tags?.length > 0 && ` / ${lead.tags.join(" / ")}`}</p>
-                <span className="project-lead-cta" aria-hidden="true">View project <Icon name="external" size={16} /></span>
-              </div>
-            </article>
-
-            {rest.length > 0 && (
-              <ol className="project-index" start={2}>
-                {rest.map((p, i) => (
-                  <li key={`${p.title}-${p.url}`} className="project-row">
-                    <span className="project-row-num" aria-hidden="true">{String(i + 2).padStart(2, "0")}</span>
-                    <div className="project-row-thumb" aria-hidden="true"><Cover project={p} /></div>
-                    <div className="project-row-main">
-                      <h3>
-                        <a href={p.url} className="project-row-link" {...linkProps(p.url)}>
-                          {p.title}
-                          {isExt(p.url) && <span className="visually-hidden"> (opens in a new tab)</span>}
-                        </a>
-                      </h3>
-                      <p>{p.summary}</p>
-                    </div>
-                    <div className="project-row-meta">
-                      <span className="project-row-cat">{p.category}</span>
-                      {p.tags?.length > 0 && <span className="project-row-tags">{p.tags.join(" / ")}</span>}
-                    </div>
-                    <Icon name="external" size={18} className="project-row-arrow" />
-                  </li>
-                ))}
-              </ol>
-            )}
-          </div>
+        {filtered.length > 0 ? (
+          <ul className="projects-stage project-grid">
+            {filtered.map((p, i) => (
+              <li key={`${p.title}-${p.url}`} className={`project-card${i === 0 ? " is-featured" : ""}`}
+                style={{ "--tint": tint(p.category) }} onPointerMove={spotlight}>
+                <div className="project-card-cover" aria-hidden="true">
+                  <Cover project={p} />
+                  {i === 0 && <span className="project-card-flag">Featured</span>}
+                </div>
+                <div className="project-card-body">
+                  <span className="project-card-cat">{p.category}</span>
+                  <h2 className="project-card-title">
+                    <a href={p.url} className="project-card-link" {...linkProps(p.url)}>
+                      {p.title}
+                      {isExt(p.url) && <span className="visually-hidden"> (opens in a new tab)</span>}
+                    </a>
+                  </h2>
+                  <p className="project-card-summary">{p.summary}</p>
+                  {p.shows && (
+                    <p className="project-card-shows"><span>What it shows</span>{p.shows}</p>
+                  )}
+                  <div className="project-card-foot">
+                    {p.tags?.length > 0 && (
+                      <ul className="project-card-tags" aria-label="Built with">
+                        {p.tags.map((t) => <li key={t}>{t}</li>)}
+                      </ul>
+                    )}
+                    <span className="project-card-cta" aria-hidden="true">{ctaFor(p.url)} <Icon name="external" size={16} /></span>
+                  </div>
+                </div>
+              </li>
+            ))}
+          </ul>
         ) : (
           <div className="projects-empty">
             <p>No projects in this category yet.</p>

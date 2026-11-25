@@ -2,6 +2,8 @@ import { site, portraitSrcSet, PORTRAIT_SIZES } from "../lib/content";
 import Button from "../components/ui/Button";
 import Icon from "../components/ui/Icon";
 import SmartLink from "../components/ui/SmartLink";
+import EmailLink from "../components/ui/EmailLink";
+import CopyEmail from "../components/ui/CopyEmail";
 import CvButton from "../components/ui/CvButton";
 import SignalField from "../components/ui/SignalField";
 import usePageTitle from "../hooks/usePageTitle";
@@ -17,11 +19,16 @@ export default function ContactPage() {
       <SignalField />
       <div className="container contact-grid">
         <div className="contact-copy">
-          <h1 id="contact-title">{site.contact.title}</h1>
+          <h1 id="contact-title">
+            {site.contact.title.split(" ").slice(0, -1).join(" ")}{" "}
+            <em>{site.contact.title.split(" ").slice(-1)}</em>
+          </h1>
           <p className="contact-lead">{site.contact.text}</p>
+          {site.contact.note && <p className="contact-note">{site.contact.note}</p>}
           <div className="btn-row">
             {linkedin && <Button to={linkedin.url} iconLeft="linkedin">Message on {linkedin.label}</Button>}
-            <Button to={`mailto:${site.email}`} variant="secondary" iconLeft="mail" icon={null}>Email me</Button>
+            <EmailLink className="btn btn-secondary"><Icon name="mail" size={18} /><span>Email me</span></EmailLink>
+            <CopyEmail />
             <CvButton />
           </div>
           {others.length > 0 && (

@@ -16,6 +16,9 @@ export const fill = makeFill({ site, experience, credentials, beyond });
 // Job title shown in the hero: typed in site.json, or "auto:role" for the current job.
 export const siteRole = resolveRole(site, experience);
 
+// Company of the current role, short form ("Aegis Soft Tech").
+export const currentCompany = fill("{company}");
+
 // Career list on the About page, built from experience.json (newest first).
 export const career = careerList(experience);
 

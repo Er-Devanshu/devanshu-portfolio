@@ -33,11 +33,11 @@ export function yearsSince(dateString, now = new Date()) {
 }
 
 // "Analytix Business Solutions Pvt. Ltd" -> "Analytix Business Solutions"
-export const shortCompany = (name) =>
+const shortCompany = (name) =>
   String(name).replace(/[\s,]+(Pvt\.?\s*Ltd\.?|Private Limited|Ltd\.?|Inc\.?|LLC|LLP)$/i, "").trim();
 
 // The current role: one that runs to "Present", otherwise the one that ended last.
-export function currentRole(experience) {
+function currentRole(experience) {
   const roles = experience?.roles || [];
   return [...roles].sort((x, y) => {
     const a = bounds(x.period), b = bounds(y.period);
@@ -62,7 +62,7 @@ const readableList = (items) =>
   items.length <= 1 ? items.join("") : `${items.slice(0, -1).join(", ")} and ${items[items.length - 1]}`;
 
 // Certifications marked "headline": true are listed; if none are marked, all are.
-export function certificationList(credentials) {
+function certificationList(credentials) {
   const all = credentials?.certifications || [];
   const chosen = all.some((c) => c.headline) ? all.filter((c) => c.headline) : all;
   return readableList(chosen.map((c) => c.short || c.name));

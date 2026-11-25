@@ -4,24 +4,33 @@
   "testimonials": [
     {
       "name": "Tarek Atwan",
-      "role": "Instructor, AI & Data Science",
-      "quote": "Devanshu is a hardworking and dedicated individual who consistently delivers high-quality results. His expertise in building forecasting models is impressive and his ability to communicate effectively makes him a valuable asset to any team.",
-      "highlight": "His expertise in building forecasting models is impressive",
-      "source": "LinkedIn recommendation"
+      "role": "AI Engineering Consultant, Instructor & Author",
+      "quote": "I had the pleasure of working with Devanshu Tayal and can confidently recommend him for any role related to time series analysis and sales forecasting. He is a hardworking and dedicated individual who consistently delivers high-quality results. His expertise in building forecasting models is impressive and his ability to communicate effectively makes him a valuable asset to any team. Devanshu is also a great team player who is always looking to learn and grow, making him a pleasure to work with. I highly recommend Devanshu for any opportunity in the field of data analytics and forecasting.",
+      "highlight": "His expertise in building forecasting models is impressive"
     },
     {
-      "name": "Priyanshi Tiwari",
-      "role": "Senior Project Executive",
-      "quote": "Devanshu's energy and passion for his work are truly contagious, and I was impressed by how he uses real-world examples to clarify ideas, making them easy to grasp.",
-      "highlight": "uses real-world examples to clarify ideas",
-      "source": "LinkedIn recommendation"
+      "name": "Amol Gunjal",
+      "role": "Software Architect",
+      "quote": "I’ve had the privilege of working with Devanshu and what truly stands out is their ability to architect data-driven intelligence across analytics, AI, and engineering ecosystems. They bring a rare blend of deep technical expertise and strategic vision.",
+      "highlight": "a rare blend of deep technical expertise and strategic vision"
     },
     {
       "name": "Priyanka Khatri",
-      "role": "US Tax Preparer & Reviewer",
-      "quote": "I found him to be hard-working, bright, and a skilled communicator. What makes him stand out is his willingness to help others.",
-      "highlight": "his willingness to help others",
-      "source": "LinkedIn recommendation"
+      "role": "U.S. Tax Professional",
+      "quote": "While our teams worked on the same client to build out the company’s revenue. I found him to be hard-working, bright, and a skilled communicator. I particularly enjoyed his sense of humor in the face of what can sometimes be a stressful situation when faced with tight deadlines. But what makes him stand out is his willingness to help others. He sets realistic goals and gives clear instructions and feedback. He instills pride, confidence, and positive energy in everyone. I would welcome the opportunity to work with him again. I am glad to have worked with him and have no hesitation recommending him to potential employers. If you have the chance to work with Devanshu, take it! 😉",
+      "highlight": "If you have the chance to work with Devanshu, take it!"
+    },
+    {
+      "name": "Omowumi Ogidi",
+      "role": "Data Analyst & Tableau Developer",
+      "quote": "I recently met Er. Devanshu at the Tableau DataFam event in January where he gave me some great tips. After, I reached out for help setting up my GitHub. He generously took the time to walk me through the process. His patience, expertise, and willingness to help stood out, making what seemed like a daunting task much more approachable. I truly appreciate his guidance and would highly recommend him to anyone looking for a knowledgeable and supportive professional in the tech community!",
+      "highlight": "His patience, expertise, and willingness to help stood out"
+    },
+    {
+      "name": "Priyanshi Tiwari",
+      "role": "Data Analyst & Software Engineer",
+      "quote": "I recently had an inspiring conversation with Devanshu. We delved into data analytics and machine learning models, and he made these complex concepts both interesting and insightful. Devanshu’s energy and passion for his work are truly contagious, and I was impressed by how he uses real-world examples to clarify ideas, making them easy to grasp. I look forward to many more exciting conversations. Thank you, Devanshu!",
+      "highlight": "he made these complex concepts both interesting and insightful"
     }
   ],
   "achievements": [
@@ -39,50 +48,57 @@
     {
       "title": "Guest Faculty",
       "issuer": "BITS Pilani",
-      "period": "2026 – Present",
+      "period": "Jan 2026 – Present",
       "logo": "",
-      "text": "I give lectures and run workshops that tie academic theory to how the work is done in industry."
+      "text": "I teach Data Visualisation, Machine Learning and NLP through hands-on sessions built on real industry problems, and mentor students on practical AI and analytics work."
+    },
+    {
+      "title": "Technical Book Reviewer",
+      "issuer": "Packt Publishing",
+      "period": "Aug 2021 – Dec 2025",
+      "logo": "",
+      "text": "Reviewed books on AI, data science and cloud computing for technical accuracy before publication."
+    },
+    {
+      "title": "Visiting Faculty",
+      "issuer": "Gujarat University",
+      "period": "Jul 2023 – Dec 2023",
+      "logo": "",
+      "text": "Worked on curriculum development and taught machine learning, deep learning and data visualisation."
     }
   ],
   "communities": [
     {
       "name": "Gujarat Tableau User Group",
       "role": "Leader & Organiser",
-      "logo": "/images/logos/gujarat-tableau-user-group.webp",
       "url": "https://usergroups.tableau.com/gujarat-tableau-user-group/",
-      "text": "Turning data into stories, dashboards into decisions and insights into impact, through meetups and workshops across Gujarat.",
+      "text": "Monthly meetups and hands-on Tableau workshops for analysts across Gujarat.",
       "scope": "Gujarat",
-      "logoBg": "#0f1e3d",
-      "cover": "/images/covers/gujarat-tableau-user-group.webp"
+      "cover": "/images/covers/gujarat-tableau-user-group-800.webp"
     },
     {
       "name": "Gujarat Databricks User Group",
       "role": "Leader & Organiser",
-      "logo": "",
       "url": "https://usergroups.databricks.com/gujarat-databricks-user-group/",
       "text": "Meetups, hands-on sessions and live project showcases on Databricks, Lakehouse, Delta Lake and AI for data teams across Gujarat.",
       "scope": "Gujarat",
-      "cover": "/images/covers/gujarat-databricks-user-group.webp"
+      "cover": "/images/covers/gujarat-databricks-user-group-800.webp"
     },
     {
       "name": "India AI + Tableau User Group",
       "role": "Leader & Organiser",
-      "logo": "/images/logos/india-ai-tableau-user-group.webp",
       "url": "https://usergroups.tableau.com/india-ai-tableau-user-group/",
       "text": "Where AI meets Tableau: virtual and regional meetups with hands-on workshops for analysts at every level, across India.",
       "scope": "India",
-      "logoBg": "#fefefe",
-      "cover": "/images/covers/india-ai-tableau-user-group.webp"
+      "cover": "/images/covers/india-ai-tableau-user-group-800.webp"
     },
     {
       "name": "AWS User Group India AI/ML",
       "role": "Leader & Organiser",
-      "logo": "/images/logos/aws-user-group-india-aiml.webp",
       "url": "https://www.meetup.com/awsaimlindia/",
       "text": "I organise talks, deep dives and hands-on workshops on AI, ML, GenAI and MLOps on AWS for builders across India.",
       "scope": "India",
-      "logoBg": "#0f1d36",
-      "cover": "/images/covers/aws-user-group-india-aiml.webp",
+      "cover": "/images/covers/aws-user-group-india-aiml-800.webp",
       "coverPosition": "center top"
     },
     {
@@ -90,7 +106,7 @@
       "role": "Leader & Organiser",
       "scope": "India",
       "url": "https://www.linkedin.com/company/ibm-ai-data-community-india/",
-      "cover": "/images/covers/ibm-ai-data-community-india.webp",
+      "cover": "/images/covers/ibm-ai-data-community-india-800.webp",
       "text": "Expert sessions, workshops, hackathons and meetups on AI, agentic AI, data engineering and IBM watsonx for builders across India."
     },
     {
@@ -98,7 +114,7 @@
       "role": "Leader & Organiser",
       "scope": "India",
       "url": "https://community.fabric.microsoft.com/group/IndiaMicrosftFabricUserGroup",
-      "cover": "/images/covers/india-modern-data-ai-community.webp",
+      "cover": "/images/covers/india-modern-data-ai-community-800.webp",
       "coverPosition": "center 18%",
       "text": "India's national Microsoft Fabric user group: live demos and practical sessions on Fabric, Power BI, Lakehouse and data engineering."
     }

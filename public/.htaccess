@@ -5,6 +5,7 @@ DirectoryIndex index.html
 # Serve /about from about/index.html without redirecting to /about/ (keeps URLs matching the canonical)
 DirectorySlash Off
 ErrorDocument 404 /404.html
+ErrorDocument 403 /404.html
 
 <IfModule mod_rewrite.c>
   RewriteEngine On
@@ -15,11 +16,11 @@ ErrorDocument 404 /404.html
   RewriteRule ^ https://www.devanshutayal.com%{REQUEST_URI} [L,R=301]
   RewriteCond %{HTTPS} off
   RewriteCond %{HTTP:X-Forwarded-Proto} !https
-  RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+  RewriteRule ^ https://www.devanshutayal.com%{REQUEST_URI} [L,R=301]
 
   # 2. Drop trailing slashes (/about/ -> /about), except the home page
   RewriteCond %{REQUEST_URI} !^/$
-  RewriteRule ^(.+)/$ https://%{HTTP_HOST}/$1 [L,R=301]
+  RewriteRule ^(.+)/$ https://www.devanshutayal.com/$1 [L,R=301]
 
   # 3. Pages are prebuilt folders: /about -> /about/index.html
   RewriteCond %{REQUEST_FILENAME} -d

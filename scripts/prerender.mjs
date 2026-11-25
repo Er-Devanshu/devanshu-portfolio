@@ -3,7 +3,7 @@
 // real 404 page, a dated sitemap and llms.txt. The site still runs as a React app; these
 // files make sure link previews (LinkedIn, WhatsApp, X), AI crawlers and anything that
 // doesn't run JavaScript see the right information for every page.
-import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { makeFill, resolveRole } from "../src/lib/derive.js";
@@ -35,11 +35,16 @@ const person = {
   "@type": "Person",
   "@id": `${ORIGIN}/#person`,
   name: site.name,
+  alternateName: site.name.replace(/^Er\.\s*/, ""),
+  honorificPrefix: "Er.",
   jobTitle: resolveRole(site, experience),
   url: `${ORIGIN}/`,
   image: `${ORIGIN}/og-image.jpg`,
-  email: `mailto:${site.email}`,
-  address: { "@type": "PostalAddress", addressCountry: "IN" },
+  worksFor: { "@type": "Organization", name: fill("{company}") },
+  address: { "@type": "PostalAddress", addressLocality: (site.location || "").split(",")[0].trim() || undefined, addressRegion: "Gujarat", addressCountry: "IN" },
+  makesOffer: ["Microsoft Fabric data platforms", "Power BI and Tableau business intelligence", "GenAI and machine learning consulting"].map((name) => ({
+    "@type": "Offer", areaServed: "Worldwide", itemOffered: { "@type": "Service", name },
+  })),
   alumniOf: credentials.education.map((e) => ({ "@type": "CollegeOrUniversity", name: e.institution })),
   hasCredential: credentials.certifications.map((c) => ({
     "@type": "EducationalOccupationalCredential",
@@ -47,7 +52,8 @@ const person = {
     credentialCategory: "certification",
     recognizedBy: { "@type": "Organization", name: c.issuer },
   })),
-  award: (beyond.achievements || []).map((a) => `${a.title}, ${a.issuer} (${a.period})`),
+  // Only honours (entries with "years") are awards; teaching and reviewing are roles.
+  award: (beyond.achievements || []).filter((a) => a.years?.length).map((a) => `${a.title}, ${a.issuer} (${a.years.join(", ")})`),
   memberOf: (beyond.communities || []).map((c) => ({ "@type": "Organization", name: c.name, ...(c.url ? { url: c.url } : {}) })),
   knowsAbout: about.skills.groups.flatMap((g) => g.items.map((i) => i.name)),
   sameAs: site.socials.map((s) => s.url),
@@ -76,6 +82,12 @@ function noscript(title, description) {
   return `<noscript><main style="font-family:system-ui,sans-serif;max-width:680px;margin:48px auto;padding:0 20px;color:#f4f0e9;background:#101415"><h1>${esc(title)}</h1><p>${esc(description)}</p><p>${links}</p><p><a href="${esc(site.socials[0].url)}">LinkedIn</a></p></main></noscript>`;
 }
 
+// Search Console / Bing Webmaster verification, only when set in site.json seo.
+const verification = [
+  site.seo.googleVerification && `<meta name="google-site-verification" content="${esc(site.seo.googleVerification)}" />`,
+  site.seo.bingVerification && `<meta name="msvalidate.01" content="${esc(site.seo.bingVerification)}" />`,
+].filter(Boolean).join("\n    ");
+
 function render(route, { title, description, robots = "index, follow" }) {
   const url = ORIGIN + route;
   const [full, small] = PRELOAD[route] || [];
@@ -89,13 +101,15 @@ function render(route, { title, description, robots = "index, follow" }) {
     .replace(/(<meta property="og:title" content=")[^"]*/, `$1${esc(title)}`)
     .replace(/(<meta property="og:description" content=")[^"]*/, `$1${esc(description)}`)
     .replace(/(<meta property="og:url" content=")[^"]*/, `$1${url}`)
+    .replace(/(<meta property="og:image:alt" content=")[^"]*/, `$1${esc(`${site.name}, ${resolveRole(site, experience)}`)}`)
+    .replace("<!--verification-->", verification)
     .replace(/(<meta name="twitter:title" content=")[^"]*/, `$1${esc(title)}`)
     .replace(/(<meta name="twitter:description" content=")[^"]*/, `$1${esc(description)}`)
     .replace(/(<link rel="canonical" href=")[^"]*/, `$1${url}`)
     .replace("<!--page-preload-->", preload)
     .replace("<!--structured-data-->", robots.startsWith("noindex") ? "" : structuredData(route, title, description))
     .replace("<!--noscript-->", noscript(title, description));
-  if (robots.startsWith("noindex")) html = html.replace(/\s*<link rel="canonical"[^>]*>/, "");
+  if (robots.startsWith("noindex")) html = html.replace(/\s*<link rel="canonical"[^>]*>/, "").replace(/\s*<meta property="og:url"[^>]*>/, "");
   return html;
 }
 
@@ -114,13 +128,12 @@ writeFileSync(
   render("/404", { title: `Page not found — ${site.name}`, description: fill(site.seo.description), robots: "noindex, follow" })
 );
 
-// Sitemap with today's date as last modified.
-const today = new Date().toISOString().slice(0, 10);
+// Sitemap. No <lastmod>: a build date on every page would tell search engines everything changed on each push.
 writeFileSync(
   path.join(dist, "sitemap.xml"),
   `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${Object.keys(pages)
-    .map((r) => `  <url><loc>${ORIGIN}${r}</loc><lastmod>${today}</lastmod></url>`)
-    .join("\n")}\n</urlset>\n`
+    .map((r) => `  <url><loc>${ORIGIN}${r}</loc></url>`)
+    .join("\n")}${site.cv && existsSync(path.join(dist, site.cv)) ? `\n  <url><loc>${ORIGIN}${site.cv}</loc></url>` : ""}\n</urlset>\n`
 );
 
 // llms.txt: a short, plain summary for AI assistants and search tools.
@@ -128,6 +141,15 @@ const llms = [
   `# ${site.name}`,
   "",
   `> ${fill(site.seo.description)}`,
+  "",
+  "## Facts",
+  `- Current role: ${resolveRole(site, experience)} at ${fill("{company}")}`,
+  `- Location: ${site.location || "India"} (IST); remote, hybrid or on-site; open to relocation`,
+  "- Open to: full-time, part-time, freelance and consulting work",
+  `- Experience: ${fill("{years}")}+ years in data, BI, machine learning and generative AI`,
+  `- Certifications: ${credentials.certifications.map((c) => c.name).join("; ")}`,
+  ...(site.cv ? [`- CV: ${ORIGIN}${site.cv}`] : []),
+  `- Contact: ${ORIGIN}/contact (LinkedIn or email)`,
   "",
   "## Pages",
   ...Object.entries(pages).map(([r, m]) => `- [${m.title}](${ORIGIN}${r}): ${m.description}`),

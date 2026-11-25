@@ -13,7 +13,7 @@
 
 .ab-journey { padding-block: clamp(64px, 9vw, 120px); }
 .ab-journey-inner { display: grid; gap: clamp(32px, 5vw, 64px); }
-.ab-journey h2 { margin: 0; font-size: clamp(2.4rem, 5vw, 3.8rem); line-height: 1; }
+.ab-journey h2 { margin: 0; font-size: var(--section-title); line-height: 1; }
 @media (min-width: 900px) {
   .ab-journey-inner { grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); align-items: start; }
   .ab-journey h2 { position: sticky; top: calc(var(--header-height) + 32px); }
@@ -49,9 +49,8 @@
   display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   gap: clamp(32px, 5vw, 72px); align-items: start;
   padding-block: clamp(56px, 8vw, 104px);
-  border-top: 1px solid rgba(241, 235, 226, 0.08);
 }
-.ab-side-title { margin: 0 0 24px; font-family: var(--font-display); font-weight: 400; font-size: clamp(2rem, 3.2vw, 2.6rem); line-height: 1; }
+.ab-side-title { margin: 0 0 24px; font-family: var(--font-display); font-weight: 400; font-size: var(--section-title); line-height: 1; }
 .ab-duo .sk-stage { grid-template-columns: 1fr; }
 .ab-duo .sk-chart { max-width: 460px; margin-inline: auto; }
 .ab-duo .sk-panel { min-height: 0; }

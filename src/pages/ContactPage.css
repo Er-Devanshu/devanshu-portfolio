@@ -6,12 +6,15 @@
     linear-gradient(180deg, #121718, #0d1011);
   padding-block: clamp(48px, 7vw, 96px);
 }
-.contact-page .signal-field { z-index: -1; opacity: .7; }
+.contact-page .signal-field { z-index: 0; opacity: .9; }
+.contact-page .contact-grid { position: relative; z-index: 1; }
 
 .contact-grid { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); gap: clamp(32px, 6vw, 88px); align-items: center; }
 
-.contact-copy h1 { font-family: var(--font-display); font-weight: 400; font-size: clamp(3.2rem, 8vw, 6rem); line-height: .95; letter-spacing: -.02em; color: var(--color-ivory); margin: 0 0 24px; text-wrap: balance; }
-.contact-lead { font-size: clamp(1.05rem, 1.5vw, 1.25rem); line-height: 1.6; color: #cfc9bf; max-width: 40ch; margin: 0 0 32px; }
+.contact-copy h1 { font-family: var(--font-display); font-weight: 400; font-size: clamp(3.6rem, 10vw, 7.5rem); line-height: .92; letter-spacing: -.025em; color: var(--color-ivory); margin: 0 0 24px; text-wrap: balance; }
+.contact-copy h1 em { color: var(--color-orange); font-style: italic; }
+.contact-lead { font-size: clamp(1.15rem, 1.8vw, 1.45rem); line-height: 1.5; color: #cfc9bf; max-width: 32ch; margin: 0 0 14px; text-wrap: balance; }
+.contact-note { margin: 0 0 36px; max-width: 46ch; color: var(--text-muted); font-size: 0.95rem; line-height: 1.55; }
 
 .contact-socials { list-style: none; margin: 28px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 4px 22px; }
 .contact-social { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; color: #cfc9bf; text-decoration: none; font-size: .95rem; transition: color var(--transition-fast); }
@@ -30,3 +33,9 @@
 @media (prefers-reduced-motion: reduce) {
   .contact-social { transition: none; }
 }
+
+
+
+.copy-email { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 4px; border: 0; background: none; color: #cfc9bf; font: inherit; font-size: 0.95rem; cursor: pointer; text-decoration: underline; text-decoration-color: rgba(239, 145, 72, 0.4); text-underline-offset: 4px; }
+.copy-email:hover { color: var(--color-orange-light); }
+.copy-email:focus-visible { outline: 2px solid var(--color-orange); outline-offset: 3px; border-radius: 6px; }

@@ -212,7 +212,7 @@ body { font-size: 16px; }
 
 /* Browser surfaces themed from the palette */
 html { accent-color: var(--accent-color); caret-color: var(--accent-color); }
-.num, time { font-variant-numeric: tabular-nums; }
+time { font-variant-numeric: tabular-nums; }
 
 /* Portrait: a finished composite (panel + dark backdrop baked in).
    The edges fade into the page so the backdrop never shows a seam. */
@@ -231,3 +231,13 @@ html { accent-color: var(--accent-color); caret-color: var(--accent-color); }
 
 /* Headings receive focus after page navigation (for screen readers); no visual ring needed. */
 h1[tabindex="-1"]:focus { outline: none; }
+
+
+
+/* Animated numbers: the +, % and similar suffixes in the accent colour. */
+.count-up { position: relative; display: inline-block; font-variant-numeric: tabular-nums lining-nums; }
+/* While counting, the real number is hidden (but still in the page text) and the moving figure is drawn over it. */
+.count-up.is-counting .count-up-real { visibility: hidden; }
+.count-up.is-counting::after { content: attr(data-shown) attr(data-suffix); position: absolute; left: 0; top: 0; white-space: nowrap; }
+.count-up-suffix { color: var(--accent-color); }
+

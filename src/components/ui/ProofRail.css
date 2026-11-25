@@ -1,21 +1,26 @@
-.proof { background: #0d1011; border-top: 1px solid rgba(241, 235, 226, 0.08); }
-.proof-list { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); }
-.proof-item + .proof-item { border-left: 1px solid rgba(241, 235, 226, 0.08); }
+.proof { background: #0d1011; }
+.proof-list { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.proof-item:not(:nth-child(3n + 1)) { border-left: 1px solid rgba(241, 235, 226, 0.08); }
+.proof-item:nth-child(n + 4) { border-top: 1px solid rgba(241, 235, 226, 0.08); }
+.proof-item:nth-child(3n + 1) .proof-cell { padding-left: 0; }
 .proof-cell {
   position: relative; display: flex; flex-direction: column; gap: 10px; height: 100%;
   padding: clamp(28px, 3.6vw, 44px) clamp(18px, 2.4vw, 36px);
   color: var(--text-primary);
   transition: background-color 400ms var(--ease-standard);
 }
-.proof-item:first-child .proof-cell { padding-left: 0; }
 a.proof-cell:hover { background: rgba(241, 235, 226, 0.03); }
+/* A thin accent line that draws across the top of a stat on hover. */
+.proof-cell::before { content: ""; position: absolute; top: -1px; left: 0; height: 2px; width: 100%; background: var(--accent-color); transform: scaleX(0); transform-origin: left; transition: transform 500ms cubic-bezier(0.16, 1, 0.3, 1); }
+a.proof-cell:hover::before, a.proof-cell:focus-visible::before { transform: scaleX(1); }
 a.proof-cell:focus-visible { outline: 2px solid var(--accent-color); outline-offset: -2px; }
 .proof-value {
-  font-family: var(--font-display); font-size: clamp(2.6rem, 4.6vw, 4rem); line-height: 1;
-  letter-spacing: -0.02em; font-variant-numeric: lining-nums tabular-nums;
+  font-family: var(--font-display); font-size: clamp(3rem, 5.6vw, 4.8rem); line-height: 0.95;
+  letter-spacing: -0.02em; font-variant-numeric: lining-nums tabular-nums; color: var(--accent-color);
 }
-.proof-suffix { color: var(--accent-color); margin-left: 0.04em; }
-.proof-label { font-size: 0.92rem; color: var(--text-secondary); }
+.proof-value .count-up-suffix { color: var(--text-primary); margin-left: 0.04em; }
+.proof-label { display: flex; align-items: flex-start; gap: 10px; font-size: 0.95rem; line-height: 1.3; color: var(--text-secondary); }
+.proof-icon { flex: none; width: 20px; height: 20px; margin-top: -0.05em; color: var(--accent-color); }
 .proof-arrow {
   position: absolute; top: clamp(28px, 3.6vw, 44px); right: clamp(18px, 2.4vw, 36px);
   color: var(--text-muted); opacity: 0; transform: translate(-4px, 4px);
@@ -28,12 +33,27 @@ a.proof-cell:hover .proof-label { color: var(--text-primary); }
 
 @media (max-width: 760px) {
   .proof-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .proof-item:nth-child(3) { border-left: 0; }
+  .proof-item:not(:nth-child(3n + 1)) { border-left: 0; }
+  .proof-item:nth-child(3n + 1) .proof-cell { padding-left: clamp(18px, 2.4vw, 36px); }
+  .proof-item:nth-child(even) { border-left: 1px solid rgba(241, 235, 226, 0.08); }
   .proof-item:nth-child(n + 3) { border-top: 1px solid rgba(241, 235, 226, 0.08); }
   .proof-item:nth-child(odd) .proof-cell { padding-left: 0; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .proof-cell, .proof-arrow { transition: none; }
+  .proof-cell, .proof-arrow, .proof-cell::before { transition: none; }
 }
 
-.proof-icon { display: grid; place-items: center; width: 34px; height: 34px; margin-bottom: 4px; border-radius: 10px; background: rgba(239, 145, 72, 0.12); color: var(--accent-color); }
+
+
+/* Wide screens: all six stats on one line, with slightly smaller figures so they fit. */
+@media (min-width: 1100px) {
+  .proof-list { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+  .proof-item:not(:nth-child(3n + 1)), .proof-item:nth-child(3n + 1) { border-left: 1px solid rgba(241, 235, 226, 0.08); }
+  .proof-item:first-child { border-left: 0; }
+  .proof-item:nth-child(n + 4) { border-top: 0; }
+  .proof-item:nth-child(3n + 1) .proof-cell { padding-left: clamp(16px, 1.6vw, 24px); }
+  .proof-item:first-child .proof-cell { padding-left: 0; }
+  .proof-cell { padding: clamp(28px, 3vw, 40px) clamp(16px, 1.6vw, 24px); }
+  .proof-value { font-size: clamp(2.6rem, 3.4vw, 3.4rem); }
+  .proof-label { font-size: 0.88rem; }
+}

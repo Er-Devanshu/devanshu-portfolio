@@ -1,12 +1,12 @@
 /* global __HAS_CV__ */
 import { Link } from "react-router-dom";
-import { site, projects, portraitSrcSet, PORTRAIT_SIZES, siteRole } from "../lib/content";
+import { site, projects, portraitSrcSet, PORTRAIT_SIZES, siteRole, currentCompany } from "../lib/content";
 import CvButton from "../components/ui/CvButton";
+import CaseStudies from "../components/ui/CaseStudies";
 import ProofRail from "../components/ui/ProofRail";
 import Testimonials from "../components/ui/Testimonials";
 import Button from "../components/ui/Button";
 import Icon from "../components/ui/Icon";
-import SmartLink from "../components/ui/SmartLink";
 import SignalField from "../components/ui/SignalField";
 import usePageTitle from "../hooks/usePageTitle";
 import useReveal from "../hooks/useReveal";
@@ -17,7 +17,6 @@ import "./HomePage.css";
 export default function HomePage() {
   usePageTitle();
   useReveal();
-  const featured = projects.items.filter((p) => p.featured).slice(0, 3);
 
   return (
     <>
@@ -29,19 +28,12 @@ export default function HomePage() {
               <span className="home-first">{site.firstName}</span>{" "}
               <span className="home-last">{site.lastName}</span>
             </h1>
-            <p className="home-role">{siteRole}</p>
+            <p className="home-role">{siteRole}{currentCompany && <span className="home-company"> at {currentCompany}</span>}</p>
             <p className="home-tagline">{site.tagline}</p>
-            <ul className="home-facts" aria-label="Quick facts">
-              {site.highlights.map((h) => (
-                <li key={h.label}>
-                  <Icon name={h.icon} size={15} />
-                  {h.text}
-                </li>
-              ))}
-            </ul>
             <div className="btn-row">
-              <Button to="/projects" icon="arrow">View Projects</Button>
-              {site.cv && __HAS_CV__ ? <CvButton /> : <Button to="/contact" variant="secondary" icon={null}>Get in Touch</Button>}
+              <Button to="/contact" icon="arrow">Work with me</Button>
+              <Button to="/projects" variant="secondary" icon={null}>View my work</Button>
+              {site.cv && __HAS_CV__ && <CvButton />}
             </div>
           </div>
           <div className="home-hero-media portrait-card">
@@ -57,19 +49,8 @@ export default function HomePage() {
             <h2 id="featured-title">{projects.featuredTitle}</h2>
             <p>{projects.featuredIntro}</p>
           </div>
-          <ol className="home-work">
-            {featured.map((p) => (
-              <li key={`${p.title}-${p.url}`} className="home-work-item reveal">
-                <SmartLink to={p.url} className="home-work-link">
-                  <h3>{p.title}</h3>
-                  <p>{p.summary}</p>
-                  <span className="home-work-tags">{[p.category, ...(p.tags || [])].filter(Boolean).join(" · ")}</span>
-                  <span className="home-work-arrow" aria-hidden="true"><Icon name="arrow" size={22} /></span>
-                </SmartLink>
-              </li>
-            ))}
-          </ol>
-          <Link to="/projects" className="text-link home-all-link">View all projects <Icon name="arrow" size={16} /></Link>
+          <CaseStudies items={projects.caseStudies} limit={4} />
+          <Link to="/projects" className="text-link home-all-link">See all work <Icon name="arrow" size={16} /></Link>
         </div>
       </section>
 

@@ -1,47 +1,49 @@
 {
-  "name": "Devanshu Tayal",
-  "firstName": "Devanshu",
+  "name": "Er. Devanshu Tayal",
+  "firstName": "Er. Devanshu",
   "lastName": "Tayal",
   "role": "auto:role",
-  "tagline": "I build analytics, ML and AI systems that run in production and make sense to the people who use them.",
+  "tagline": "I turn messy enterprise data into Fabric platforms, dashboards and AI agents teams use every day, and I lead the people who build them. Open to full-time, part-time, freelance and consulting work.",
   "photo": "/images/portrait-home.webp",
   "photoAlt": "Devanshu Tayal smiling, arms crossed",
   "careerStart": "2018-02-09",
-  "location": "India",
+  "location": "Ahmedabad, India",
   "email": "tayaldevanshu0502@gmail.com",
   "seo": {
-    "title": "Devanshu Tayal — {role}",
-    "description": "{role} with machine learning, generative AI and Microsoft Fabric experience. Guest Faculty at BITS Pilani and 2× Tableau Ambassador.",
+    "title": "Er. Devanshu Tayal — Senior Tech Lead, Data & AI",
+    "description": "Senior Tech Lead – Data & AI at Aegis Soft Tech, Ahmedabad. Microsoft Fabric, Power BI and GenAI consultant, open to roles and freelance work.",
     "pages": {
       "/": {
-        "title": "Devanshu Tayal — {role}",
-        "description": "{role} with machine learning, generative AI and Microsoft Fabric experience. Guest Faculty at BITS Pilani and 2× Tableau Ambassador."
+        "title": "Er. Devanshu Tayal — Senior Tech Lead, Data & AI",
+        "description": "Senior Tech Lead – Data & AI at Aegis Soft Tech, Ahmedabad. Microsoft Fabric, Power BI and GenAI consultant, open to roles and freelance work."
       },
       "/about": {
-        "title": "About Devanshu Tayal — {role}",
-        "description": "Background and skills of Devanshu Tayal: ML, deep learning, GenAI, Microsoft Fabric, Databricks, Tableau and Power BI, with an M.Tech from BITS Pilani."
+        "title": "About Er. Devanshu Tayal, Data Scientist & AI Lead",
+        "description": "Data scientist and AI lead Er. Devanshu Tayal: LLMs, RAG, machine learning, Microsoft Fabric, Databricks, Power BI and Tableau. M.Tech, BITS Pilani."
       },
       "/experience": {
-        "title": "Experience — Devanshu Tayal, {role}",
-        "description": "Data science roles at Analytix, AIS and TTEC: workforce analytics, fraud detection and forecasting, with results like 23% lower fraud and 20% higher retention."
+        "title": "Experience — Er. Devanshu Tayal, Senior Tech Lead, Data & AI",
+        "description": "Data and AI roles at Aegis Soft Tech, Analytix, AIS and TTEC: Fabric platforms, forecasting and fraud detection, with results like 600+ hours saved a month."
       },
       "/projects": {
-        "title": "Projects — Devanshu Tayal",
-        "description": "Machine learning, deep learning, NLP, forecasting and Tableau projects by Devanshu Tayal, from LLM tools to medical imaging and fraud detection."
+        "title": "Data Science & AI Projects — Er. Devanshu Tayal",
+        "description": "AI tools, machine learning, NLP, forecasting and Tableau projects by Er. Devanshu Tayal, each linking to the code or the live work."
       },
       "/beyond": {
-        "title": "Communities & Recognition — Devanshu Tayal",
-        "description": "2× Tableau Ambassador, Guest Faculty at BITS Pilani and leader of six data and AI communities across India, including AWS, IBM and Microsoft Fabric groups."
+        "title": "Tableau Ambassador & Community Leader — Er. Devanshu Tayal",
+        "description": "2× Tableau Ambassador, Guest Faculty at BITS Pilani and leader of {communities} data and AI communities across India, including AWS, IBM and Microsoft Fabric groups."
       },
       "/credentials": {
-        "title": "Education & Certifications — Devanshu Tayal",
-        "description": "M.Tech in Data Science & Engineering from BITS Pilani, plus Microsoft Fabric (DP-600, DP-700), Agentforce, Google Cloud GenAI and Tableau certifications."
+        "title": "Certified in Fabric, AWS & Salesforce — Er. Devanshu Tayal",
+        "description": "M.Tech from BITS Pilani, plus Microsoft DP-600, DP-700 and DP-800, Salesforce Agentforce and AWS AI Practitioner certifications."
       },
       "/contact": {
-        "title": "Contact Devanshu Tayal",
-        "description": "Get in touch with Devanshu Tayal about data science roles, projects, talks or community collaborations, on LinkedIn or by email."
+        "title": "Hire a Data & AI Consultant — Er. Devanshu Tayal, Ahmedabad",
+        "description": "Hire Er. Devanshu Tayal for full-time, part-time, freelance or consulting work in data, Power BI, Microsoft Fabric and GenAI. Based in Ahmedabad (IST)."
       }
-    }
+    },
+    "googleVerification": "",
+    "bingVerification": ""
   },
   "socials": [
     {
@@ -65,26 +67,10 @@
       "url": "https://public.tableau.com/app/profile/devanshu.tayal/vizzes"
     }
   ],
-  "highlights": [
-    {
-      "icon": "graduation",
-      "label": "Currently",
-      "text": "Guest Faculty, BITS Pilani"
-    },
-    {
-      "icon": "pin",
-      "label": "Based in",
-      "text": "Based in India"
-    },
-    {
-      "icon": "send",
-      "label": "Open to",
-      "text": "Open to data science roles and speaking"
-    }
-  ],
   "contact": {
-    "title": "Let's Connect",
-    "text": "Got a project, a role, or a data question? Send me a note."
+    "title": "Let's talk",
+    "text": "Full-time, part-time, freelance or consulting: tell me what you're working on.",
+    "note": "Based in Ahmedabad, India (IST). Remote, hybrid or on-site, and open to relocating for the right role."
   },
   "aboutPhoto": "/images/portrait-about.webp",
   "aboutPhotoAlt": "Devanshu Tayal speaking into a microphone at a community event",
@@ -95,6 +81,18 @@
       "label": "Years of experience",
       "url": "/experience",
       "icon": "briefcase"
+    },
+    {
+      "value": "10+",
+      "label": "Team members I lead",
+      "url": "/experience",
+      "icon": "users"
+    },
+    {
+      "value": "35",
+      "label": "Processes improved as team lead",
+      "url": "/experience",
+      "icon": "workflow"
     },
     {
       "value": "80+",

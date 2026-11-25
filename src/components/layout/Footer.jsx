@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { site } from "../../lib/content";
+import EmailLink from "../ui/EmailLink";
 import Icon from "../ui/Icon";
 import "./Footer.css";
 
@@ -18,7 +19,7 @@ export default function Footer() {
             </li>
           ))}
           <li>
-            <a href={`mailto:${site.email}`} aria-label="Email"><Icon name="mail" size={18} /></a>
+            <EmailLink aria-label="Email"><Icon name="mail" size={18} /></EmailLink>
           </li>
         </ul>
       </div>

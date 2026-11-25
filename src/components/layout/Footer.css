@@ -1,4 +1,4 @@
-.site-footer { border-top: 1px solid var(--border-color); background: var(--page-background); }
+.site-footer { background: var(--page-background); }
 .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; padding-block: 14px; }
 .footer-brand { display: inline-flex; min-height: 44px; align-items: center; }
 .site-footer p { font-size: 0.85rem; }

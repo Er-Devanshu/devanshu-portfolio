@@ -50,7 +50,7 @@ export default function AboutPage() {
       <section className="ab-hero container" aria-labelledby="about-title">
         <div className="ab-hero-text">
           <h1 id="about-title">{about.title}</h1>
-          <p className="ab-intro">{about.intro}</p>
+          <p className="ab-intro">{fill(about.intro)}</p>
         </div>
         {site.aboutPhoto && (
           <figure className="ab-figure portrait-card">

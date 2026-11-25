@@ -1,0 +1,23 @@
+/* ---------- Shared ---------- */
+.cs-meta { margin: 0; font-size: 0.82rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-muted); line-height: 1.5; }
+.cs-title { margin: 0; font-family: var(--font-display); font-weight: 400; line-height: 1.08; letter-spacing: -0.01em; text-wrap: balance; }
+
+/* ---------- Cards (Home, on the ivory band) ---------- */
+.cs-cards { list-style: none; margin: 0; padding: 0; display: grid; gap: clamp(16px, 2vw, 24px); }
+.cs-card {
+  position: relative; display: flex; flex-direction: column; gap: 14px; padding: clamp(24px, 2.8vw, 34px);
+  border-radius: 22px; background: #faf7f1; border: 1px solid var(--ivory-border); color: var(--ivory-text);
+  transition: transform 350ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 350ms var(--ease-standard);
+}
+.cs-card:hover { transform: translateY(-4px); box-shadow: 0 24px 40px -28px rgba(40, 30, 20, 0.35); }
+.cs-card .cs-meta { color: var(--ivory-muted); }
+.cs-card .cs-title { font-size: clamp(1.6rem, 2.4vw, 2rem); }
+.cs-problem { margin: 0; color: var(--ivory-muted); line-height: 1.55; }
+.cs-result { margin: auto 0 0; padding-top: 18px; border-top: 1px solid var(--ivory-border); display: grid; gap: 4px; }
+.cs-result-value { font-family: var(--font-display); font-size: clamp(2.6rem, 4vw, 3.4rem); line-height: 1; color: #b5591a; font-variant-numeric: lining-nums; }
+.cs-result-value .count-up-suffix { color: #b5591a; }
+.cs-result-label { font-weight: 600; color: var(--ivory-text); }
+@media (min-width: 760px) { .cs-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 900px) { .cs-cards:has(> :nth-child(3):last-child) { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+
+@media (prefers-reduced-motion: reduce) { .cs-card { transition: none; } .cs-card:hover { transform: none; } }

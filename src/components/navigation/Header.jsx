@@ -10,6 +10,7 @@ export default function Header() {
   const [moreAt, setMoreAt] = useState(null);
   const [scrolled, setScrolled] = useState(false);
   const moreRef = useRef(null);
+  const toggleRef = useRef(null);
   const { pathname } = useLocation();
   const mobileOpen = mobileAt === pathname;
   const moreOpen = moreAt === pathname;
@@ -20,7 +21,14 @@ export default function Header() {
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
     const onDown = (e) => { if (moreRef.current && !moreRef.current.contains(e.target)) setMoreAt(null); };
-    const onKey = (e) => { if (e.key === "Escape") { setMoreAt(null); setMobileAt(null); } };
+    const onKey = (e) => {
+      if (e.key !== "Escape") return;
+      setMoreAt(null);
+      // Closing the mobile menu hides its links, so send focus back to the button that opened it.
+      const toggle = toggleRef.current;
+      if (toggle?.getAttribute("aria-expanded") === "true") toggle.focus();
+      setMobileAt(null);
+    };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     document.addEventListener("pointerdown", onDown);
@@ -88,6 +96,7 @@ export default function Header() {
 
         <button
           type="button"
+          ref={toggleRef}
           className="mobile-toggle"
           aria-label={mobileOpen ? "Close menu" : "Open menu"}
           aria-expanded={mobileOpen}

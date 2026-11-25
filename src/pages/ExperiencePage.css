@@ -7,14 +7,14 @@
 .xp-entry {
   display: grid; grid-template-columns: minmax(0, 1fr); gap: 10px;
   padding-block: clamp(36px, 5vw, 64px);
-  border-top: 1px solid rgba(241, 235, 226, 0.1);
 }
-.xp-entry:last-child { border-bottom: 1px solid rgba(241, 235, 226, 0.1); }
+.xp-entry + .xp-entry { border-top: 1px solid rgba(241, 235, 226, 0.1); }
+.xp-entry:first-child { padding-top: 0; }
 
 .xp-years {
   margin: 0; font-family: var(--font-display); font-weight: 400; line-height: 0.9;
-  font-size: clamp(3rem, 7.5vw, 6rem); letter-spacing: -0.03em; white-space: nowrap;
-  color: rgba(241, 235, 226, 0.28); font-variant-numeric: lining-nums;
+  font-size: clamp(2.4rem, 5vw, 4.2rem); letter-spacing: -0.03em; white-space: nowrap;
+  color: rgba(241, 235, 226, 0.45); font-variant-numeric: lining-nums;
   margin-bottom: 14px;
 }
 .xp-years-dash { margin-inline: 0.06em; }
@@ -36,6 +36,7 @@
 
 .xp-outcomes { margin: 22px 0 0; display: flex; flex-wrap: wrap; gap: 12px clamp(28px, 4vw, 48px); }
 .xp-outcome { display: flex; align-items: baseline; gap: 10px; }
+.xp-outcome-value { display: inline-flex; align-items: center; gap: 0.15em; font-family: var(--font-display); font-size: clamp(1.9rem, 3vw, 2.4rem); line-height: 1; color: var(--accent-color); font-variant-numeric: lining-nums; } /* label comes first for screen readers, number shows first */
 .xp-outcome dd { margin: 0; }
 .xp-outcome-value {
   display: inline-flex; align-items: center; gap: 2px; font-weight: 600; font-size: 1.25rem;
@@ -51,4 +52,10 @@
 @media (min-width: 900px) {
   .xp-entry { grid-template-columns: clamp(220px, 26vw, 340px) minmax(0, 1fr); gap: clamp(32px, 4vw, 64px); }
   .xp-years { margin-bottom: 0; position: sticky; top: calc(var(--header-height) + 32px); align-self: start; }
+}
+
+/* Phones: company on its own line, no dangling separator. */
+@media (max-width: 599px) {
+  .xp-company { flex-basis: 100%; }
+  .xp-sep-first { display: none; }
 }

@@ -4,7 +4,10 @@ import { existsSync, readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import path from "node:path";
 
-const dir = path.join(path.dirname(fileURLToPath(import.meta.url)), "../src/content");
+const root = path.join(path.dirname(fileURLToPath(import.meta.url)), "..");
+// CONTENT_DIR lets the checks run against a test copy of the content folder.
+const dir = process.env.CONTENT_DIR ? path.resolve(process.env.CONTENT_DIR) : path.join(root, "src/content");
+const publicDir = path.join(root, "public");
 const errors = [];
 
 function load(name) {
@@ -47,11 +50,9 @@ if (site) {
   arr("site.json", site, "stats").forEach((s, i) => { str("site.json", s, "value", ` stats[${i}]`); str("site.json", s, "label", ` stats[${i}]`); if (s.url) url("site.json", s.url, ` stats[${i}]`); });
   if (site.cv) {
     if (!/^\/.+\.pdf$/i.test(site.cv)) errors.push(`site.json: "cv" must be a PDF path like "/cv/Devanshu-Tayal-CV.pdf" (or "" to hide the button)`);
-    else if (!existsSync(path.join(dir, "../../public", site.cv))) console.warn(`! CV not uploaded yet (public${site.cv}). The Download CV button stays hidden until it is.`);
+    else if (!existsSync(path.join(publicDir, site.cv))) console.warn(`! CV not uploaded yet (public${site.cv}). The Download CV button stays hidden until it is.`);
   }
-  ["photo", "aboutPhoto", "contactPhoto", "photoSmall", "aboutPhotoSmall", "contactPhotoSmall"].forEach((k) => {
-    if (site[k] && !existsSync(path.join(dir, "../../public", site[k]))) errors.push(`site.json: "${k}" points to ${site[k]} but that file is not in public${site[k]}`);
-  });
+  // Photos and every other image path are checked for existence further down.
   arr("site.json", site, "socials").forEach((s, i) => { str("site.json", s, "label", ` socials[${i}]`); url("site.json", s.url, ` socials[${i}]`); });
 }
 
@@ -83,7 +84,15 @@ if (exp) {
     if (r.period && !PERIOD.test(r.period)) errors.push(`experience.json roles[${i}]: period "${r.period}" must look like "Jan 2022 – Jan 2026" or "Jul 2026 – Present"`);
     arr("experience.json", r, "highlights", ` roles[${i}]`);
     if (r.summary !== undefined) str("experience.json", r, "summary", ` roles[${i}]`);
+    (r.impact || []).forEach((m, j) => {
+      const w = ` roles[${i}].impact[${j}]`;
+      str("experience.json", m, "value", w);
+      str("experience.json", m, "label", w);
+      if (m.direction !== undefined && m.direction !== "up" && m.direction !== "down") errors.push(`experience.json${w}: "direction" must be "up" or "down"`);
+    });
   });
+  const current = (exp.roles || []).filter((r) => /present\s*$/i.test(r.period || ""));
+  if (current.length > 1) errors.push(`experience.json: only one role can run to "Present" (found ${current.map((r) => r.company).join(", ")}). Give the older one an end date.`);
 }
 
 const projects = load("projects.json");
@@ -93,6 +102,7 @@ if (projects) {
     const w = ` items[${i}] (${p.title || "untitled"})`;
     ["title", "summary", "category"].forEach((k) => str("projects.json", p, k, w));
     url("projects.json", p.url, w);
+    if (p.shows !== undefined) str("projects.json", p, "shows", w);
     if (p.category && !cats.includes(p.category)) errors.push(`projects.json${w}: category "${p.category}" is not in "categories" (${cats.join(", ")})`);
     if (p.image) url("projects.json", p.image, w);
   });
@@ -104,7 +114,10 @@ if (beyond) {
     ["name", "role", "text"].forEach((k) => str("beyond.json", c, k, ` communities[${i}]`));
     ["url", "logo", "cover"].forEach((k) => optUrl("beyond.json", c[k], ` communities[${i}].${k}`));
   });
-  arr("beyond.json", beyond, "achievements").forEach((a, i) => ["title", "issuer", "period", "text"].forEach((k) => str("beyond.json", a, k, ` achievements[${i}]`)));
+  arr("beyond.json", beyond, "achievements").forEach((a, i) => {
+    ["title", "issuer", "period", "text"].forEach((k) => str("beyond.json", a, k, ` achievements[${i}]`));
+    if (a.period && !/\d{4}/.test(a.period)) errors.push(`beyond.json achievements[${i}]: period "${a.period}" must include a year, like "Jan 2026 – Present"`);
+  });
   (beyond.testimonials || []).forEach((t, i) => ["name", "role", "quote"].forEach((k) => str("beyond.json", t, k, ` testimonials[${i}]`)));
 }
 
@@ -120,6 +133,43 @@ if (cred) {
 
 const nav = load("navigation.json");
 if (nav) arr("navigation.json", nav, "primary");
+
+// ---------- Checks across every content file ----------
+// Placeholders the site knows how to fill (see the list at the top of src/lib/derive.js).
+const deriveText = readFileSync(path.join(root, "src/lib/derive.js"), "utf8");
+const PLACEHOLDERS = new Set([...deriveText.matchAll(/^\/\/\s+\{(\w+)\}/gm)].map((m) => m[1]));
+// Icon names the site can draw (keys of the map in src/components/ui/Icon.jsx), plus "dot".
+const iconText = readFileSync(path.join(root, "src/components/ui/Icon.jsx"), "utf8");
+const mapBody = (iconText.match(/const map = \{([\s\S]*?)\};/) || [])[1] || "";
+const ICONS = new Set(["dot", ...[...mapBody.matchAll(/(?:^|[,{\s])"?([\w& -]+?)"?\s*:/g)].map((m) => m[1].trim())]);
+
+const IMAGE_KEY = /^(logo|cover|image|photo\w*|aboutPhoto\w*|contactPhoto\w*)$/;
+function walk(file, value, where) {
+  if (Array.isArray(value)) return value.forEach((v, i) => walk(file, v, `${where}[${i}]`));
+  if (value && typeof value === "object") {
+    return Object.entries(value).forEach(([k, v]) => {
+      const w = where ? `${where}.${k}` : k;
+      // A bare name (like a project cover style "fraud") is fine; anything that looks like a path or link must be a local image.
+      if (typeof v === "string" && v && IMAGE_KEY.test(k) && /[:/]/.test(v) && !/^\/images\/[\w./-]+$/.test(v)) {
+        errors.push(`${file} ${w}: image "${v}" must be a file in public/images, written like "/images/name.webp".`);
+      } else if (typeof v === "string" && v && (IMAGE_KEY.test(k) || v.startsWith("/images/")) && v.startsWith("/") && !existsSync(path.join(publicDir, v))) {
+        errors.push(`${file} ${w}: image "${v}" was not found in public${v}. Check the file name or upload it.`);
+      }
+      if (k === "icon" && typeof v === "string" && v && !ICONS.has(v)) {
+        errors.push(`${file} ${w}: icon "${v}" is not one the site has. Use one of: ${[...ICONS].join(", ")}`);
+      }
+      walk(file, v, w);
+    });
+  }
+  if (typeof value === "string") {
+    for (const m of value.matchAll(/\{(\w+)\}/g)) {
+      if (!PLACEHOLDERS.has(m[1])) errors.push(`${file} ${where}: unknown placeholder "{${m[1]}}". Use one of: ${[...PLACEHOLDERS].map((p) => `{${p}}`).join(", ")}`);
+    }
+  }
+}
+for (const [file, data] of [["site.json", site], ["about.json", about], ["experience.json", exp], ["projects.json", projects], ["beyond.json", beyond], ["credentials.json", cred], ["navigation.json", nav]]) {
+  if (data) walk(file, data, "");
+}
 
 if (errors.length) {
   console.error(`\n✖ Content check failed (${errors.length}):\n  - ${errors.join("\n  - ")}\n`);
