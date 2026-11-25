@@ -1,164 +1,202 @@
-# Content Guide
+# Content guide (no coding needed)
 
-This guide is for updating the website's words, projects and photos. No coding needed. Everything lives in a few text files, and the live site updates itself about 2 minutes after you save on GitHub.
+Everything you can read on the website (and in your CV) comes from the JSON files in `src/content/`. To change the site:
 
-## Where things live
+1. Open the file on **github.com** (click the file, then the pencil icon) or in any text editor.
+2. Change the text between the double quotes.
+3. **Commit** (on GitHub: "Commit changes" on the `main` branch) or `git push`.
+4. About 2 minutes later the change is live (once the one-time Hostinger setup in the README is done).
 
-All content is in the `src/content/` folder. Each file controls one part of the site:
+If you make a mistake, the site does **not** break: the build stops, GitHub shows a red X with the exact problem, and
+the live site keeps its previous version. Fix it and commit again.
+
+For the developer-level reference of every field, see [src/content/README.md](src/content/README.md).
+
+---
+
+## Which file does what
 
 | File | What it controls |
 |---|---|
-| `site.json` | Your name, role, tagline, photos (`photo` on Home, `aboutPhoto` on About), logo, email, location, career start date, social links, the numbers row on the home page (`stats`), quote, highlights, contact section and SEO (Google title/description). |
-| `about.json` | The About page: `title`, `intro`, `bio` (a list of paragraphs; the first is shown slightly larger), `skills` (see below) and `journey` (the Career timeline: `period`, `title`, `org`). |
-| `experience.json` | The Experience page: `title`, `intro`, and `roles` — each role has `role`, `company`, `period`, a `highlights` list of bullet points and an optional `impact` list (`value` like `"20%"`, `direction` `"up"` or `"down"`, `label`, `note`). |
-| `projects.json` | The Projects page: `title`, `intro`, the featured section (`featuredTitle`, `featuredIntro`), the filter `categories`, and the `items` (your projects, each with a `cover` illustration key). |
-| `beyond.json` | The Beyond Code page: `achievements` (`title`, `issuer`, `period`, `logo`, `text`), `communities` (`name`, `role`, `period`, `logo`, `url`, `text`), plus `testimonials` (`name`, `role`, `quote`, `highlight`, `source`), which appear on the Home page. |
-| `credentials.json` | Education & Certifications: `education` (`period`, `institution`, `degree`) and `certifications` (`name`, `issuer`, `logo`, `covers`, `year`, `url`, plus optional `short` and `headline` for the About bio). Certifications are grouped by issuer automatically. |
-| `navigation.json` | The menu: `primary` links and the `cta` (Contact) button. Each link has a `label` and a `path`. (`more` is an optional dropdown; leave it as `[]` to hide it.) |
+| `site.json` | Your name, job title, tagline, photos, email (never shown, only used by the Email buttons), location, career start date, the six stats on Home, the CV file, the Contact page text, social links, and Google titles/descriptions for every page |
+| `about.json` | About page: heading, intro, bio paragraphs, the skills chart (each skill has a short "what it's for" line) and your professional (soft) skills, which also appear in the CV |
+| `experience.json` | Experience page: every job, its dates, summary, results (the counting numbers) and bullet points |
+| `projects.json` | Projects page cards, the category filters, and the four **client work** cards on Home |
+| `beyond.json` | Beyond Code page (roles & recognition, community cards) and the testimonials on Home |
+| `credentials.json` | Credentials page: education and certifications (badges, "What they cover" table) |
+| `navigation.json` | The menu links |
+| `cv.json` | CV-only text: the summary and the community line |
 
-## Editing in your browser (github.com)
+---
 
-1. Go to the repository on github.com and open `src/content/`.
-2. Click the file you want to change (e.g. `experience.json`).
-3. Click the **pencil icon** (Edit this file) at the top right.
-4. Make your changes. Only change the text **inside the quotes** on the right side of the `:`.
-5. Click **Commit changes…**, write a short note (e.g. "Add new role"), keep "Commit directly to the main branch", and confirm.
-6. The site rebuilds and goes live in about 2 minutes.
+## Common tasks
 
-## Adding a project
+### Change your job (new role)
 
-Open `projects.json`, find `"items": [`, and copy an existing block from `{` to `}`. Paste it right after another block, with a comma between them:
+In `experience.json`, add a new block at the **top** of `roles`:
 
 ```json
 {
-  "title": "My New Project",
+  "role": "Your New Title",
+  "company": "New Company Pvt. Ltd.",
+  "period": "Mar 2027 – Present",
+  "summary": "One sentence on what you lead or own.",
+  "impact": [
+    { "value": "40%", "direction": "down", "label": "Manual effort", "note": "what caused it" }
+  ],
+  "highlights": [
+    "First bullet.",
+    "Second bullet."
+  ]
+}
+```
+
+Then change the old job's `"Present"` to its end month, e.g. `"Feb 2026 – Feb 2027"`.
+The Home hero, About intro, page titles, Google data and AI summary all switch to the new title and company
+automatically. Only one job may end in "Present".
+
+### Add a certification
+
+1. Save the badge image in `public/images/badges/` (PNG or SVG).
+2. In `credentials.json` → `certifications`, add:
+
+```json
+{
+  "name": "Official Certification Name (CODE-123)",
+  "issuer": "Microsoft",
+  "logo": "/images/badges/your-badge.png",
+  "areas": ["Data engineering", "Generative AI"],
+  "short": "CODE-123",
+  "headline": true
+}
+```
+
+`areas` are the rows it ticks in the "What they cover" table. `short` + `headline: true` make it appear in the About
+bio sentence. The certification count on Home updates by itself.
+
+### Add a project (Projects page)
+
+In `projects.json` → `items`:
+
+```json
+{
+  "title": "Project Name",
   "summary": "One sentence on what it does.",
-  "category": "Machine Learning",
-  "tags": ["Python", "scikit-learn"],
-  "url": "https://github.com/Er-Devanshu/my-new-project",
+  "shows": "What it proves to a hiring manager, e.g. Forecasting for planning",
+  "category": "Forecasting",
+  "tags": ["Python", "Prophet"],
+  "url": "https://github.com/Er-Devanshu/your-repo",
   "image": "",
-  "cover": "",
-  "featured": false
-},
+  "cover": ""
+}
 ```
 
-- `category` must match one of the names in the `categories` list **exactly** (same spelling and capitals): currently `AI & LLMs`, `Machine Learning`, `Deep Learning`, `NLP`, `Forecasting`, `Dashboards`. To add a new category, add it to that list too.
-- `url` must start with `https://`.
-- `featured: true` shows the project in the featured section.
-- `image` is optional (see below). `cover` picks one of the built-in illustrations; leave it empty and the project gets a pattern for its category.
+- `category` must be one of the names in `categories`.
+- The **first** project in the list is the big featured card.
+- `cover` picks a built-in illustration (leave empty for a pattern); `image` can instead point to your own picture in
+  `public/images/`.
+- Add `"hidden": true` to keep a project in the file but off the website.
+- GitHub links show "View code"; Tableau Public links show "View live dashboard".
 
-## Changing your photos
+### Change a Home client-work card
 
-Photos appear on Home (`photo`), About (`aboutPhoto`) and Contact (`contactPhoto`). They are saved as **.webp** at 1199 × 1312 px. Each also has a phone-size version about 640 px wide (`photoSmall`, `aboutPhotoSmall`, `contactPhotoSmall`), which loads on phones to save data. When you replace a photo, replace its small version too, or remove the `…Small` line and the full image is used everywhere.
+`projects.json` → `caseStudies` (Home shows the first four): `title`, `company`, `year`, `problem`, and
+`result` with `value` (e.g. `"$200K"`) and `label`. Client names are never shown.
 
-1. On github.com, open `public/images/` → **Add file → Upload files** → upload the new file (e.g. `portrait-home.webp`) → Commit. Using the same file name replaces the photo without touching `site.json`.
-2. With a new file name, set it in `site.json`, e.g. `"photo": "/images/my-photo.webp",`.
-3. Update `photoAlt` / `aboutPhotoAlt` (a short description for screen readers).
+### Add a testimonial
 
-## Adding your CV
+`beyond.json` → `testimonials`: `name`, `role` (their designation), `quote` (their full words), `highlight` (an exact
+phrase copied from the quote, which is underlined). Order in the file = order on the site.
 
-1. Save your CV as a PDF named exactly `Devanshu-Tayal-CV.pdf`.
-2. On github.com, open `public/` → **Add file → Upload files**, type `cv/` before the file name so it lands in `public/cv/`, and commit.
+### Add a community
 
-That's it. `site.json` already points to `/cv/Devanshu-Tayal-CV.pdf`, and the **Download CV** button appears in the Home hero and on the Contact page about 2 minutes after you upload it. Until the file exists, the button stays hidden and the build just prints a reminder. To replace the CV later, upload a new file with the same name. Set `"cv": ""` in `site.json` to hide the button entirely.
+`beyond.json` → `communities`: `name`, `role`, `scope` (`"Gujarat"` or `"India"`), `url`, `text`, and `cover`
+(an image in `public/images/covers/`, about 800 px wide WebP).
 
-## Skills (About page)
+### Change the Home stats
 
-`about.json` → `skills.groups` holds the areas of the Skills chart. Each group has a `group` name, a one-line `descriptor` and `items`. Every item needs a `name` and a `use`, a short line on what the tool or method is for, which shows when someone selects it:
+`site.json` → `stats` (six items, one line on desktop). `value` is text like `"80+"`, or `"auto:years"` /
+`"auto:certifications"` to calculate it. `icon` can be `briefcase`, `users`, `workflow`, `github`, `chart`, `award`,
+`mic`, `pen`, `linkedin`, `mail`.
 
-```json
-{ "name": "Databricks", "use": "A cloud platform for big data processing and machine learning on Spark." }
-```
+### Your CV updates itself
 
-The build stops with a clear message if an item is missing its `use`.
+You don't edit the CV. It is rebuilt from these same files every time you push, in your resume's design, so it always
+matches the website. A few things are CV-only and live in `cv.json`: the summary paragraph and the community line.
+For a result number to appear in the CV as a sentence, give it a `cv` line in `experience.json`, e.g.
+`"cv": "Reduced the fraud rate by 23%."`. Client projects in `projects.json` (those with a `client`) appear in the
+CV's Projects section using their `points`.
 
-## Logos (certifications and communities)
+### Change a photo
 
-Put certification badges in `public/images/badges/` and set `"logo": "/images/badges/name.png"` on that certification in `credentials.json`. Achievement and community logos go in `public/images/logos/`. Without a badge or logo, initials are shown.
+Replace the file in `public/images/` with the same name (or a new name and update the path in `site.json`). Each
+portrait also has a `-640` phone version.
 
-## Project images
-
-Same idea: upload to `public/images/` (for example `public/images/projects/datapilot.webp`, about 1200 × 750, webp) and set `"image": "/images/projects/datapilot.webp"` on that project. Paths start with `/` and do not include `public`.
-
-## Automatic numbers ("auto:years", "auto:certifications")
-
-In `site.json` → `stats`, the value `"auto:years"` is calculated automatically from `careerStart` (e.g. `"2018-02-09"`), so your years of experience stay up to date. Change `careerStart` if needed; leave `auto:years` as is. The value `"auto:certifications"` counts the certifications listed in `credentials.json`, so adding a certificate there updates the home page number too. Other stat values are plain text like `"80+"`.
-
-## Page titles and Google descriptions
-
-`site.json` → `seo.pages` holds each page's title and description, as shown in Google results and in LinkedIn/WhatsApp link previews:
-
-```json
-"/about": { "title": "About Devanshu Tayal — Senior Data Scientist", "description": "…" }
-```
-
-Keep descriptions under about 160 characters. The build turns these into a separate file for every page, so previews are right even for apps that don't run JavaScript.
-
-## Years of experience inside sentences
-
-Write `{years}` anywhere in `about.json` or `experience.json` and the site shows the live number of full years since `careerStart`, for example `"For {years}+ years I've worked on…"`.
-
-## Job dates (experience.json)
-
-Write periods exactly like `"Jan 2022 – Jan 2026"` or `"Jul 2026 – Present"` (three-letter month, year). The build stops with a clear message if the format is off, because the Experience timeline is drawn from these dates.
-
-## Links
-
-Every link must start with `https://`, `/` (a page on this site) or `mailto:`. Plain `http://` links are rejected.
-
-## Common mistakes (JSON rules)
-
-- **Commas:** items in a list or block are separated by commas, but the **last** item has **no** comma before `]` or `}`.
-  - Wrong: `"featured": true,` followed by `}`
-  - Right: `"featured": true` followed by `}`
-- Always use straight double quotes `"`, not curly quotes `“ ”` (watch out when pasting from Word).
-- Every `{` needs a `}` and every `[` needs a `]`.
-- To put a quote mark inside text, write `\"`.
-- Don't rename the keys on the left (like `"title"`) — only change the values.
-
-## Checking that it went live
-
-After you commit, open the **Actions** tab on github.com:
-
-- **Yellow dot**: building (1–2 minutes).
-- **Green check**: built. The live site updates a few seconds later; hard-refresh it (Cmd+Shift+R).
-- **Red X**: something failed, and **the live site was not changed** (it keeps the previous version).
-
-To see why, click the failed run → the **build** job → expand **Check content and build**. A content problem looks like this:
-
-```
-✖ Content check failed (1):
-  - projects.json items[6] (My New Project): category "ML" is not in "categories" (AI & LLMs, Machine Learning, ...)
-```
-
-or, for a comma/quote typo:
-
-```
-  - projects.json: not valid JSON — Unexpected token } in JSON at position 1234
-```
-
-The message names the file and what to fix. Edit the file again and commit; it re-runs automatically.
+---
 
 ## Facts that update themselves
 
-Type each fact once and the whole site follows. Use these placeholders in any text
-(About bio, Experience intro, page titles and descriptions in `site.json`):
+Type these anywhere in a text value:
 
-| Placeholder | Becomes | Comes from |
+| Write | Shows | Comes from |
 |---|---|---|
-| `{years}` | years of experience, e.g. 8 | `careerStart` in `site.json` |
-| `{role}` | your current job title | the role in `experience.json` that runs to "Present" (or ended last) |
-| `{company}` | your current company | same role |
-| `{companies}` | how many companies you've worked at | `experience.json` |
-| `{certifications}` | e.g. "Microsoft DP-600, DP-700 and AWS AI Practitioner" | certifications in `credentials.json` marked `"headline": true` (uses `"short"` if given) |
+| `{years}` | years of experience (e.g. 8) | `careerStart` in `site.json` (2018-02-09) |
+| `{role}` | current job title | the job ending in "Present" |
+| `{company}` | current company (short) | same job |
+| `{companies}` | number of companies | `experience.json` |
+| `{certifications}` | list of certifications | `credentials.json` items with `"headline": true` |
 | `{certCount}` | number of certifications | `credentials.json` |
 | `{communities}` | number of communities | `beyond.json` |
 
-`"role": "auto:role"` in `site.json` shows your current job title in the hero.
-The About page career list is built from `experience.json`.
+Any other `{word}` stops the build (so a typo can't appear on the site).
 
-**New job:** add it at the top of `experience.json` with `"period": "Mon YYYY – Present"`,
-and change the old one's end date. The hero, About, Experience and page titles all update.
+---
 
-**New certification:** add it to `credentials.json`. Add `"headline": true` and a `"short"`
-name if it should appear in the About bio.
+## Google titles and descriptions
+
+`site.json` → `seo.pages`, one entry per page:
+
+```json
+"/about": { "title": "About Er. Devanshu Tayal, Data Scientist & AI Lead", "description": "…" }
+```
+
+Keep titles under about 60 characters and descriptions under about 160. Placeholders work here too.
+When you get Google Search Console or Bing verification codes, paste them into `seo.googleVerification` and
+`seo.bingVerification`.
+
+---
+
+## Rules the build checks
+
+- **Job dates:** exactly `"Jan 2022 – Jan 2026"` or `"Jul 2026 – Present"` (three-letter month, year).
+- **Links:** must start with `https://`, `/` (a page on this site) or `mailto:`.
+- **Images:** must be files in `public/images/`, written as `"/images/name.webp"`, and the file must exist.
+- **Icons:** must be one of the names listed above.
+- **Results:** `direction` is `"up"` or `"down"`.
+
+## JSON rules (common mistakes)
+
+- Items are separated by commas, but the **last** item has **no** comma before `]` or `}`.
+  - Wrong: `"cover": "",` followed by `}`
+  - Right: `"cover": ""` followed by `}`
+- Use straight double quotes `"`, not curly quotes `“ ”` (careful when pasting from Word).
+- Every `{` needs a `}` and every `[` needs a `]`.
+- To put a quote mark inside text, write `\"`.
+- Don't rename the keys on the left (like `"title"`); only change the values.
+
+## Checking that it went live
+
+Open the **Actions** tab on github.com:
+
+- **Yellow dot**: building (1–2 minutes).
+- **Green check**: built and published. Refresh the site (Cmd+Shift+R).
+- **Red X**: something failed and the live site was **not** changed.
+
+Click the failed run → **build** → **Check content and build** to see the reason, for example:
+
+```
+✖ Content check failed (1):
+  - projects.json items[6]: category "ML" is not in "categories" (AI & LLMs, Machine Learning, ...)
+```
+
+Fix the file and commit again; it re-runs automatically.

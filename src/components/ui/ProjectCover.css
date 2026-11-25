@@ -1,0 +1,29 @@
+/* Project cover illustrations (used by the Projects page cards). */
+.project-cover-art {
+  --motif-accent: #ef9148;
+  --motif-line: rgba(241, 235, 226, 0.34);
+  --motif-bg: #121718;
+  position: relative;
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+  padding: 16px 18px;
+  background:
+    radial-gradient(120% 90% at 100% 0%, rgba(239, 145, 72, 0.14), transparent 55%),
+    linear-gradient(160deg, #1b2224 0%, #0e1213 100%);
+}
+.project-cover-art[data-cat="NLP"] { background: linear-gradient(180deg, #1d2223, #111516); }
+.project-cover-art[data-cat="Forecasting"] { background: radial-gradient(80% 90% at 100% 50%, rgba(239, 145, 72, 0.16), transparent 60%), #111617; }
+.project-cover-art[data-cat="Dashboards"] { background: linear-gradient(0deg, #171d1e, #101415); }
+.project-motif { position: absolute; inset: 0; width: 100%; height: 100%; transition: transform var(--transition-slow); }
+.project-cover-label {
+  position: relative;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #d8d2c8;
+  background: rgba(14, 18, 19, 0.78);
+  padding: 3px 8px;
+  border-radius: 4px;
+}

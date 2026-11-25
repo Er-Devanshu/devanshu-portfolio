@@ -1,6 +1,6 @@
 {
   "title": "Beyond Code",
-  "intro": "The communities I lead and the recognition that came with the work.",
+  "intro": "The {communities} data and AI communities I lead, and the roles and recognition beside my day job.",
   "testimonials": [
     {
       "name": "Tarek Atwan",
@@ -39,7 +39,7 @@
       "issuer": "Tableau",
       "period": "2025 & 2026",
       "logo": "",
-      "text": "Selected as a Tableau Ambassador two years running to support the global Tableau community and data literacy.",
+      "text": "Selected as a Tableau Ambassador in 2025 and again in 2026.",
       "years": [
         "2025",
         "2026"
@@ -58,13 +58,6 @@
       "period": "Aug 2021 – Dec 2025",
       "logo": "",
       "text": "Reviewed books on AI, data science and cloud computing for technical accuracy before publication."
-    },
-    {
-      "title": "Visiting Faculty",
-      "issuer": "Gujarat University",
-      "period": "Jul 2023 – Dec 2023",
-      "logo": "",
-      "text": "Worked on curriculum development and taught machine learning, deep learning and data visualisation."
     }
   ],
   "communities": [
@@ -88,7 +81,7 @@
       "name": "India AI + Tableau User Group",
       "role": "Leader & Organiser",
       "url": "https://usergroups.tableau.com/india-ai-tableau-user-group/",
-      "text": "Where AI meets Tableau: virtual and regional meetups with hands-on workshops for analysts at every level, across India.",
+      "text": "Virtual and regional meetups on using AI with Tableau, with hands-on workshops for analysts at every level.",
       "scope": "India",
       "cover": "/images/covers/india-ai-tableau-user-group-800.webp"
     },
@@ -107,7 +100,7 @@
       "scope": "India",
       "url": "https://www.linkedin.com/company/ibm-ai-data-community-india/",
       "cover": "/images/covers/ibm-ai-data-community-india-800.webp",
-      "text": "Expert sessions, workshops, hackathons and meetups on AI, agentic AI, data engineering and IBM watsonx for builders across India."
+      "text": "Talks, workshops, hackathons and meetups on AI, agentic AI, data engineering and IBM watsonx."
     },
     {
       "name": "India Modern Data & AI Community",
@@ -116,7 +109,7 @@
       "url": "https://community.fabric.microsoft.com/group/IndiaMicrosftFabricUserGroup",
       "cover": "/images/covers/india-modern-data-ai-community-800.webp",
       "coverPosition": "center 18%",
-      "text": "India's national Microsoft Fabric user group: live demos and practical sessions on Fabric, Power BI, Lakehouse and data engineering."
+      "text": "India's national Microsoft Fabric user group, with live demos and practical sessions on Fabric, Power BI, Lakehouse and data engineering."
     }
   ]
 }

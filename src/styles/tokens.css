@@ -7,15 +7,10 @@
   --color-ink-raised: #202728;
 
   --color-ivory: #f1ebe2;
-  --color-ivory-soft: #e8e0d5;
-  --color-paper: #faf7f1;
 
   --color-orange: #ef9148;
   --color-orange-light: #f6a35f;
-  --color-orange-dark: #c96d32;
 
-  --color-sage: #879184;
-  --color-white: #ffffff;
 
   /* Typography */
   --font-display: "Instrument Serif", Georgia, serif;
@@ -29,21 +24,10 @@
 
   /* Spacing */
   --space-1: 4px;
-  --space-2: 8px;
-  --space-3: 12px;
-  --space-4: 16px;
-  --space-5: 24px;
-  --space-6: 32px;
-  --space-7: 48px;
-  --space-8: 64px;
   --space-9: 88px;
   --space-10: 112px;
 
   /* Borders */
-  --radius-sm: 4px;
-  --radius-md: 8px;
-  --radius-lg: 14px;
-  --radius-xl: 20px;
   --radius-pill: 999px;
 
   /* Motion */
@@ -54,7 +38,5 @@
 
   /* Layering */
   --z-header: 100;
-  --z-dropdown: 110;
   --z-overlay: 200;
-  --z-modal: 300;
 }

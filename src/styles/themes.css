@@ -5,7 +5,6 @@
   /* Main backgrounds */
   --page-background: #101415;
   --surface-primary: #171d1e;
-  --surface-secondary: #202728;
 
   /* Typography */
   --text-primary: #f4f0e9;
@@ -20,13 +19,6 @@
   /* Borders */
   --border-color: #303738;
 
-  /* Navigation */
-  --header-background: rgba(16, 20, 21, 0.97);
-
-  /* Dark editorial surfaces */
-  --dark-background: #101415;
-  --dark-text: #f4f0e9;
-
   /* Ivory editorial surfaces */
   --ivory-background: #f1ebe2;
   --ivory-surface: #faf7f1;
@@ -34,8 +26,6 @@
   --ivory-muted: #5f5d57;
   --ivory-border: #d8d0c4;
 }
-
-/* Warm ivory editorial sections */
 
 .surface-ivory {
   background: var(--ivory-background);

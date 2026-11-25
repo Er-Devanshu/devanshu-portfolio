@@ -50,7 +50,6 @@ if (site) {
   arr("site.json", site, "stats").forEach((s, i) => { str("site.json", s, "value", ` stats[${i}]`); str("site.json", s, "label", ` stats[${i}]`); if (s.url) url("site.json", s.url, ` stats[${i}]`); });
   if (site.cv) {
     if (!/^\/.+\.pdf$/i.test(site.cv)) errors.push(`site.json: "cv" must be a PDF path like "/cv/Devanshu-Tayal-CV.pdf" (or "" to hide the button)`);
-    else if (!existsSync(path.join(publicDir, site.cv))) console.warn(`! CV not uploaded yet (public${site.cv}). The Download CV button stays hidden until it is.`);
   }
   // Photos and every other image path are checked for existence further down.
   arr("site.json", site, "socials").forEach((s, i) => { str("site.json", s, "label", ` socials[${i}]`); url("site.json", s.url, ` socials[${i}]`); });
@@ -95,13 +94,21 @@ if (exp) {
   if (current.length > 1) errors.push(`experience.json: only one role can run to "Present" (found ${current.map((r) => r.company).join(", ")}). Give the older one an end date.`);
 }
 
+const cvc = load("cv.json");
+if (cvc) {
+  str("cv.json", cvc, "summary");
+  if (cvc.communities) { str("cv.json", cvc.communities, "title", " communities"); arr("cv.json", cvc.communities, "points", " communities"); }
+}
+
 const projects = load("projects.json");
 if (projects) {
   const cats = arr("projects.json", projects, "categories");
   arr("projects.json", projects, "items").forEach((p, i) => {
     const w = ` items[${i}] (${p.title || "untitled"})`;
     ["title", "summary", "category"].forEach((k) => str("projects.json", p, k, w));
-    url("projects.json", p.url, w);
+    // Client projects have no public link; everything else needs one.
+    if (p.client) { if (p.url) url("projects.json", p.url, w); } else url("projects.json", p.url, w);
+    if (p.points !== undefined) arr("projects.json", p, "points", w);
     if (p.shows !== undefined) str("projects.json", p, "shows", w);
     if (p.category && !cats.includes(p.category)) errors.push(`projects.json${w}: category "${p.category}" is not in "categories" (${cats.join(", ")})`);
     if (p.image) url("projects.json", p.image, w);

@@ -1,17 +1,39 @@
 {
   "title": "Projects",
-  "intro": "Side projects and open-source work where I try new models and tools. Each one links to the code or the live work. My client work is on the Home and Experience pages.",
+  "intro": "Client projects from my roles, then the side projects where I try new models and tools. Public projects link to the code or the live dashboard.",
   "featuredTitle": "Selected work",
-  "featuredIntro": "Client projects from my roles, for global clients in travel, banking, finance and e-commerce. Client names stay private; the numbers are real.",
+  "featuredIntro": "Client projects from my roles, for global clients in travel, banking, finance and e-commerce. Client names stay private.",
   "categories": [
+    "Client work",
     "AI & LLMs",
     "Machine Learning",
-    "Deep Learning",
     "NLP",
     "Forecasting",
     "Dashboards"
   ],
   "items": [
+    {
+      "title": "IT Latency Monitoring & Alerting Platform",
+      "client": "Analytix",
+      "period": "Jan 2024 – May 2024",
+      "summary": "A real-time platform on Microsoft Fabric that tracks latency across mission-critical enterprise apps and raises alerts before users notice.",
+      "shows": "Real-time data engineering and alerting on Microsoft Fabric",
+      "category": "Client work",
+      "tags": [
+        "Microsoft Fabric",
+        "Event Streams",
+        "Direct Lake"
+      ],
+      "url": "",
+      "image": "",
+      "cover": "latency",
+      "points": [
+        "Built the platform on Microsoft Fabric (Event Streams, Data Factory, OneLake, Lakehouse) to track latency across mission-critical applications.",
+        "Designed event-driven telemetry pipelines and Direct Lake models for near-real-time monitoring.",
+        "Added alerting and anomaly detection that flag bottlenecks and escalate issues automatically.",
+        "Saved $200K a year and cut issue resolution time by 80%."
+      ]
+    },
     {
       "title": "DataPilot AI Analyst",
       "summary": "An AI analyst for exploring datasets and asking questions about them in plain language.",
@@ -23,7 +45,11 @@
       "url": "https://github.com/Er-Devanshu/datapilot-ai-analyst",
       "image": "",
       "cover": "datapilot",
-      "shows": "LLM app design and natural-language analytics"
+      "shows": "LLM app design and natural-language analytics",
+      "points": [
+        "Built an AI analyst that explores a dataset and answers questions about it in plain language, using Python and LLMs.",
+        "Open source: github.com/Er-Devanshu/datapilot-ai-analyst."
+      ]
     },
     {
       "title": "Greykite Forecasting",
@@ -125,45 +151,6 @@
       "image": "",
       "cover": "radial-chart",
       "shows": "Custom visual design in Tableau"
-    },
-    {
-      "title": "Alzheimer's Detection (OASIS)",
-      "summary": "Deep learning on the OASIS brain MRI dataset to detect Alzheimer's disease.",
-      "category": "Deep Learning",
-      "tags": [
-        "CNN",
-        "Medical Imaging"
-      ],
-      "url": "https://github.com/Er-Devanshu/OASIS-Alzheimer-s-Detection",
-      "image": "",
-      "cover": "alzheimers",
-      "hidden": true
-    },
-    {
-      "title": "Bengali Speech Recognition",
-      "summary": "Speech-to-text model for Bengali audio.",
-      "category": "Deep Learning",
-      "tags": [
-        "Speech",
-        "Audio"
-      ],
-      "url": "https://github.com/Er-Devanshu/Bengali_Speech_Recognition",
-      "image": "",
-      "cover": "bengali-speech",
-      "hidden": true
-    },
-    {
-      "title": "Jane Street Forecasting",
-      "summary": "Time-series forecasting on Jane Street market data with machine learning and statistics.",
-      "category": "Forecasting",
-      "tags": [
-        "Time Series",
-        "Finance"
-      ],
-      "url": "https://github.com/Er-Devanshu/Jane-Street-Forecasting",
-      "image": "",
-      "cover": "jane-street",
-      "hidden": true
     }
   ],
   "caseStudies": [
@@ -172,7 +159,6 @@
       "company": "Analytix",
       "year": "2024",
       "problem": "Latency problems in critical enterprise applications were found late, after users felt them.",
-      "built": "A real-time Microsoft Fabric platform (Event Streams, Data Factory, OneLake, Direct Lake) with intelligent alerting and anomaly detection.",
       "result": {
         "value": "$200K",
         "label": "saved a year, with issues resolved 80% faster"
@@ -188,7 +174,6 @@
       "company": "Aegis Soft Tech",
       "year": "2026",
       "problem": "A client's data lived in two separate environments, so every report meant stitching them together by hand.",
-      "built": "An end-to-end Microsoft Fabric platform: ingestion frameworks, ETL, monitored pipelines with failure detection and fallbacks, and a Fabric Data Agent that answers business questions in plain language.",
       "tags": [
         "Microsoft Fabric",
         "Data engineering",
@@ -204,7 +189,6 @@
       "company": "Aegis Soft Tech",
       "year": "2026",
       "problem": "Finance and operations teams built EBITDA, AR ageing and performance reports manually.",
-      "built": "Power BI and Tableau dashboards on the Fabric platform, with row-, column- and object-level security, performance tuning and automated refresh.",
       "tags": [
         "Power BI",
         "Tableau",
@@ -220,7 +204,6 @@
       "company": "Analytix",
       "year": "2022 – 2026",
       "problem": "Workforce planning relied on manual forecasts that missed demand swings.",
-      "built": "PyTorch, TensorFlow and Greykite forecasting models wired into automated decision-support pipelines on Microsoft Fabric.",
       "tags": [
         "PyTorch",
         "Greykite",
@@ -236,7 +219,6 @@
       "company": "AIS",
       "year": "2021 – 2022",
       "problem": "Fraud was caught too late, after losses had already happened.",
-      "built": "Fraud detection models in Python and Spark running on transaction data.",
       "tags": [
         "Python",
         "Spark",

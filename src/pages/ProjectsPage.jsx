@@ -1,7 +1,7 @@
 import { flushSync } from "react-dom";
 import { useSearchParams } from "react-router-dom";
 import { projects } from "../lib/content";
-import { ProjectCover } from "../components/ui/ProjectCard";
+import { ProjectCover } from "../components/ui/ProjectCover";
 import Icon from "../components/ui/Icon";
 import usePageTitle from "../hooks/usePageTitle";
 import "./ProjectsPage.css";
@@ -10,7 +10,7 @@ const linkProps = (url) => (/^https?:/.test(url) ? { target: "_blank", rel: "noo
 const isExt = (url) => /^https?:/.test(url);
 
 // Each category gets its own warm accent, so the grid reads as varied but stays on brand.
-const TINT = { "AI & LLMs": "#ef9148", "Machine Learning": "#e3b155", NLP: "#e07f5c", Forecasting: "#cfa772", Dashboards: "#f2c18d" };
+const TINT = { "Client work": "#f0a35e", "AI & LLMs": "#ef9148", "Machine Learning": "#e3b155", NLP: "#e07f5c", Forecasting: "#cfa772", Dashboards: "#f2c18d" };
 const tint = (cat) => TINT[cat] || "#ef9148";
 const ctaFor = (url) => (/public\.tableau\.com/.test(url) ? "View live dashboard" : /github\.com/.test(url) ? "View code" : "View project");
 
@@ -72,7 +72,7 @@ export default function ProjectsPage() {
         {filtered.length > 0 ? (
           <ul className="projects-stage project-grid">
             {filtered.map((p, i) => (
-              <li key={`${p.title}-${p.url}`} className={`project-card${i === 0 ? " is-featured" : ""}`}
+              <li key={p.title} className={`project-card${i === 0 ? " is-featured" : ""}${p.url ? "" : " is-static"}`}
                 style={{ "--tint": tint(p.category) }} onPointerMove={spotlight}>
                 <div className="project-card-cover" aria-hidden="true">
                   <Cover project={p} />
@@ -81,10 +81,12 @@ export default function ProjectsPage() {
                 <div className="project-card-body">
                   <span className="project-card-cat">{p.category}</span>
                   <h2 className="project-card-title">
-                    <a href={p.url} className="project-card-link" {...linkProps(p.url)}>
-                      {p.title}
-                      {isExt(p.url) && <span className="visually-hidden"> (opens in a new tab)</span>}
-                    </a>
+                    {p.url ? (
+                      <a href={p.url} className="project-card-link" {...linkProps(p.url)}>
+                        {p.title}
+                        {isExt(p.url) && <span className="visually-hidden"> (opens in a new tab)</span>}
+                      </a>
+                    ) : p.title}
                   </h2>
                   <p className="project-card-summary">{p.summary}</p>
                   {p.shows && (
@@ -96,7 +98,9 @@ export default function ProjectsPage() {
                         {p.tags.map((t) => <li key={t}>{t}</li>)}
                       </ul>
                     )}
-                    <span className="project-card-cta" aria-hidden="true">{ctaFor(p.url)} <Icon name="external" size={16} /></span>
+                    {p.url
+                      ? <span className="project-card-cta" aria-hidden="true">{ctaFor(p.url)} <Icon name="external" size={16} /></span>
+                      : <span className="project-card-client">Client project{p.client ? ` · ${p.client}` : ""}{p.period ? ` · ${p.period}` : ""}</span>}
                   </div>
                 </div>
               </li>

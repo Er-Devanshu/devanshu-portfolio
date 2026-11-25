@@ -6,7 +6,7 @@
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { makeFill, resolveRole } from "../src/lib/derive.js";
+import { makeFill, officialCertName, resolveRole } from "../src/lib/derive.js";
 
 const root = path.join(path.dirname(fileURLToPath(import.meta.url)), "..");
 const dist = path.join(root, "dist");
@@ -77,7 +77,7 @@ function structuredData(route, title, description) {
 
 // A plain-text version of the page for anything that doesn't run JavaScript.
 function noscript(title, description) {
-  const links = [...navigation.primary, ...(navigation.more || []), navigation.cta]
+  const links = [...navigation.primary, navigation.cta]
     .map((l) => `<a href="${esc(l.path)}">${esc(l.label)}</a>`).join(" · ");
   return `<noscript><main style="font-family:system-ui,sans-serif;max-width:680px;margin:48px auto;padding:0 20px;color:#f4f0e9;background:#101415"><h1>${esc(title)}</h1><p>${esc(description)}</p><p>${links}</p><p><a href="${esc(site.socials[0].url)}">LinkedIn</a></p></main></noscript>`;
 }
@@ -147,7 +147,7 @@ const llms = [
   `- Location: ${site.location || "India"} (IST); remote, hybrid or on-site; open to relocation`,
   "- Open to: full-time, part-time, freelance and consulting work",
   `- Experience: ${fill("{years}")}+ years in data, BI, machine learning and generative AI`,
-  `- Certifications: ${credentials.certifications.map((c) => c.name).join("; ")}`,
+  `- Certifications: ${credentials.certifications.map(officialCertName).join("; ")}`,
   ...(site.cv ? [`- CV: ${ORIGIN}${site.cv}`] : []),
   `- Contact: ${ORIGIN}/contact (LinkedIn or email)`,
   "",

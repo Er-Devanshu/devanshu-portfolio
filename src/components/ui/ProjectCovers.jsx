@@ -18,6 +18,21 @@ function Grid() {
 }
 
 const COVERS = {
+  latency: () => {
+    // A live latency line with a threshold; the spike that crosses it raises an alert.
+    const ys = [112, 108, 114, 104, 110, 106, 112, 102, 108, 98, 104, 46, 100, 108, 104, 110, 106, 112, 104, 108];
+    const d = ys.map((y, i) => `${i ? "L" : "M"}${28 + i * 14} ${y}`).join("");
+    return (
+      <>
+        <path {...dim} d="M28 70h270" strokeDasharray="4 5" />
+        <path {...line} d={d} />
+        <path {...accent} d={`M${28 + 10 * 14} 98L${28 + 11 * 14} 46L${28 + 12 * 14} 100`} />
+        <circle cx={28 + 11 * 14} cy="46" r="5" fill={A} />
+        <g {...accent}><rect x="218" y="22" width="78" height="26" rx="6" fill={A} fillOpacity="0.14" /><path d="M230 35h8M244 35h40" /></g>
+        <g fill={L} fillOpacity="0.55" fontSize="9" fontFamily="var(--font-body)" letterSpacing="0.06em"><text x="30" y="62">THRESHOLD</text></g>
+      </>
+    );
+  },
   datapilot: () => (
     <>
       <path {...line} d="M40 30h112a10 10 0 0 1 10 10v34a10 10 0 0 1-10 10H70l-14 12v-12H40a10 10 0 0 1-10-10V40a10 10 0 0 1 10-10z" />
@@ -33,23 +48,6 @@ const COVERS = {
       <rect x="278" y="134" width="8" height="16" rx="1.5" fill={L} fillOpacity="0.85" />
     </>
   ),
-  alzheimers: () => (
-    <>
-      <g transform="translate(200 90)">
-        <ellipse {...line} rx="70" ry="80" />
-        <ellipse {...dim} rx="60" ry="70" />
-        <path {...dim} d="M0-70v140" />
-        <path {...line} d="M-6-50c-18 4-30 18-28 36s-14 22-10 40 22 24 32 20M6-50c18 4 30 18 28 36s14 22 10 40-22 24-32 20" />
-        <path {...dim} d="M-44-30c10 6 8 18 18 22M44-30c-10 6-8 18-18 22M-50 10c12 0 14 12 24 12M50 10c-12 0-14 12-24 12" />
-        <ellipse {...line} cx="-10" cy="6" rx="6" ry="14" />
-        <ellipse {...line} cx="10" cy="6" rx="6" ry="14" />
-        <circle cx="-30" cy="30" r="12" fill={A} fillOpacity="0.22" stroke={A} strokeWidth={SW} />
-      </g>
-      <path {...accent} d="M182 120L96 46h-46" />
-      <circle cx="96" cy="46" r="2.5" fill={A} />
-      <g {...dim}><path d="M30 62h60M30 74h40" /></g>
-    </>
-  ),
   "chatbot-arena": () => (
     <>
       <rect {...line} x="36" y="34" width="112" height="96" rx="10" />
@@ -62,25 +60,6 @@ const COVERS = {
       <path {...dim} d="M160 40v84" strokeDasharray="2 4" />
     </>
   ),
-  "jane-street": () => {
-    const c = [[70, 60, 84], [86, 70, 92], [74, 64, 96], [60, 52, 78], [64, 48, 72], [52, 40, 66], [58, 44, 70], [46, 36, 62], [50, 38, 58], [40, 30, 52]];
-    return (
-      <>
-        <path {...dim} d="M24 150h272" />
-        {c.map(([o, lo, hi], i) => {
-          const x = 36 + i * 16, close = c[i + 1] ? c[i + 1][0] : o - 6, up = close < o;
-          const top = Math.min(o, close), h = Math.max(4, Math.abs(o - close));
-          return <g key={i}>
-            <line x1={x} y1={lo - 6} x2={x} y2={hi + 10} stroke={L} strokeOpacity="0.6" strokeWidth="1" />
-            <rect x={x - 4} y={top} width="8" height={h} rx="1" fill={up ? L : "none"} stroke={L} strokeWidth="1.2" fillOpacity="0.85" />
-          </g>;
-        })}
-        <path d="M196 38L292 14V82L196 46Z" fill={A} fillOpacity="0.14" />
-        <path {...accent} d="M196 42L292 48" strokeDasharray="5 4" />
-        <path {...dim} d="M196 16v140" />
-      </>
-    );
-  },
   tickets: () => (
     <>
       {[0, 1, 2].map((i) => (
@@ -100,18 +79,6 @@ const COVERS = {
       ))}
     </>
   ),
-  "bengali-speech": () => {
-    const bars = Array.from({ length: 22 }, (_, i) => 6 + Math.abs(Math.sin(i * 0.9) * 26 + Math.sin(i * 2.3) * 10));
-    return (
-      <>
-        {bars.map((h, i) => <line key={i} x1={30 + i * 6} y1={78 - h} x2={30 + i * 6} y2={78 + h} stroke={i > 16 ? A : L} strokeWidth={SW} strokeLinecap="round" strokeOpacity={i > 16 ? 1 : 0.75} />)}
-        <path {...accent} d="M170 78h20M184 72l6 6-6 6" />
-        <text x="204" y="92" fill={L} fontSize="40" fontFamily="'Noto Sans Bengali', 'Kohinoor Bangla', sans-serif" fontWeight="500">বাংলা</text>
-        <path {...dim} d="M204 108h86" />
-        <path {...accent} d="M204 108h30" />
-      </>
-    );
-  },
   tripadvisor: () => {
     const star = (cx, cy, r) => Array.from({ length: 10 }, (_, i) => {
       const a = -Math.PI / 2 + (i * Math.PI) / 5, rr = i % 2 ? r * 0.45 : r;

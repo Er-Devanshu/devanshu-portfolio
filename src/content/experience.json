@@ -6,27 +6,29 @@
       "role": "Senior Tech Lead – Data & AI",
       "company": "Aegis Soft Tech Pvt. Ltd.",
       "period": "Feb 2026 – Present",
-      "summary": "Lead a Data & AI team of 10+: strategy, architecture and delivery across data engineering, BI, machine learning and generative AI.",
+      "summary": "I lead a team of 10+ across data engineering, BI, machine learning and generative AI, and own architecture and delivery for our clients.",
       "highlights": [
-        "Lead a cross-functional team of 10+ across data engineering, BI and AI, and own client engagements, architecture and delivery end to end.",
-        "Architected an end-to-end Microsoft Fabric platform that unifies two client environments, with self-recovering pipelines and a Fabric Data Agent that lets business users query data in plain language.",
-        "Built multiple Power BI and Tableau finance dashboards (EBITDA, AR ageing, business performance) and automated the reporting behind them, feeding initiatives tied to 20% revenue growth in the last quarter.",
-        "Secured those dashboards with row-, column- and object-level security (RLS, CLS, OLS) and tuned them for faster performance.",
+        "Lead a cross-functional team of 10+ and own client engagements, architecture and delivery.",
+        "Architected a Microsoft Fabric platform that brings two client environments together, with self-recovering pipelines and a Fabric Data Agent for plain-language questions.",
+        "Built Power BI and Tableau finance dashboards (EBITDA, AR ageing, business performance) and automated the reporting behind them. The work fed initiatives tied to 20% revenue growth last quarter.",
+        "Added row-, column- and object-level security (RLS, CLS, OLS) to those dashboards and tuned them to load faster.",
         "Deployed machine learning for forecasting, anomaly detection and decision optimisation.",
-        "Built LLM, RAG and intelligent automation apps for business teams."
+        "Built LLM, RAG and automation apps for business teams."
       ],
       "impact": [
         {
           "value": "600+",
           "direction": "up",
           "label": "Hours saved a month",
-          "note": "through Fabric data automation"
+          "note": "through Fabric data automation",
+          "cv": "Saved 600+ hours of manual work a month with the Fabric platform."
         },
         {
           "value": "50%",
           "direction": "down",
           "label": "Manual reporting effort",
-          "note": "from automated reporting workflows"
+          "note": "from automated reporting workflows",
+          "cv": "Cut manual reporting effort by 50% by automating the reporting."
         }
       ]
     },
@@ -35,33 +37,36 @@
       "company": "Analytix Business Solutions Pvt. Ltd",
       "period": "Jan 2022 – Jan 2026",
       "highlights": [
-        "Architected production AI analytics platforms on Microsoft Fabric, with near real-time pipelines and intelligent alerting across structured and semi-structured data.",
-        "Built workforce forecasting models with PyTorch, TensorFlow and Greykite, and wired them into automated decision-support pipelines.",
+        "Architected AI analytics platforms on Microsoft Fabric, with near real-time pipelines and alerting over structured and semi-structured data.",
+        "Built workforce forecasting models with PyTorch, TensorFlow and Greykite and plugged them into automated decision-support pipelines.",
         "Built a real-time Microsoft Fabric monitoring and alerting platform for mission-critical apps, saving $200K a year and cutting issue resolution time by 80%.",
-        "Automated manual workflows with AI and Copilot integrations.",
-        "Mentored junior engineers, lifting team productivity and solution quality."
+        "Automated manual workflows with AI and Copilot.",
+        "Mentored junior engineers."
       ],
       "impact": [
         {
           "value": "35%+",
           "direction": "up",
           "label": "Faster alert response",
-          "note": "from near real-time pipelines and intelligent alerting"
+          "note": "from near real-time pipelines and alerting",
+          "cv": "Cut alert response time by 35%+ with near real-time pipelines and alerting."
         },
         {
           "value": "20%",
           "direction": "up",
           "label": "Workforce forecasting accuracy",
-          "note": "from PyTorch, TensorFlow and Greykite models in decision-support pipelines"
+          "note": "from PyTorch, TensorFlow and Greykite models in decision-support pipelines",
+          "cv": "Improved workforce forecasting accuracy by 20%."
         },
         {
           "value": "30%",
           "direction": "down",
           "label": "Manual effort",
-          "note": "by automating workflows with AI and Copilot"
+          "note": "by automating workflows with AI and Copilot",
+          "cv": "Cut manual effort by 30% with AI and Copilot automation."
         }
       ],
-      "summary": "Built production AI and analytics on Microsoft Fabric: real-time pipelines, forecasting models and AI automation."
+      "summary": "Built AI and analytics systems on Microsoft Fabric that ran in production, from real-time pipelines to forecasting models."
     },
     {
       "role": "Fraud Analyst",
@@ -69,16 +74,17 @@
       "period": "Apr 2021 – Jan 2022",
       "highlights": [
         "Built fraud detection models in Python and Spark, working with the client-side team.",
-        "Built the dashboards and automation fraud teams used to spot and act on suspicious activity.",
+        "Built the dashboards and automation the fraud team used to spot and act on suspicious activity.",
         "Automated parts of the forecasting pipeline in Python for better planning accuracy.",
-        "Led secure cloud database migrations with Azure tools, strengthening data integrity."
+        "Led secure cloud database migrations with Azure tools."
       ],
       "impact": [
         {
           "value": "23%",
           "direction": "down",
           "label": "Fraud rate",
-          "note": "after new detection models in Python and Spark"
+          "note": "after new detection models in Python and Spark",
+          "cv": "Reduced the fraud rate by 23%."
         }
       ],
       "summary": "Built the ML models, dashboards and automation behind fraud detection with the client's team, and moved databases securely to Azure."
@@ -91,14 +97,15 @@
         "Built machine learning models and automation that detect fraud in transactions, working with the client-side team.",
         "Built dashboards that made fraud patterns visible to analysts and the client.",
         "Applied anomaly detection to catch and prevent internal security threats.",
-        "Led the process-improvement team and improved around 35 processes, making fraud detection faster and work easier for employees and the client."
+        "Led the process-improvement team and improved around 35 processes, so fraud was caught faster and daily work got easier for employees and the client."
       ],
       "impact": [
         {
           "value": "30%",
           "direction": "down",
           "label": "Financial risk from fraud",
-          "note": "with ML fraud detection models"
+          "note": "with ML fraud detection models",
+          "cv": "Reduced financial risk from fraud by 30%."
         },
         {
           "value": "35",
@@ -107,7 +114,7 @@
           "note": "as lead of the process-improvement team"
         }
       ],
-      "summary": "Fraud analyst building ML models, dashboards and automation to detect fraud with the client's team, and leading the process-improvement team."
+      "summary": "Built ML models, dashboards and automation that caught fraud for the client, and led the process-improvement team."
     }
   ]
 }

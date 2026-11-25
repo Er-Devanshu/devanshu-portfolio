@@ -85,3 +85,10 @@ export function makeFill({ site, experience, credentials, beyond }, now = new Da
 // site.role can be typed, or "auto:role" to always show the current job title.
 export const resolveRole = (site, experience) =>
   site.role === "auto:role" ? currentRole(experience)?.role || "" : site.role;
+
+// Official certification names, as recruiters and ATS tools expect them:
+// "Microsoft Certified: …", "Salesforce Certified …", others as written.
+export const officialCertName = (c) =>
+  c.issuer === "Microsoft" ? `Microsoft Certified: ${c.name}`
+    : c.issuer === "Salesforce" && !/^Salesforce/i.test(c.name) ? `Salesforce Certified ${c.name}`
+      : c.name;

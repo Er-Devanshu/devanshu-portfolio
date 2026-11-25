@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
 import { about, site, fill, career, portraitSrcSet, PORTRAIT_SIZES } from "../lib/content";
 import SkillsSunburst from "../components/ui/SkillsSunburst";
+import Icon from "../components/ui/Icon";
 import usePageTitle from "../hooks/usePageTitle";
 import "./AboutPage.css";
 
@@ -40,6 +41,13 @@ function useTimelineFill(ref) {
   }, [ref]);
 }
 
+// Soft light that follows the pointer across a card.
+const spotlight = (e) => {
+  const r = e.currentTarget.getBoundingClientRect();
+  e.currentTarget.style.setProperty("--mx", `${e.clientX - r.left}px`);
+  e.currentTarget.style.setProperty("--my", `${e.clientY - r.top}px`);
+};
+
 export default function AboutPage() {
   usePageTitle("About");
   const listRef = useRef(null);
@@ -76,6 +84,25 @@ export default function AboutPage() {
           </section>
         )}
       </div>
+
+      {about.softSkills?.items?.length > 0 && (
+        <section className="ab-soft container" aria-labelledby="soft-title">
+          <div className="ab-soft-head">
+            <h2 id="soft-title" className="ab-side-title">{about.softSkills.title}</h2>
+            {about.softSkills.intro && <p className="ab-soft-intro">{fill(about.softSkills.intro)}</p>}
+          </div>
+          <ul className="ab-soft-grid">
+            {about.softSkills.items.map((s, i) => (
+              <li key={s.name} className="ab-soft-card" style={{ "--i": i }} onPointerMove={spotlight}>
+                <span className="ab-soft-icon" aria-hidden="true"><Icon name={s.icon || "award"} size={22} /></span>
+                <h3>{s.name}</h3>
+                <p>{fill(s.use)}</p>
+                {s.proof && <p className="ab-soft-proof"><span className="visually-hidden">Proof: </span>{fill(s.proof)}</p>}
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
 
       <section className="surface-ivory ab-journey" aria-labelledby="journey-title">
         <div className="container ab-journey-inner">

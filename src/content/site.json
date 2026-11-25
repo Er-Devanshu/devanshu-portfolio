@@ -3,7 +3,7 @@
   "firstName": "Er. Devanshu",
   "lastName": "Tayal",
   "role": "auto:role",
-  "tagline": "I turn messy enterprise data into Fabric platforms, dashboards and AI agents teams use every day, and I lead the people who build them. Open to full-time, part-time, freelance and consulting work.",
+  "tagline": "I build Microsoft Fabric platforms, dashboards and AI agents that business teams use every day, and I lead the team behind them. Open to full-time, part-time, freelance and consulting work.",
   "photo": "/images/portrait-home.webp",
   "photoAlt": "Devanshu Tayal smiling, arms crossed",
   "careerStart": "2018-02-09",
@@ -11,18 +11,18 @@
   "email": "tayaldevanshu0502@gmail.com",
   "seo": {
     "title": "Er. Devanshu Tayal — Senior Tech Lead, Data & AI",
-    "description": "Senior Tech Lead – Data & AI at Aegis Soft Tech, Ahmedabad. Microsoft Fabric, Power BI and GenAI consultant, open to roles and freelance work.",
+    "description": "Senior Tech Lead – Data & AI at Aegis Soft Tech, Ahmedabad. Microsoft Fabric, Power BI and GenAI, open to full-time, freelance and consulting work.",
     "pages": {
       "/": {
         "title": "Er. Devanshu Tayal — Senior Tech Lead, Data & AI",
-        "description": "Senior Tech Lead – Data & AI at Aegis Soft Tech, Ahmedabad. Microsoft Fabric, Power BI and GenAI consultant, open to roles and freelance work."
+        "description": "Senior Tech Lead – Data & AI at Aegis Soft Tech, Ahmedabad. Microsoft Fabric, Power BI and GenAI, open to full-time, freelance and consulting work."
       },
       "/about": {
         "title": "About Er. Devanshu Tayal, Data Scientist & AI Lead",
         "description": "Data scientist and AI lead Er. Devanshu Tayal: LLMs, RAG, machine learning, Microsoft Fabric, Databricks, Power BI and Tableau. M.Tech, BITS Pilani."
       },
       "/experience": {
-        "title": "Experience — Er. Devanshu Tayal, Senior Tech Lead, Data & AI",
+        "title": "Experience — Er. Devanshu Tayal, Senior Tech Lead",
         "description": "Data and AI roles at Aegis Soft Tech, Analytix, AIS and TTEC: Fabric platforms, forecasting and fraud detection, with results like 600+ hours saved a month."
       },
       "/projects": {
@@ -69,7 +69,7 @@
   ],
   "contact": {
     "title": "Let's talk",
-    "text": "Full-time, part-time, freelance or consulting: tell me what you're working on.",
+    "text": "Hiring full-time or part-time, or looking for a freelancer or consultant? Tell me what you're working on.",
     "note": "Based in Ahmedabad, India (IST). Remote, hybrid or on-site, and open to relocating for the right role."
   },
   "aboutPhoto": "/images/portrait-about.webp",

@@ -1,6 +1,6 @@
 import {
-  ArrowRight, ArrowUpRight, Award, Briefcase, ChartColumn, Clock, Code, Workflow,
-  Download, GraduationCap, Mail, MapPin, Mic, PenLine, Send, Users,
+  ArrowRight, ArrowUpRight, Award, Briefcase, ChartColumn, Code, Compass, Handshake, Presentation, Rocket, Workflow,
+  Download, Mail, Mic, PenLine, Users,
 } from "lucide-react";
 
 // Brand marks are not in lucide, so they are drawn inline.
@@ -21,8 +21,8 @@ function GitHub({ size = 20, ...rest }) {
 
 const map = {
   linkedin: LinkedIn, github: GitHub, pen: PenLine, chart: ChartColumn, briefcase: Briefcase,
-  code: Code, award: Award, clock: Clock, workflow: Workflow, pin: MapPin, send: Send, users: Users, mic: Mic,
-  graduation: GraduationCap, download: Download, mail: Mail, arrow: ArrowRight, external: ArrowUpRight,
+  award: Award, workflow: Workflow, users: Users, mic: Mic, handshake: Handshake, compass: Compass, rocket: Rocket, presentation: Presentation,
+  download: Download, mail: Mail, arrow: ArrowRight, external: ArrowUpRight,
 };
 
 export default function Icon({ name, size = 20, ...rest }) {

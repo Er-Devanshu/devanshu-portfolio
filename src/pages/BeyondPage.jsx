@@ -1,4 +1,4 @@
-import { beyond } from "../lib/content";
+import { beyond, fill } from "../lib/content";
 import usePageTitle from "../hooks/usePageTitle";
 import useReveal from "../hooks/useReveal";
 import Icon from "../components/ui/Icon";
@@ -77,7 +77,7 @@ export default function BeyondPage() {
     <div className="container beyond-page">
       <header className="page-hero beyond-hero">
         <h1>{beyond.title}</h1>
-        <p className="lead">{beyond.intro}</p>
+        <p className="lead">{fill(beyond.intro)}</p>
       </header>
 
       {achievements.length > 0 && (

@@ -1,19 +1,19 @@
 {
   "title": "About",
-  "intro": "I lead data and AI delivery at {company}, teach at BITS Pilani and run {communities} tech communities.",
+  "intro": "I lead data and AI work at {company}, teach at BITS Pilani and run {communities} tech communities.",
   "bio": [
-    "I'm {role} at {company}, where I set the data and AI strategy and build what it needs.",
-    "In {years}+ years across travel, banking, finance and e-commerce, I've built and scaled production AI and analytics: LLM apps, RAG, predictive models and real-time data systems on Microsoft Fabric, Azure and Databricks. I take work from problem to production.",
-    "M.Tech from BITS Pilani, where I now teach Data Visualisation, Machine Learning and NLP as Guest Faculty. Certified in {certifications}.",
-    "Tableau Ambassador in 2025 and 2026. I lead {communities} data and AI communities across Tableau, AWS, Microsoft Fabric, Databricks and IBM.",
-    "My rule: understand the problem deeply, build the right solution, keep the engineering simple."
+    "I'm {role} at {company}. I set the data and AI direction for our clients and build the platforms behind it.",
+    "Over {years}+ years in travel, banking, finance and e-commerce, I've shipped BI, data pipelines, machine learning, LLM apps and real-time systems on Microsoft Fabric, Azure and Databricks. I like owning a problem from the first conversation to the version running in production.",
+    "I did my M.Tech at BITS Pilani and now teach Data Visualisation, Machine Learning and NLP there as Guest Faculty. I'm certified in {certifications}.",
+    "I'm a Tableau Ambassador (2025 and 2026), and I run {communities} data and AI communities for Tableau, AWS, Microsoft Fabric, Databricks and IBM users.",
+    "How I work: understand the problem properly, build only what solves it, and keep the engineering simple."
   ],
   "skills": {
     "groups": [
       {
         "group": "AI, LLMs & NLP",
         "short": "AI & LLMs",
-        "descriptor": "Language models and agents, connected to real business data.",
+        "descriptor": "Language models and agents, wired into business data.",
         "items": [
           {
             "name": "OpenAI API",
@@ -156,7 +156,7 @@
       {
         "group": "Business intelligence",
         "short": "BI",
-        "descriptor": "Dashboards people actually use to decide.",
+        "descriptor": "Dashboards that people make decisions from.",
         "items": [
           {
             "name": "Power BI",
@@ -171,6 +171,48 @@
             "use": "Explaining what the numbers mean and what to do next."
           }
         ]
+      }
+    ]
+  },
+  "softSkills": {
+    "title": "Professional skills",
+    "intro": "The other half of the job: how I lead people, work with clients and get things shipped.",
+    "items": [
+      {
+        "name": "Team leadership and mentoring",
+        "icon": "users",
+        "use": "I set direction, unblock people and help engineers grow.",
+        "proof": "Team of 10+ at {company}"
+      },
+      {
+        "name": "Stakeholder and client management",
+        "icon": "handshake",
+        "use": "I turn what clients ask for into work the team can build and ship.",
+        "proof": "Clients in travel, banking, finance and e-commerce"
+      },
+      {
+        "name": "Data strategy and solution architecture",
+        "icon": "compass",
+        "use": "I design data and AI platforms around the business problem, not the tool.",
+        "proof": "Microsoft Fabric platform design"
+      },
+      {
+        "name": "Project ownership and delivery",
+        "icon": "rocket",
+        "use": "I own work from the first conversation to the version running in production.",
+        "proof": "Client delivery lead at {company}"
+      },
+      {
+        "name": "Process improvement",
+        "icon": "workflow",
+        "use": "I find the slow, manual steps in a workflow and fix them.",
+        "proof": "Around 35 processes improved at TTEC"
+      },
+      {
+        "name": "Teaching and communication",
+        "icon": "presentation",
+        "use": "I explain technical work clearly to clients, teams and students.",
+        "proof": "Guest Faculty, BITS Pilani"
       }
     ]
   }

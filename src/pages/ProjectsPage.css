@@ -68,6 +68,8 @@
 .project-card-tags { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; }
 .project-card-tags li { padding: 3px 10px; border-radius: 999px; border: 1px solid var(--border-color); font-size: 0.8rem; color: var(--text-secondary); }
 .project-card-cta { display: inline-flex; align-items: center; gap: 6px; font-size: 0.92rem; font-weight: 600; color: var(--text-primary); white-space: nowrap; }
+.project-card-client { font-size: 0.85rem; font-weight: 600; color: var(--text-muted); white-space: nowrap; }
+.project-card.is-static:hover { transform: none; }
 .project-card-cta svg { transition: transform 250ms var(--ease-standard); }
 .project-card:hover .project-card-cta { color: var(--tint); }
 .project-card:hover .project-card-cta svg { transform: translate(3px, -3px); }

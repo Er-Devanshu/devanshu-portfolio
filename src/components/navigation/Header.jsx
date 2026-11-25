@@ -1,29 +1,22 @@
 import { useEffect, useRef, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
-import { ChevronDown, Menu, X, ArrowUpRight } from "lucide-react";
+import { Menu, X, ArrowUpRight } from "lucide-react";
 import { navigation, site } from "../../lib/content";
 import "./Header.css";
 
 export default function Header() {
-  // Menus remember the route they were opened on, so they close automatically on navigation.
+  // The phone menu remembers the route it was opened on, so it closes automatically on navigation.
   const [mobileAt, setMobileAt] = useState(null);
-  const [moreAt, setMoreAt] = useState(null);
   const [scrolled, setScrolled] = useState(false);
-  const moreRef = useRef(null);
   const toggleRef = useRef(null);
   const { pathname } = useLocation();
   const mobileOpen = mobileAt === pathname;
-  const moreOpen = moreAt === pathname;
   const setMobileOpen = (fn) => setMobileAt((cur) => ((typeof fn === "function" ? fn(cur === pathname) : fn) ? pathname : null));
-  const setMoreOpen = (fn) => setMoreAt((cur) => ((typeof fn === "function" ? fn(cur === pathname) : fn) ? pathname : null));
-  const isMoreActive = navigation.more.some((i) => i.path === pathname);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
-    const onDown = (e) => { if (moreRef.current && !moreRef.current.contains(e.target)) setMoreAt(null); };
     const onKey = (e) => {
       if (e.key !== "Escape") return;
-      setMoreAt(null);
       // Closing the mobile menu hides its links, so send focus back to the button that opened it.
       const toggle = toggleRef.current;
       if (toggle?.getAttribute("aria-expanded") === "true") toggle.focus();
@@ -31,11 +24,9 @@ export default function Header() {
     };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
-    document.addEventListener("pointerdown", onDown);
     document.addEventListener("keydown", onKey);
     return () => {
       window.removeEventListener("scroll", onScroll);
-      document.removeEventListener("pointerdown", onDown);
       document.removeEventListener("keydown", onKey);
     };
   }, []);
@@ -68,26 +59,6 @@ export default function Header() {
                 <NavLink to={item.path} end={item.path === "/"} className={linkClass}>{item.label}</NavLink>
               </li>
             ))}
-            {navigation.more.length > 0 && (
-<li className="more-menu" ref={moreRef}>
-              <button
-                type="button"
-                className={`nav-link more-trigger${isMoreActive ? " active" : ""}`}
-                aria-expanded={moreOpen}
-                aria-controls="more-menu-list"
-                onClick={() => setMoreOpen((o) => !o)}
-              >
-                More <ChevronDown size={15} aria-hidden="true" className={moreOpen ? "chevron-open" : ""} />
-              </button>
-              <ul id="more-menu-list" className={`more-dropdown${moreOpen ? " is-open" : ""}`}>
-                {navigation.more.map((item) => (
-                  <li key={item.path}>
-                    <NavLink to={item.path} className={({ isActive }) => `dropdown-link${isActive ? " active" : ""}`}>{item.label}</NavLink>
-                  </li>
-                ))}
-              </ul>
-            </li>
-            )}
           </ul>
           <NavLink to={navigation.cta.path} className="nav-contact">
             {navigation.cta.label} <ArrowUpRight size={15} aria-hidden="true" />

@@ -1,10 +1,11 @@
-import { existsSync, readFileSync } from "node:fs";
+import { readFileSync } from "node:fs";
 import react from "@vitejs/plugin-react";
 import { defineConfig } from "vite";
 
-// The Download CV button only renders when the PDF named in site.json is actually in public/.
+// The CV is generated from the content on every build (scripts/build-cv.mjs), so the Download CV
+// button shows whenever site.json has a "cv" path.
 const site = JSON.parse(readFileSync(new URL("./src/content/site.json", import.meta.url), "utf8"));
-const hasCv = Boolean(site.cv) && existsSync(new URL(`./public${site.cv}`, import.meta.url));
+const hasCv = Boolean(site.cv);
 
 export default defineConfig({
   plugins: [react()],

@@ -24,3 +24,6 @@ dist-ssr
 .claude/
 # Local agent skill installs
 skills-lock.json
+
+# Website tour video (large; kept locally, not pushed)
+video/

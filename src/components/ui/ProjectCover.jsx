@@ -1,6 +1,5 @@
-import Icon from "./Icon";
 import ProjectIllustration from "./ProjectCovers";
-import "./ProjectCard.css";
+import "./ProjectCover.css";
 
 // Deterministic PRNG seeded from the project title, so every cover differs but never changes.
 function seeded(str) {
@@ -24,14 +23,6 @@ function motif(category, rand) {
         {pts.map(([x, y], i) => <circle key={i} cx={r1(x)} cy={r1(y)} r={i % 7 === 0 ? 3.2 : 2} fill={i % 3 ? L : A} />)}
         <line x1="24" y1="152" x2="296" y2="38" stroke={A} strokeWidth="1.2" strokeDasharray="4 4" />
       </>;
-    }
-    case "Deep Learning": {
-      const f1 = 2 + rand() * 4, f2 = 9 + rand() * 10, ph = rand() * 6;
-      const bars = Array.from({ length: 64 }, (_, i) => {
-        const t = i / 63; const a = Math.abs(Math.sin(t * f1 + ph) * 0.7 + Math.sin(t * f2) * 0.3) * (0.25 + rand() * 0.75);
-        return { x: 20 + i * 4.4, h: 6 + a * 120 };
-      });
-      return bars.map((b, i) => <rect key={i} x={r1(b.x)} y={r1(90 - b.h / 2)} width="2.2" height={r1(b.h)} rx="1.1" fill={i % 9 === 4 ? A : L} />);
     }
     case "NLP": {
       const rows = [];
@@ -90,35 +81,5 @@ export function ProjectCover({ project }) {
       } />
       <span className="project-cover-label">{project.category}</span>
     </div>
-  );
-}
-
-// Card shows project.image if provided; otherwise the authored cover for project.cover,
-// falling back to a generated pattern from its category.
-export default function ProjectCard({ project, size = "md" }) {
-  const external = /^https?:/.test(project.url);
-  return (
-    <article className={`project-card project-card-${size}`}>
-      <div className="project-cover" aria-hidden="true">
-        {project.image ? (
-          <img src={project.image} alt="" loading="lazy" width="640" height="360" />
-        ) : <ProjectCover project={project} />}
-      </div>
-      <div className="project-body">
-        <h3>
-          <a href={project.url} {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})} className="project-link">
-            {project.title}
-            {external && <span className="visually-hidden"> (opens in a new tab)</span>}
-          </a>
-        </h3>
-        <Icon name="external" size={18} className="project-arrow" />
-        <p>{project.summary}</p>
-        {project.tags?.length > 0 && (
-          <ul className="tag-list" aria-label="Technologies">
-            {project.tags.map((t) => <li key={t}>{t}</li>)}
-          </ul>
-        )}
-      </div>
-    </article>
   );
 }
